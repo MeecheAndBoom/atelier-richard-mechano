@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1280" role="img" aria-label="Atelier">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7f9fc"/>
+      <stop offset="1" stop-color="#dfe4ec"/>
+    </linearGradient>
+    <pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0V56" fill="none" stroke="#d3d8e1" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1280" fill="url(#bg)"/>
+  <rect width="1600" height="1280" fill="url(#grid)" opacity="0.5"/>
+  <g stroke="#7d8798" fill="none" stroke-width="10" stroke-linecap="round">
+    <g transform="translate(430 430) scale(1.6)">
+      <circle cx="0" cy="0" r="92"/><circle cx="0" cy="0" r="38"/>
+      <line x1="92.0" y1="0.0" x2="136.0" y2="0.0" stroke-width="30"/><line x1="65.1" y1="65.1" x2="96.2" y2="96.2" stroke-width="30"/><line x1="0.0" y1="92.0" x2="0.0" y2="136.0" stroke-width="30"/><line x1="-65.1" y1="65.1" x2="-96.2" y2="96.2" stroke-width="30"/><line x1="-92.0" y1="0.0" x2="-136.0" y2="0.0" stroke-width="30"/><line x1="-65.1" y1="-65.1" x2="-96.2" y2="-96.2" stroke-width="30"/><line x1="-0.0" y1="-92.0" x2="-0.0" y2="-136.0" stroke-width="30"/><line x1="65.1" y1="-65.1" x2="96.2" y2="-96.2" stroke-width="30"/>
+    </g>
+    <g transform="translate(1020 380) scale(1.05)">
+      <circle cx="0" cy="0" r="130"/><circle cx="0" cy="0" r="46"/>
+      <circle cx="87.0" cy="23.1" r="13" stroke-width="9"/><circle cx="23.5" cy="86.9" r="13" stroke-width="9"/><circle cx="-63.5" cy="63.8" r="13" stroke-width="9"/><circle cx="-87.0" cy="-23.1" r="13" stroke-width="9"/><circle cx="-23.5" cy="-86.9" r="13" stroke-width="9"/><circle cx="63.5" cy="-63.8" r="13" stroke-width="9"/>
+    </g>
+    <g transform="translate(1310 660) scale(0.8)" stroke="#98a1b1">
+      <rect x="-120" y="-80" width="240" height="160" rx="18"/>
+      <line x1="-70" y1="-80" x2="-70" y2="-120" stroke-width="20"/>
+      <line x1="70" y1="-80" x2="70" y2="-120" stroke-width="20"/>
+      <line x1="-40" y1="0" x2="40" y2="0" stroke-width="14"/>
+    </g>
+    <g transform="translate(300 800) scale(0.85)" stroke="#98a1b1">
+      <rect x="-76" y="-120" width="152" height="240" rx="20"/>
+      <line x1="-76" y1="-56" x2="76" y2="-56"/>
+      <line x1="-76" y1="-8" x2="76" y2="-8"/>
+      <line x1="-76" y1="40" x2="76" y2="40"/>
+    </g>
+    <line x1="120" y1="980" x2="1480" y2="980" stroke="#6e7686" stroke-width="12"/>
+    <line x1="220" y1="980" x2="220" y2="1160" stroke="#6e7686" stroke-width="12"/>
+    <line x1="1380" y1="980" x2="1380" y2="1160" stroke="#6e7686" stroke-width="12"/>
+    <g transform="translate(800 920) scale(0.55)" stroke="#0071e3">
+      <path d="M56 -118 A62 62 0 1 0 6 -34 L-96 66 A26 26 0 1 1 -132 30 L-32 -70"/>
+    </g>
+  </g>
+  <g text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace">
+    <text x="800" y="1220" font-size="44" letter-spacing="14" fill="#6e7686">ATELIER RICHARD MECHANO</text>
+  </g>
+</svg>

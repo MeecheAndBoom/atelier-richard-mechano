@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="SACHS">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f9fb"/>
+      <stop offset="1" stop-color="#e7eaef"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#d7dbe2" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.6">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect width="1200" height="900" fill="url(#grid)" opacity="0.5"/>
+  <rect width="1200" height="900" fill="url(#glow)"/>
+  <g stroke="#8a93a3" fill="none" stroke-linecap="round" stroke-linejoin="round"
+     transform="translate(600 396) scale(2.143)">
+    
+    <path d="M0 -120 L104 -80 V10 Q104 84 0 124 Q-104 84 -104 10 V-80 Z"/>
+    <path d="M-46 4 L-12 40 L52 -32"/>
+  </g>
+  <g text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace">
+    <text x="600" y="756" font-size="41"
+          letter-spacing="18" fill="#6e7686">SACHS</text>
+    <text x="600" y="819" font-size="27" fill="#9aa2b0">MARQUE PIECE</text>
+  </g>
+  <g stroke="#b9c0cb" stroke-width="4" fill="none">
+    <path d="M32 32h64M32 32v64"/>
+    <path d="M1168 32h-64M1168 32v64"/>
+    <path d="M32 868h64M32 868v-64"/>
+    <path d="M1168 868h-64M1168 868v-64"/>
+  </g>
+  <circle cx="600" cy="396" r="6" fill="#0071e3" opacity="0.35"/>
+</svg>

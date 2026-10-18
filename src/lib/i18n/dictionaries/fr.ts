@@ -1,0 +1,889 @@
+/**
+ * French dictionary — the source of truth for the Dictionary type.
+ * `en.ts` must provide every key below; TypeScript enforces parity.
+ *
+ * DB-entered content (products, posts) carries optional *En fields with a
+ * fallback to the base language — this file covers all UI chrome and
+ * static page copy.
+ */
+
+export const fr = {
+  meta: {
+    siteName: "Atelier Richard Méchano",
+    tagline: "Pièces détachées d’exception, prêtes à monter.",
+    description:
+      "Pièces détachées automobiles et machines inspectées, référencées et prêtes à expédier. Recherche par marque, modèle et compatibilité, commande et suivi en ligne.",
+    shortDescription:
+      "Pièces détachées automobiles et machines : compatibilité vérifiée, expédition rapide.",
+    keywords: [
+      "pièces détachées",
+      "pièces auto",
+      "pièces détachées en ligne",
+      "rechange automobile",
+      "pièces détachées France",
+      "atelier mécanique",
+      "pièces moteur",
+      "pièces freinage",
+    ],
+  },
+
+  nav: {
+    shop: "Boutique",
+    blog: "Blog",
+    about: "À propos",
+    contact: "Contact",
+    track: "Suivi de commande",
+    help: "Aide",
+    cart: "Panier",
+    menu: "Menu",
+    close: "Fermer",
+    language: "Langue",
+    skipToContent: "Aller au contenu",
+  },
+
+  footer: {
+    shop: "Boutique",
+    company: "Atelier",
+    support: "Aide",
+    legal: "Légal",
+    allParts: "Toutes les pièces",
+    byCategory: "Par catégorie",
+    cart: "Votre panier",
+    aboutUs: "À propos",
+    blogGuides: "Blog & guides",
+    contactUs: "Nous contacter",
+    trackOrder: "Suivre une commande",
+    faq: "Questions fréquentes",
+    retrieveQuote: "Retrouver un devis",
+    affiliate: "Programme d’affiliation",
+    resources: "Ressources",
+    rights: "Tous droits réservés.",
+    tagline: "Pièces détachées d’exception, prêtes à monter.",
+    hours: "Horaires",
+    address: "Adresse",
+    phone: "Téléphone",
+    email: "E-mail",
+  },
+
+  common: {
+    addToCart: "Ajouter au panier",
+    added: "Ajouté au panier.",
+    inCart: "Dans le panier",
+    buyNow: "Acheter",
+    viewAll: "Tout voir",
+    viewDetails: "Voir le détail",
+    learnMore: "En savoir plus",
+    readMore: "Lire la suite",
+    send: "Envoyer",
+    sending: "Envoi…",
+    save: "Enregistrer",
+    cancel: "Annuler",
+    delete: "Supprimer",
+    edit: "Modifier",
+    back: "Retour",
+    next: "Suivant",
+    search: "Rechercher",
+    searchPlaceholder: "Rechercher une pièce, une référence, une marque…",
+    clearFilters: "Effacer les filtres",
+    apply: "Appliquer",
+    optional: "facultatif",
+    required: "obligatoire",
+    loading: "Chargement…",
+    outOfStock: "Rupture de stock",
+    inStock: "En stock",
+    lowStock: "Stock faible",
+    contactUs: "Nous contacter",
+    callUs: "Nous appeler",
+    emailUs: "Écrire un e-mail",
+    perUnit: "à l’unité",
+    free: "Gratuit",
+    yes: "Oui",
+    no: "Non",
+    none: "Aucun",
+    all: "Tous",
+    or: "ou",
+    and: "et",
+    from: "dès",
+    to: "à",
+    close: "Fermer",
+    questions: "Une question ?",
+    error: "Une erreur est survenue. Réessayez.",
+    copy: "Copier",
+    copied: "Copié",
+  },
+
+  home: {
+    heroTitle: "Les bonnes pièces. La bonne référence. Sans détour.",
+    heroLead:
+      "Atelier Richard Méchano sélectionne, contrôle et référence chaque pièce avant expédition. Compatibilité vérifiée, stock réel, commande suivie en ligne.",
+    heroCta: "Parcourir les pièces",
+    heroSecondary: "Vérifier une compatibilité",
+    featuredTitle: "Pièces en vedette.",
+    featuredLead: "Sélection du moment, contrôlée et prête à partir.",
+    categoriesTitle: "Explorer par catégorie.",
+    categoriesLead: "Moteur, freinage, électricité, suspension — tout est classé.",
+    whyTitle: "Pourquoi nous acheter.",
+    why: [
+      {
+        title: "Compatibilité vérifiée",
+        body: "Chaque pièce est rattachée à ses marques, modèles et années. Vous commandez la bonne référence du premier coup.",
+      },
+      {
+        title: "Stock réel, prix nets",
+        body: "Le prix affiché est le prix payé. Les quantités affichées sont celles de l’atelier, mises à jour à chaque commande.",
+      },
+      {
+        title: "Expédition sous 48 h",
+        body: "Les pièces en stock partent sous 48 heures ouvrées, avec numéro de suivi envoyé par e-mail.",
+      },
+    ],
+    stats: [
+      { value: "12 000+", label: "références contrôlées" },
+      { value: "48 h", label: "expédition en stock" },
+      { value: "98 %", label: "commandes livrées à temps" },
+    ],
+    testimonialsTitle: "Ils ont commandé chez nous.",
+    testimonialsLead: "Avis vérifiés de clients particuliers et professionnels.",
+    blogTitle: "Du fond de l’atelier.",
+    blogLead: "Guides d’achat, entretien et retours d’expérience.",
+    ctaTitle: "Vous ne trouvez pas la pièce ?",
+    ctaLead:
+      "Envoyez-nous la référence, la photo ou le numéro de châssis — nous la cherchons pour vous.",
+    ctaButton: "Demander une pièce",
+  },
+
+  shop: {
+    title: "Toutes les pièces.",
+    lead: "Filtrez par marque, modèle, catégorie et compatibilité.",
+    results: "{count} pièces",
+    resultsOne: "1 pièce",
+    noResults: "Aucune pièce ne correspond à ces filtres.",
+    noResultsHint: "Essayez d’élargir la fourchette de prix ou d’effacer un filtre.",
+    filters: "Filtres",
+    filterMake: "Marque du véhicule",
+    filterModel: "Modèle",
+    filterBrand: "Marque de la pièce",
+    filterCategory: "Catégorie",
+    filterCondition: "État",
+    filterPrice: "Prix",
+    filterStock: "Disponibilité",
+    filterInStock: "En stock uniquement",
+    priceMin: "Min",
+    priceMax: "Max",
+    sort: "Trier",
+    sortFeatured: "En vedette",
+    sortPriceAsc: "Prix croissant",
+    sortPriceDesc: "Prix décroissant",
+    sortNewest: "Nouveautés",
+    sortName: "Nom A → Z",
+    conditions: {
+      new: "Neuf",
+      refurb: "Reconditionné",
+      used: "Occasion",
+    },
+    breadcrumbHome: "Accueil",
+    subtitle: "Recherchez une référence, une marque ou un modèle.",
+  },
+
+  product: {
+    partNumber: "Référence",
+    sku: "SKU",
+    brand: "Marque",
+    make: "Marque véhicule",
+    model: "Modèle",
+    compatibility: "Compatibilité",
+    fitment: "Compatibilité",
+    years: "Années",
+    condition: "État",
+    category: "Catégorie",
+    subcategory: "Sous-catégorie",
+    stockLabel: "Stock",
+    weight: "Poids",
+    dimensions: "Dimensions",
+    oemNumbers: "Numéros OEM",
+    specs: "Caractéristiques",
+    features: "Points forts",
+    description: "Description",
+    related: "Pièces associées.",
+    relatedLead: "Souvent achetées ensemble ou dans la même catégorie.",
+    save: "Économie",
+    quantity: "Quantité",
+    trustLine:
+      "Contrôlée à l’atelier avant expédition. Retour possible sous 30 jours selon notre politique.",
+    galleryAlt: "Vue de la pièce {title}",
+    notFound: "Pièce introuvable.",
+    breadcrumbShop: "Boutique",
+    backToShop: "Retour à la boutique",
+    updated: "Référencée le",
+    tags: "Mots-clés",
+  },
+
+  cart: {
+    title: "Votre panier.",
+    empty: "Votre panier est vide.",
+    emptyHint:
+      "Ajoutez une pièce pour commencer — la commande prend moins d’une minute.",
+    browse: "Parcourir les pièces",
+    item: "Article",
+    price: "Prix",
+    qty: "Qté",
+    total: "Total",
+    subtotal: "Sous-total",
+    shipping: "Expédition",
+    shippingNote: "Calculée à l’étape suivante selon l’adresse.",
+    orderTotal: "Total commande",
+    proceedCheckout: "Passer commande",
+    keepShopping: "Continuer mes achats",
+    remove: "Retirer",
+    clear: "Vider le panier",
+    drawerTitle: "Panier",
+    drawerEmpty: "Votre panier est vide.",
+    drawerSubtotal: "Sous-total",
+    drawerCheckout: "Commander",
+    drawerView: "Voir le panier",
+    stockMax: "Stock disponible : {max}",
+    saved: "Panier enregistré sur cet appareil.",
+    freeFrom: "Gratuit dès {amount}",
+    continueShopping: "Continuer mes achats",
+    summary: "Récapitulatif",
+  },
+
+  checkout: {
+    title: "Commande.",
+    lead:
+      "Une minute. Aucun débit maintenant — nous confirmons la commande, puis les instructions de paiement vous parviennent par e-mail.",
+    empty: "Votre panier est vide.",
+    emptyHint: "Ajoutez d’abord une pièce — la commande prend moins d’une minute.",
+    browse: "Parcourir les pièces",
+    yourInfo: "Vos coordonnées",
+    name: "Nom complet",
+    email: "E-mail",
+    phone: "Téléphone",
+    notes: "Remarques",
+    notesPlaceholder: "Référence exacte, contraintes de livraison, message…",
+    delivery: "Livraison",
+    methodPickup: "Retrait à l’atelier",
+    methodDelivery: "Livraison",
+    pickupHint: "Gratuit, sur rendez-vous — 24 Rue de l’Industrie, 69007 Lyon.",
+    deliveryHint: "Colis suivi, expédié sous 48 h ouvrées.",
+    pickupAddress: "Adresse de retrait",
+    addressLine: "Adresse",
+    city: "Ville",
+    state: "Région / département",
+    zip: "Code postal",
+    country: "Pays",
+    payment: "Paiement",
+    paymentLead:
+      "Choisissez votre mode de paiement. Les détails vous seront envoyés par e-mail.",
+    payMethodOther: "Précisez votre mode de paiement",
+    payMethodOtherPlaceholder: "Virement, espèces au retrait, financement…",
+    orderSummary: "Récapitulatif",
+    placeOrder: "Confirmer la commande",
+    placing: "Envoi…",
+    byPlacing:
+      "En confirmant, vous acceptez nos conditions de vente et notre politique de confidentialité.",
+    requiredField: "Ce champ est obligatoire.",
+    invalidEmail: "Adresse e-mail invalide.",
+    phoneShort: "Numéro trop court.",
+    formError: "Veuillez corriger les champs signalés.",
+    emptyCart: "Votre panier est vide.",
+  },
+
+  success: {
+    title: "Commande reçue.",
+    lead:
+      "Merci. Un e-mail de confirmation avec votre référence vient de partir à l’adresse",
+    yourRef: "Votre référence de commande",
+    saveRef: "Gardez-la avec votre e-mail pour suivre la commande.",
+    track: "Suivre la commande",
+    keepBrowsing: "Continuer mes achats",
+    steps: [
+      {
+        title: "Nous confirmons par e-mail",
+        body: "Vous recevez le récapitulatif et les instructions de paiement sous peu.",
+      },
+      {
+        title: "Paiement vérifié",
+        body: "Dès réception du paiement, votre commande passe en préparation.",
+      },
+      {
+        title: "Préparation et départ",
+        body: "La pièce est contrôlée, emballée, puis expédiée avec numéro de suivi.",
+      },
+    ],
+    questions:
+      "Une question immédiate ? Appelez-nous en référence de commande.",
+  },
+
+  track: {
+    title: "Suivre votre commande.",
+    lead:
+      "Saisissez l’e-mail utilisé à la commande et votre référence ARM-XXXXXX.",
+    refLabel: "Référence de commande",
+    refPlaceholder: "ARM-AB12CD",
+    emailLabel: "E-mail",
+    lookup: "Rechercher",
+    looking: "Recherche…",
+    errorMissing: "Saisissez votre e-mail et votre référence.",
+    errorNoMatch:
+      "Aucune commande ne correspond à cet e-mail et à cette référence. Vérifiez les deux et réessayez.",
+    notFound: "Commande introuvable",
+    placedOn: "Commandée le",
+    customer: "Client",
+    items: "Articles",
+    totals: "Totaux",
+    statusTitle: "État de la commande",
+    historyTitle: "Historique",
+    nextStep: "Prochaine étape",
+    steps: {
+      placed: "Commande reçue",
+      awaitingPayment: "Paiement en attente",
+      paymentPending: "Instructions envoyées",
+      awaitingProof: "Preuve de paiement requise",
+      proofSubmitted: "Preuve envoyée",
+      paymentReceived: "Paiement reçu",
+      preparing: "Préparation",
+      ready: "Prêt à retirer",
+      outForDelivery: "En cours de livraison",
+      completed: "Terminée",
+      cancelled: "Annulée",
+    },
+    paymentInstructions: "Instructions de paiement",
+    paymentMethod: "Mode de paiement",
+    amountDue: "Montant dû",
+    dueDate: "Échéance",
+    payStatus: "État du paiement",
+    payStatuses: {
+      pending: "En attente",
+      "awaiting-proof": "En attente de preuve",
+      "proof-submitted": "Preuve reçue, en vérification",
+      received: "Paiement reçu",
+    },
+    proofTitle: "Envoyer votre preuve de paiement",
+    proofLead:
+      "Réglez comme indiqué ci-dessus, puis envoyez une capture d’écran du reçu (JPG, PNG ou WebP, 10 Mo maximum).",
+    proofButton: "Téléverser la preuve",
+    proofDrop: "Déposez la capture ici ou cliquez pour choisir un fichier",
+    proofFile: "Capture du reçu",
+    proofOnFile: "Preuve envoyée",
+    proofUploading: "Envoi en cours…",
+    proofDone: "Preuve envoyée. Nous la vérifions sous 1 jour ouvré.",
+    proofPending:
+      "Preuve en cours de vérification. Vous serez informé(e) dès validation.",
+    proofApproved: "Paiement confirmé. Merci !",
+    proofRejected: "Preuve refusée",
+    proofRejectedNote:
+      "Votre preuve a été refusée. Vérifiez le motif ci-dessous, puis renvoyez une nouvelle capture.",
+    proofRejectedReason: "Motif du refus",
+    proofUploadedAt: "Envoyée le",
+    proofNote: "Note",
+    proofNotePlaceholder: "Référence de l’opération, nom du titulaire…",
+    proofAlt: "Preuve de paiement",
+    proofView: "Voir la preuve envoyée",
+    needHelp: "Besoin d’aide ? Répondez à l’e-mail de confirmation ou contactez-nous.",
+    orderLangNote: "Commande passée en {lang}.",
+  },
+
+  blog: {
+    title: "Blog & guides.",
+    lead: "Guides d’achat, entretien et retours d’atelier.",
+    readMinutes: "min de lecture",
+    byAuthor: "par",
+    backToBlog: "Retour au blog",
+    related: "À lire aussi.",
+    empty: "Aucun article pour le moment.",
+    category: "Catégorie",
+    tags: "Mots-clés",
+    latest: "Derniers articles",
+    featured: "À la une",
+  },
+
+  about: {
+    title: "L’atelier, sans détour.",
+    intro:
+      "Atelier Richard Méchano est né d’une obsession simple : que chaque pièce commandée soit la bonne, et arrive vite.",
+    storyTitle: "Notre histoire",
+    story1:
+      "Richard a commencé au pied d’un pont élévateur, à démonter, mesurer et référencer des pièces que personne ne savait identifier correctement. Au fil des années, l’atelier est devenu une bibliothèque : chaque référence est photographiée, mesurée et rattachée à ses compatibilités.",
+      story2:
+      "Aujourd’hui, l’atelier travaille pour les particuliers exigeants comme pour les professionnels pressés. La même règle depuis le premier jour : une pièce non contrôlée ne part pas.",
+    valuesTitle: "Nos engagements",
+    values: [
+      {
+        title: "Contrôle avant expédition",
+        body: "Visuel, mesures et compatibilité vérifiées à l’atelier, pièce par pièce.",
+      },
+      {
+        title: "Compatibilité écrite",
+        body: "Marques, modèles et années sont indiqués sur chaque fiche — pas de surprise au déballage.",
+      },
+      {
+        title: "Réponses humaines",
+        body: "Un technicien vous répond, pas un robot. Référence en main, réponse précise.",
+      },
+      {
+        title: "Retours simples",
+        body: "30 jours pour changer d’avis, selon notre politique de retour.",
+      },
+    ],
+    numbersTitle: "L’atelier en chiffres",
+    ctaTitle: "Parlons de votre pièce.",
+    ctaLead: "Référence en main ? Envoyez-la, on vous répond sous 24 h ouvrées.",
+  },
+
+  contact: {
+    title: "Nous contacter.",
+    lead:
+      "Une référence, une photo, un numéro de châssis — donnez-nous de quoi travailler, on répond sous 24 h ouvrées.",
+    name: "Nom",
+    email: "E-mail",
+    phone: "Téléphone",
+    subject: "Sujet",
+    subjectPlaceholder: "Choisissez un sujet",
+    subjects: {
+      part: "Recherche de pièce",
+      order: "Suivi de commande",
+      return: "Retour / échange",
+      pro: "Demande professionnelle",
+      other: "Autre",
+    },
+    message: "Message",
+    messagePlaceholder: "Décrivez votre besoin, avec références et compatibilités…",
+    send: "Envoyer le message",
+    sending: "Envoi…",
+    success: "Message envoyé. Nous revenons vers vous sous 24 h ouvrées.",
+    error: "Veuillez corriger les champs signalés.",
+    directTitle: "Contact direct",
+    hoursTitle: "Horaires",
+    addressTitle: "Adresse",
+    mapLink: "Ouvrir dans Maps",
+    responseTime: "Réponse sous 24 h ouvrées",
+  },
+
+  help: {
+    title: "Comment pouvons-nous aider ?",
+    lead: "Questions fréquentes sur les commandes, la livraison, les retours et le paiement.",
+    searchPlaceholder: "Rechercher dans l’aide…",
+    noResults: "Aucun résultat. Contactez-nous, on trouve toujours une solution.",
+    contactTitle: "Vous ne trouvez pas votre réponse ?",
+    contactLead: "Notre équipe répond sous 24 h ouvrées.",
+    categories: {
+      orders: "Commandes",
+      delivery: "Livraison & retrait",
+      returns: "Retours & remboursements",
+      payment: "Paiement",
+      parts: "Pièces & compatibilité",
+      account: "Suivi & compte",
+    },
+    faqs: {
+      orders: [
+        {
+          q: "Comment passer commande ?",
+          a: "Ajoutez la pièce au panier, remplissez vos coordonnées et choisissez votre mode de paiement. Vous recevez immédiatement une référence ARM-XXXXXX par e-mail.",
+        },
+        {
+          q: "Puis-je modifier ou annuler ma commande ?",
+          a: "Oui, tant qu’elle n’est pas expédiée. Répondez à l’e-mail de confirmation ou contactez-nous avec votre référence — modification ou annulation sans frais.",
+        },
+        {
+          q: "Recevrai-je une facture ?",
+          a: "Oui, la facture accompagne l’expédition et vous est envoyée par e-mail.",
+        },
+      ],
+      delivery: [
+        {
+          q: "Quels sont les délais d’expédition ?",
+          a: "Les pièces en stock partent sous 48 heures ouvrées. Un e-mail de suivi vous est envoyé au départ.",
+        },
+        {
+          q: "Puis-je retirer ma commande à l’atelier ?",
+          a: "Oui, le retrait est gratuit sur rendez-vous. Choisissez « Retrait à l’atelier » au paiement.",
+        },
+        {
+          q: "Livrez-vous à l’international ?",
+          a: "Oui, vers l’Union européenne et la plupart des destinations. Les frais sont calculés selon le poids et l’adresse.",
+        },
+      ],
+      returns: [
+        {
+          q: "Quel est le délai de retour ?",
+          a: "30 jours après réception, pour toute pièce non montée et dans son emballage d’origine.",
+        },
+        {
+          q: "La pièce ne convient pas, que faire ?",
+          a: "Contactez-nous avec votre référence avant tout renvoi. Si l’incompatibilité vient de nous, le retour est intégralement pris en charge.",
+        },
+        {
+          q: "Quand serai-je remboursé ?",
+          a: "Sous 5 à 10 jours ouvrés après réception et contrôle de la pièce retournée.",
+        },
+      ],
+      payment: [
+        {
+          q: "Quels moyens de paiement acceptez-vous ?",
+          a: "Carte bancaire, virement et autres modes indiqués au moment de la commande. Les détails vous sont envoyés par e-mail.",
+        },
+        {
+          q: "Dois-je envoyer une preuve de paiement ?",
+          a: "Seulement si nous vous le demandons. Dans ce cas, la page « Suivi de commande » affiche les instructions et un formulaire de téléversement.",
+        },
+        {
+          q: "Mes données bancaires sont-elles conservées ?",
+          a: "Non. Aucun numéro de carte n’est stocké sur nos serveurs — le paiement passe par notre prestataire sécurisé.",
+        },
+      ],
+      parts: [
+        {
+          q: "Comment vérifier qu’une pièce est compatible ?",
+          a: "Chaque fiche indique les marques, modèles et années compatibles. En cas de doute, envoyez-nous votre référence ou un numéro de châssis.",
+        },
+        {
+          q: "Les pièces sont-elles neuves ?",
+          a: "L’état est indiqué sur chaque fiche : neuf, reconditionné ou occasion. Les pièces d’occasion sont contrôlées à l’atelier.",
+        },
+        {
+          q: "Proposez-vous des pièces introuvables ?",
+          a: "Oui — envoyez la référence ou la photo, nous cherchons auprès de notre réseau de déstockeurs et de reconditionneurs.",
+        },
+      ],
+      account: [
+        {
+          q: "Comment suivre ma commande ?",
+          a: "Rendez-vous sur « Suivi de commande » avec votre référence et l’e-mail utilisé. L’état, l’historique et le paiement y sont affichés en temps réel.",
+        },
+        {
+          q: "Je n’ai pas reçu mon e-mail de confirmation.",
+          a: "Vérifiez vos indésirables puis contactez-nous avec le nom et la date de commande — nous renvoyons la référence.",
+        },
+      ],
+    },
+  },
+
+  retrieveQuote: {
+    title: "Retrouver un devis.",
+    lead:
+      "Un devis envoyé il y a quelques jours ? Retrouvez-le ici avec l’e-mail utilisé.",
+    email: "E-mail du devis",
+    quoteRef: "Référence du devis",
+    quoteRefPlaceholder: "DEV-1234",
+    message: "Votre message",
+    messagePlaceholder: "Je souhaite relancer ce devis…",
+    submit: "Envoyer la demande",
+    success:
+      "Demande envoyée. Nous retrouvons votre devis et vous répondons sous 24 h ouvrées.",
+    error: "Veuillez corriger les champs signalés.",
+    noQuoteHint:
+      "Vous n’avez pas de référence ? Décrivez la pièce recherchée, nous établissons un nouveau devis.",
+  },
+
+  affiliate: {
+    title: "Programme d’affiliation.",
+    lead:
+      "Recommandez nos pièces, touchez une commission sur chaque commande générée.",
+    name: "Nom",
+    email: "E-mail",
+    website: "Site ou profil",
+    message: "Parlez-nous de votre audience",
+    send: "Postuler",
+    success:
+      "Candidature envoyée. Nous ouvrons votre compte sous 48 h et vous écrivons à l’adresse indiquée.",
+    error: "Veuillez corriger les champs signalés.",
+    howTitle: "Comment ça marche",
+    how: [
+      {
+        title: "1. Inscription",
+        body: "Vous recevez un lien d’affiliation personnalisé et votre espace de suivi.",
+      },
+      {
+        title: "2. Partage",
+        body: "Blog, réseaux sociaux, forums techniques, lettre d’information — où vous voulez.",
+      },
+      {
+        title: "3. Commission",
+        body: "Jusqu’à 10 % de commission sur chaque commande validée, versée mensuellement.",
+      },
+    ],
+    termsTitle: "Conditions",
+    terms: [
+      "Commission calculée sur le montant hors taxes des commandes valides.",
+      "Délai de validation de 30 jours (après la fenêtre de retour).",
+      "Versement mensuel dès 50 € atteints.",
+      "Auto-promotion et spam ne sont pas autorisés.",
+    ],
+    ctaTitle: "Devenir partenaire",
+    ctaLead: "Parlez-nous de votre audience, on ouvre votre compte sous 48 h.",
+    ctaButton: "Postuler",
+  },
+
+  resources: {
+    title: "Ressources.",
+    lead: "Guides, fiches pratiques et outils pour entretenir et réparer.",
+    guidesTitle: "Guides pratiques",
+    toolsTitle: "Outils de l’atelier",
+    guides: [
+      {
+        title: "Lire une référence fabricant",
+        body: "Comment décoder les suffixes, versions et indices de lot d’une référence pièce.",
+      },
+      {
+        title: "Vérifier une compatibilité en 3 points",
+        body: "Marque, modèle, année — la méthode pour ne jamais commander la mauvaise pièce.",
+      },
+      {
+        title: "Préparer un envoi en retour",
+        body: "Emballage, documents à joindre et délais pour un retour sans accroc.",
+      },
+    ],
+    tools: [
+      {
+        title: "Calculateur de couple",
+        body: "Les couples de serrage courants des fixations moteur et freinage.",
+      },
+      {
+        title: "Calendrier d’entretien",
+        body: "Les intervalles d’usure à connaître par système.",
+      },
+    ],
+    ctaTitle: "Une ressource à proposer ?",
+    ctaLead: "Technicien, formateur, auteur — écrivons-la ensemble.",
+  },
+
+  testimonials: {
+    title: "Ils nous font confiance.",
+    lead: "Avis vérifiés de clients particuliers et professionnels.",
+    writeTitle: "Vous avez commandé ?",
+    writeLead: "Partagez votre expérience — les avis sont publiés après vérification.",
+    writeButton: "Laisser un avis",
+    formTitle: "Votre avis",
+    name: "Nom",
+    city: "Ville",
+    email: "E-mail (non publié)",
+    rating: "Note",
+    reviewTitle: "Titre",
+    body: "Votre avis",
+    bodyPlaceholder: "La pièce, la commande, la livraison…",
+    purchased: "Pièce commandée",
+    submit: "Envoyer l’avis",
+    success:
+      "Merci ! Votre avis est en attente de vérification avant publication.",
+    error: "Veuillez corriger les champs signalés.",
+    verified: "Achat vérifié",
+    empty: "Aucun avis publié pour le moment.",
+    summary: "{rating} sur 5, basé sur {count} avis",
+    summaryOne: "5 sur 5, basé sur 1 avis",
+  },
+
+  whyBuy: {
+    title: "Pourquoi acheter chez nous.",
+    lead:
+      "Ce qui distingue une commande chez un atelier qui mesure, de celle d’un catalogue qui recopie.",
+    points: [
+      {
+        title: "Compatibilité vérifiée, écrite",
+        body: "Chaque fiche affiche les marques, modèles et années testés. Si nous ne l’avons pas contrôlée, nous ne l’affichons pas.",
+      },
+      {
+        title: "Stock réel, mis à jour",
+        body: "La quantité affichée est celle disponible à l’atelier, décrémentée à chaque commande.",
+      },
+      {
+        title: "Expédition sous 48 h",
+        body: "Les pièces en stock partent sous 48 heures ouvrées, avec suivi par e-mail.",
+      },
+      {
+        title: "Retour sous 30 jours",
+        body: "Changez d’avis, ou renvoyez une pièce non compatible : retour pris en charge.",
+      },
+      {
+        title: "Prix nets, sans surprise",
+        body: "Aucun frais caché apparaît au dernier écran. Le prix affiché est le prix payé.",
+      },
+      {
+        title: "Réponses d’atelier",
+        body: "Un technicien répond à vos questions de compatibilité, avec la référence en main.",
+      },
+    ],
+    ctaTitle: "Prêt à commander ?",
+    ctaLead: "Parcourez le catalogue ou envoyez-nous votre référence.",
+  },
+
+  firstTime: {
+    title: "Première commande ?",
+    lead:
+      "Cinq étapes, une minute de saisie, aucun paiement surprise. Voici exactement ce qui va se passer.",
+    steps: [
+      {
+        title: "Trouvez votre pièce",
+        body: "Filtrez par marque, modèle et catégorie, ou envoyez-nous la référence directement.",
+      },
+      {
+        title: "Vérifiez la compatibilité",
+        body: "La fiche affiche les marques, modèles et années compatibles. En cas de doute, demandez-nous.",
+      },
+      {
+        title: "Commandez",
+        body: "Coordonnées, mode de livraison, mode de paiement — une minute suffit.",
+      },
+      {
+        title: "Recevez les instructions",
+        body: "Un e-mail de confirmation avec votre référence, puis les instructions de paiement.",
+      },
+      {
+        title: "Suivez la commande",
+        body: "La page de suivi affiche l’état en temps réel, jusqu’à l’expédition.",
+      },
+    ],
+    reassureTitle: "Ce que nous garantissons",
+    reassure: [
+      "Aucun débit automatique — le paiement suit vos instructions.",
+      "Retour sous 30 jours si la pièce ne convient pas.",
+      "Réponse humaine sous 24 h ouvrées.",
+    ],
+    ctaTitle: "Prêt ?",
+    ctaLead: "Le catalogue vous attend, ou écrivez-nous pour une recherche sur mesure.",
+  },
+
+  sitemapPage: {
+    title: "Plan du site.",
+    lead: "Toutes les pages du site, rangées par section.",
+    main: "Pages principales",
+    shop: "Boutique",
+    account: "Commandes",
+    helpCenter: "Aide & support",
+    legalPages: "Pages légales",
+    company: "Atelier",
+  },
+
+  legal: {
+    title: "Pages légales.",
+    lead: "Conditions, confidentialité et informations réglementaires.",
+    updated: "Mis à jour le",
+    backToHome: "Retour à l’accueil",
+    pages: {
+      privacy: "Politique de confidentialité",
+      terms: "Conditions générales de vente",
+      notice: "Mentions légales",
+      returns: "Politique de retour",
+      cancellation: "Politique d’annulation",
+      shipping: "Politique d’expédition",
+      delivery: "Politique de livraison",
+      compliance: "Conformité réglementaire",
+    },
+  },
+
+  notFound: {
+    title: "Page introuvable.",
+    lead: "Le lien est peut-être obsolète, ou la page a été déplacée.",
+    home: "Retour à l’accueil",
+    shop: "Voir la boutique",
+  },
+
+  order: {
+    statuses: {
+      Placed: "Commande passée",
+      "Awaiting Payment": "En attente de paiement",
+      "Payment Pending": "Instructions envoyées",
+      "Awaiting Payment Proof": "En attente de preuve de paiement",
+      "Payment Proof Submitted": "Preuve de paiement envoyée",
+      "Payment Received": "Paiement reçu",
+      Preparing: "Préparation",
+      "Ready for Pickup": "Prêt à retirer",
+      "Out for Delivery": "En cours de livraison",
+      Completed: "Terminée",
+      Cancelled: "Annulée",
+    },
+    paymentMethods: {
+      card: {
+        label: "Carte bancaire",
+        hint: "Nous vous envoyons un lien de paiement sécurisé (Visa, Mastercard, Amex).",
+      },
+      transfer: {
+        label: "Virement bancaire",
+        hint: "Coordonnées bancaires envoyées par e-mail, généralement reçues sous 24 h.",
+      },
+      paypal: {
+        label: "PayPal",
+        hint: "Instructions de versement envoyées par e-mail.",
+      },
+      other: {
+        label: "Autre",
+        hint: "Décrivez votre mode de paiement, nous l’organisons avec vous.",
+      },
+    },
+    methodsTitle: "Modes de paiement acceptés",
+    historyEmpty: "Aucun événement pour le moment.",
+    adminNotes: "Notes internes",
+  },
+
+  emails: {
+    greeting: "Bonjour",
+    signature: "L’équipe de l’Atelier Richard Méchano",
+    orderReceivedSubject: "Commande reçue — {ref}",
+    orderReceivedHeading: "Commande reçue.",
+    orderReceivedBody:
+      "Nous avons bien reçu votre commande. Les instructions de paiement arrivent par e-mail séparé.",
+    newOrderSubject: "Nouvelle commande {ref} — {name}",
+    newOrderHeading: "Nouvelle commande.",
+    paymentInstructionsSubject: "Instructions de paiement — {ref}",
+    paymentInstructionsHeading: "Instructions de paiement.",
+    paymentConfirmedSubject: "Paiement confirmé — {ref}",
+    paymentConfirmedHeading: "Paiement confirmé.",
+    paymentConfirmedBody:
+      "Votre paiement est confirmé. La commande passe en préparation.",
+    proofReceivedSubject: "Preuve de paiement reçue — {ref}",
+    proofReceivedHeading: "Preuve de paiement reçue.",
+    proofReceivedBody:
+      "Le client a téléversé une preuve de paiement. Vérifiez-la dans le tableau de bord.",
+    proofApprovedSubject: "Paiement validé — {ref}",
+    proofApprovedHeading: "Paiement validé.",
+    proofApprovedBody: "Votre preuve est validée. La commande passe en préparation.",
+    proofRejectedSubject: "Preuve à renvoyer — {ref}",
+    proofRejectedHeading: "Preuve à renvoyer.",
+    proofRejectedBody:
+      "Nous ne pouvons pas valider la preuve envoyée. Motif et détails ci-dessous.",
+    statusUpdateSubject: "Mise à jour de commande — {ref}",
+    statusUpdateHeading: "Commande mise à jour.",
+    statusUpdateBody: "L’état de votre commande a évolué :",
+    enquirySubject: "Votre message — reçu",
+    enquiryHeading: "Message bien reçu.",
+    enquiryBody:
+      "Merci pour votre message. Un membre de l’équipe vous répond sous 24 h ouvrées.",
+    enquiryNoticeSubject: "Nouvelle demande de contact",
+    enquiryNoticeHeading: "Nouvelle demande.",
+    viewOrder: "Voir la commande",
+    viewProof: "Voir la preuve",
+    reference: "Référence",
+    amount: "Montant",
+    items: "Articles",
+    total: "Total",
+    customer: "Client",
+    status: "État",
+    delivered: "E-mail envoyé",
+    savedLocal:
+      "SMTP non configuré : le message a été enregistré localement pour inspection.",
+  },
+
+  admin: {
+    signIn: "Connexion",
+    signInTitle: "Accès au tableau de bord",
+    email: "E-mail",
+    password: "Mot de passe",
+    invalid: "Identifiants invalides.",
+    required: "E-mail et mot de passe obligatoires.",
+    hint: "Identifiants ADMIN_EMAIL / ADMIN_PASSWORD si MongoDB n’est pas connecté.",
+    signedIn: "Connecté en tant que",
+    signOut: "Déconnexion",
+    overview: "Vue d’ensemble",
+    orders: "Commandes",
+    products: "Pièces",
+    blog: "Blog",
+    categories: "Catégories",
+    reviews: "Avis",
+    enquiries: "Demandes",
+    settings: "Réglages",
+    backToSite: "Voir le site",
+    dashboard: "Tableau de bord",
+  },
+};
+
+export type Dictionary = typeof fr;
