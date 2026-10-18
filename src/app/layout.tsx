@@ -20,6 +20,15 @@ export async function generateMetadata(): Promise<Metadata> {
       canonical: absoluteUrl("/"),
       languages: { fr: absoluteUrl("/"), en: absoluteUrl("/") },
     },
+    manifest: "/manifest.json",
+    icons: {
+      icon: [
+        { url: "/favicon.ico" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      ],
+      apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    },
     openGraph: {
       type: "website",
       locale: locale === "fr" ? "fr_FR" : "en_GB",
@@ -27,12 +36,20 @@ export async function generateMetadata(): Promise<Metadata> {
       title: t.meta.siteName,
       description: t.meta.description,
       url: absoluteUrl("/"),
-      images: [{ url: "/og.png", width: 1200, height: 630, alt: t.meta.siteName }],
+      images: [
+        {
+          url: "/atelier_richard_mecano_open_graph.png",
+          width: 1200,
+          height: 630,
+          alt: t.meta.siteName,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: t.meta.siteName,
       description: t.meta.shortDescription,
+      images: ["/atelier_richard_mecano_open_graph.png"],
     },
     robots: { index: true, follow: true },
   };

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "@/components/i18n/LocaleProvider";
 import { LanguageToggle } from "@/components/i18n/LanguageToggle";
@@ -58,14 +59,13 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
           {/* Identity + contact */}
           <div>
-            <div className="flex items-center gap-2.5">
-              <span className="grid h-7 w-7 place-items-center rounded-[7px] bg-ink text-[12px] font-bold text-white">
-                RM
-              </span>
-              <span className="text-[15px] font-semibold tracking-[-0.01em]">
-                Atelier Richard <span className="font-normal text-muted">Méchano</span>
-              </span>
-            </div>
+            <Image
+              src="/full-logo.png"
+              alt={t.meta.siteName}
+              width={836}
+              height={285}
+              className="h-8 w-auto"
+            />
             <p className="mt-4 max-w-[300px] text-[14px] leading-relaxed text-muted">
               {t.meta.tagline}
             </p>

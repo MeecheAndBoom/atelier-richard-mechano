@@ -90,13 +90,20 @@ export function pageMetadata({
       url: absoluteUrl(path),
       siteName: t.meta.siteName,
       locale: locale === "fr" ? "fr_FR" : "en_GB",
-      images: [{ url: image ?? "/og.png", width: 1200, height: 630, alt: title }],
+      images: [
+        {
+          url: image ?? "/atelier_richard_mecano_open_graph.png",
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [image ?? "/og.png"],
+      images: [image ?? "/atelier_richard_mecano_open_graph.png"],
     },
   };
 }
@@ -110,7 +117,7 @@ export function organizationJsonLd(locale: Locale) {
     "@type": "Organization",
     name: t.meta.siteName,
     url: absoluteUrl("/"),
-    logo: absoluteUrl("/logo.png"),
+    logo: absoluteUrl("/logo-icon.png"),
     email: SITE.email,
     telephone: SITE.phoneHref,
     address: {

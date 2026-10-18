@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -62,16 +63,17 @@ export function Nav() {
       >
         <Link
           href="/"
-          className="flex items-center gap-2.5 shrink-0"
+          className="flex shrink-0 items-center"
           aria-label={t.meta.siteName}
         >
-          <span className="grid h-7 w-7 place-items-center rounded-[7px] bg-ink text-[12px] font-bold text-white tracking-tight">
-            RM
-          </span>
-          <span className="hidden text-[15px] font-semibold tracking-[-0.01em] text-ink sm:block">
-            Atelier Richard{" "}
-            <span className="font-normal text-muted">Méchano</span>
-          </span>
+          <Image
+            src="/full-logo.png"
+            alt={t.meta.siteName}
+            width={836}
+            height={285}
+            priority
+            className="h-[26px] w-auto sm:h-[28px]"
+          />
         </Link>
 
         <ul className="hidden items-center gap-7 md:flex">
