@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useLocale } from "@/components/i18n/LocaleProvider";
 import { useCart, cartSubtotal, cartCount } from "@/store/cart";
 import { money } from "@/lib/format";
+import { useToast } from "@/components/ui/Toast";
 
 /**
  * Slide-in bag drawer. Open state lives above the store so the backdrop
@@ -16,6 +17,7 @@ export function CartDrawer() {
   const remove = useCart((s) => s.remove);
   const setQty = useCart((s) => s.setQty);
   const [open, setOpen] = useState(false);
+  const toast = useToast();
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

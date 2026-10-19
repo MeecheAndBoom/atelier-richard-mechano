@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useLocale } from "@/components/i18n/LocaleProvider";
 import { useCart } from "@/store/cart";
+import { useToast } from "@/components/ui/Toast";
 import type { Product } from "@/lib/types";
 
 /**
@@ -24,6 +25,7 @@ export function AddToCart({
   const add = useCart((s) => s.add);
   const [added, setAdded] = useState(false);
   const out = product.stock <= 0;
+  const toast = useToast();
 
   function handleAdd() {
     if (out) return;
@@ -38,6 +40,7 @@ export function AddToCart({
       initialQty,
     );
     setAdded(true);
+    toast.show(t.common.added ?? "Added to cart");
     window.setTimeout(() => setAdded(false), 1600);
   }
 
