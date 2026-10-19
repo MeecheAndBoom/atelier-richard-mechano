@@ -81,13 +81,18 @@ export default async function HomePage() {
 
           <Reveal delay={120} className="relative">
             <div className="relative overflow-hidden rounded-card border border-line-soft bg-alt">
-              <div className="aspect-[5/4] w-full">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/editorial/hero.jpg"
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
+              <div className="aspect-[5/4] w-full overflow-hidden relative">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster="/images/editorial/hero.jpg"
+                  className="absolute inset-0 h-full w-full object-cover"
+                >
+                  <source src="/videos/workshop-loop.mp4" type="video/mp4" />
+                </video>
               </div>
             </div>
             <div className="absolute -bottom-5 left-4 right-4 rounded-card border border-line-soft bg-white/90 p-4 shadow-[0_18px_40px_-22px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:left-8 sm:right-8">
