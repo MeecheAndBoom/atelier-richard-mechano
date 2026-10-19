@@ -60,22 +60,25 @@ export default async function FirstTimeBuyersPage() {
 
         {/* CTA */}
         <Reveal className="mt-10">
-          <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="text-[24px] font-semibold tracking-[-0.02em]">
-                {t.firstTime.ctaTitle}
-              </h2>
-              <p className="mt-1.5 text-[15.5px] text-muted">{t.firstTime.ctaLead}</p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/shop" className="btn btn-primary">
-                <i className="fa-solid fa-bag-shopping text-[12px]" aria-hidden="true" />
-                <span>{t.home.heroCta}</span>
-              </Link>
-              <Link href="/contact" className="btn btn-ghost">
-                <i className="fa-solid fa-paper-plane text-[12px]" aria-hidden="true" />
-                <span>{t.home.ctaButton}</span>
-              </Link>
+          <div className="rounded-card relative overflow-hidden bg-callout px-8 py-11 text-white">
+            <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
+            <div className="relative flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h2 className="text-[24px] font-semibold tracking-[-0.02em]">
+                  {t.firstTime.ctaTitle}
+                </h2>
+                <p className="mt-1.5 text-[15.5px] text-white/90">{t.firstTime.ctaLead}</p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/shop" className="btn btn-primary">
+                  <i className="fa-solid fa-bag-shopping text-[12px]" aria-hidden="true" />
+                  <span>{t.home.heroCta}</span>
+                </Link>
+                <Link href="/contact" className="btn btn-dark">
+                  <i className="fa-solid fa-paper-plane text-[12px]" aria-hidden="true" />
+                  <span>{t.home.ctaButton}</span>
+                </Link>
+              </div>
             </div>
           </div>
         </Reveal>

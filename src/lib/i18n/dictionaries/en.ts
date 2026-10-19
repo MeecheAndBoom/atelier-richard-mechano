@@ -158,10 +158,10 @@ export const en: Dictionary = {
       },
     ],
     stats: [
-      { value: "12,000+", label: "checked references" },
+      { value: "2,500+", label: "checked references" },
       { value: "48 hrs", label: "in-stock dispatch" },
       { value: "98%", label: "orders delivered on time" },
-      { value: "80+", label: "partner brands" },
+      { value: "60+", label: "partner brands" },
     ],
     brandsTitle: "Trusted every day.",
     brandsLead: "More than 80 parts brands rely on us to represent them properly.",

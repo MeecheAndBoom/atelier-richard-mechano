@@ -160,10 +160,10 @@ export const fr = {
       },
     ],
     stats: [
-      { value: "12 000+", label: "références contrôlées" },
+      { value: "2 500+", label: "références contrôlées" },
       { value: "48 h", label: "expédition en stock" },
       { value: "98 %", label: "commandes livrées à temps" },
-      { value: "80 +", label: "marques partenaires" },
+      { value: "60+", label: "marques partenaires" },
     ],
     brandsTitle: "Ils nous font confiance.",
     brandsLead: "Plus de 80 marques de pièces nous font confiance au quotidien.",

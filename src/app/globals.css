@@ -442,6 +442,25 @@
   }
 }
 
+/* ── Hero background (HeroBackground.tsx) ───────────────────── */
+@keyframes hero-kenburns {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate3d(-1.5%, -1%, 0);
+  }
+}
+.hero-kenburns {
+  animation: hero-kenburns 9s ease-out forwards;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-kenburns {
+    animation: none;
+  }
+}
+
 /* ── Skip link (WCAG 2.4.1) ─────────────────────────────────── */
 .skip-link {
   position: fixed;
@@ -467,6 +486,13 @@
 /* ── Blog prose ──────────────────────────────────────────────── */
 .prose-arm > h2:first-child {
   margin-top: 0;
+}
+
+.bg-callout {
+  background-image: url('/images/editorial/atelier.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* ── Reduced motion ──────────────────────────────────────────── */

@@ -31,12 +31,12 @@ export function BrandsMarquee() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={brand.image}
-              alt={brand.name}
-              className="h-7 max-w-[120px] object-contain opacity-90 sm:h-9 sm:max-w-[150px]"
+              alt=""
+              aria-hidden="true"
+              className="h-10 max-h-10 w-auto object-contain sm:h-12 sm:max-h-12"
               loading="lazy"
             />
           </div>
-          <span aria-hidden="true" className="h-1 w-1 rounded-full bg-[#d2d2d7]" />
         </li>
       ))}
     </ul>

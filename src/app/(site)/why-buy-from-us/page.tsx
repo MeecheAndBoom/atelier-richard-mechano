@@ -50,13 +50,14 @@ export default async function WhyBuyPage() {
         </div>
 
         <Reveal className="mt-14">
-          <div className="rounded-card bg-graphite px-8 py-12 text-white sm:px-12">
-            <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+          <div className="rounded-card relative overflow-hidden bg-callout px-8 py-12 text-white sm:px-12">
+            <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
+            <div className="relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
               <div>
                 <h2 className="text-[26px] font-semibold tracking-[-0.02em]">
                   {t.whyBuy.ctaTitle}
                 </h2>
-                <p className="mt-2 max-w-[460px] text-[15.5px] text-[#a1a1a6]">
+                <p className="mt-2 max-w-[460px] text-[15.5px] text-white/90">
                   {t.whyBuy.ctaLead}
                 </p>
               </div>

@@ -8,6 +8,8 @@ import { ProductCard } from "@/components/ui/ProductCard";
 import { ProductCardCompact } from "@/components/ui/ProductCardCompact";
 import { ScrollRail } from "@/components/ui/ScrollRail";
 import { ReviewsMarquee } from "@/components/site/ReviewsMarquee";
+import { Spotlight } from "@/components/site/Spotlight";
+import { HeroBackground } from "@/components/site/HeroBackground";
 import { BrandsMarquee } from "@/components/site/BrandsMarquee";
 import { Reveal } from "@/components/ui/Reveal";
 import { CATEGORY_LABELS } from "@/lib/constants";
@@ -29,20 +31,23 @@ export default async function HomePage() {
     return (f.length ? f : products).slice(0, 6);
   })();
 
-  // Full-bleed spotlight — prefer a discounted, in-stock part with a photo.
-  const spotlight =
-    products.find((p) => p.listPrice && p.price < p.listPrice && p.stock > 0 && p.images[0]) ??
-    products.find((p) => p.stock > 0 && p.images[0]) ??
-    null;
+  // Full-bleed spotlight — discounted, in-stock parts with photos, auto-rotates.
+  const spotlightItems = (() => {
+    const discounted = products.filter(
+      (p) => p.listPrice && p.price < p.listPrice && p.stock > 0 && p.images[0],
+    );
+    const inStock = products.filter(
+      (p) => p.stock > 0 && p.images[0] && !discounted.includes(p),
+    );
+    const pool = [...discounted, ...inStock].slice(0, 5);
+    return pool.length ? pool : products.filter((p) => p.images[0]).slice(0, 1);
+  })();
 
-  const spotlightSave =
-    spotlight?.listPrice && spotlight.listPrice > spotlight.price
-      ? spotlight.listPrice - spotlight.price
-      : 0;
+  const spotlightSlugs = new Set(spotlightItems.map((p) => p.slug));
 
   // Horizontal rail — newest arrivals first, spotlight excluded.
   const arrivals = (() => {
-    const pool = products.filter((p) => p.slug !== spotlight?.slug);
+    const pool = products.filter((p) => !spotlightSlugs.has(p.slug));
     const sorted = [...pool].sort(
       (a, b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? ""),
     );
@@ -54,17 +59,18 @@ export default async function HomePage() {
   return (
     <div className="page-enter">
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden border-b border-line-soft bg-white">
+      <section className="relative overflow-hidden border-b border-line-soft bg-black">
+        <HeroBackground />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#f7faff_0%,#ffffff_60%)]"
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.4)_0%,rgba(0,0,0,0.7)_100%)]"
         />
         <div className="section relative grid gap-12 pt-8 pb-16 sm:pt-16 sm:pb-24 lg:grid-cols-[1.05fr_1fr] lg:items-center">
-          <div>
-            <h1 className="max-w-[680px] text-[40px] leading-[1.03] font-semibold tracking-[-0.035em] text-ink sm:text-[60px] lg:text-[68px]">
+          <div className="text-white">
+            <h1 className="max-w-[680px] text-[40px] leading-[1.03] font-semibold tracking-[-0.035em] text-white sm:text-[60px] lg:text-[68px]">
               {t.home.heroTitle}
             </h1>
-            <p className="mt-6 max-w-[560px] text-[17px] leading-[1.7] text-muted sm:text-[19px]">
+            <p className="mt-6 max-w-[560px] text-[17px] leading-[1.7] text-white/90 sm:text-[19px]">
               {t.home.heroLead}
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
@@ -72,105 +78,55 @@ export default async function HomePage() {
                 <span>{t.home.heroCta}</span>
                 <i className="fa-solid fa-arrow-right text-[12px]" aria-hidden="true" />
               </Link>
-              <Link href="/contact" className="btn btn-ghost btn-lg">
+              <Link href="/contact" className="btn btn-dark btn-lg">
                 <i className="fa-solid fa-magnifying-glass text-[12px]" aria-hidden="true" />
                 <span>{t.home.heroSecondary}</span>
               </Link>
             </div>
           </div>
 
-          <Reveal delay={120} className="relative">
-            <div className="relative overflow-hidden rounded-card border border-line-soft bg-alt">
-              <div className="aspect-[5/4] w-full overflow-hidden relative">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  poster="/images/editorial/hero.jpg"
+          <Reveal delay={120} className="relative lg:justify-self-end">
+            <div className="relative overflow-hidden rounded-card border border-white/20 bg-white/10 backdrop-blur-sm">
+              <div className="aspect-[4/3] w-full overflow-hidden relative sm:w-[420px] lg:w-[460px]">
+                <img
+                  src="/atelier_richard_mecano_open_graph.png"
+                  alt="Atelier Richard Méchano"
                   className="absolute inset-0 h-full w-full object-cover"
-                >
-                  <source src="/videos/workshop-loop.mp4" type="video/mp4" />
-                </video>
+                />
               </div>
-            </div>
-            <div className="absolute -bottom-5 left-4 right-4 rounded-card border border-line-soft bg-white/90 p-4 shadow-[0_18px_40px_-22px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:left-8 sm:right-8">
-              <ul className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-[13.5px] text-ink-soft">
-                <li className="flex items-center gap-2">
-                  <i className="fa-solid fa-circle-check text-accent text-[13px]" aria-hidden="true" />
-                  {t.home.stats[0].value} <span className="text-muted">{t.home.stats[0].label}</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <i className="fa-solid fa-truck-fast text-accent text-[13px]" aria-hidden="true" />
-                  {t.home.stats[1].value} <span className="text-muted">{t.home.stats[1].label}</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <i className="fa-solid fa-star text-accent text-[13px]" aria-hidden="true" />
-                  {t.home.stats[2].value} <span className="text-muted">{t.home.stats[2].label}</span>
-                </li>
-              </ul>
             </div>
           </Reveal>
         </div>
+        <div className="section relative pb-8">
+          <ul className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 rounded-card border border-white/20 bg-white/10 p-4 text-[13.5px] text-white/90 backdrop-blur-sm sm:px-6">
+            <li className="flex items-center gap-2">
+              <i className="fa-solid fa-circle-check text-accent text-[13px]" aria-hidden="true" />
+              {t.home.stats[0].value} <span className="text-white/70">{t.home.stats[0].label}</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <i className="fa-solid fa-truck-fast text-accent text-[13px]" aria-hidden="true" />
+              {t.home.stats[1].value} <span className="text-white/70">{t.home.stats[1].label}</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <i className="fa-solid fa-star text-accent text-[13px]" aria-hidden="true" />
+              {t.home.stats[2].value} <span className="text-white/70">{t.home.stats[2].label}</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <i className="fa-solid fa-building text-accent text-[13px]" aria-hidden="true" />
+              {t.home.stats[3].value} <span className="text-white/70">{t.home.stats[3].label}</span>
+            </li>
+          </ul>
+        </div>
       </section>
 
-      {/* ── Spotlight (full-bleed product) ──────────────────── */}
-      {spotlight ? (
-        <section className="relative isolate overflow-hidden bg-graphite">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={spotlight.images[0]}
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 -z-10 h-full w-full object-cover opacity-90"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-[linear-gradient(105deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.78)_40%,rgba(0,0,0,0.4)_70%,rgba(0,0,0,0.06)_100%)]"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,0,0,0.15)_0%,rgba(0,0,0,0.6)_45%,rgba(0,0,0,0.85)_75%,rgba(0,0,0,0.94)_100%)]"
-          />
-          <div className="section flex min-h-[520px] items-end py-14 sm:min-h-[600px] sm:py-20">
-            <Reveal className="max-w-[520px]">
-
-              <h2 className="mt-5 text-[30px] leading-[1.08] font-semibold tracking-[-0.025em] text-white sm:text-[42px]">
-                {localizedTitle(spotlight, locale)}
-              </h2>
-              <p className="mt-4 line-clamp-3 text-[15.5px] leading-[1.65] text-white/85">
-                {localizedDescription(spotlight, locale)}
-              </p>
-
-              <div className="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-2">
-                <span className="text-[30px] font-semibold tracking-[-0.02em] tabular-nums text-white">
-                  {money(spotlight.price, locale)}
-                </span>
-                {spotlight.listPrice && spotlight.listPrice > spotlight.price ? (
-                  <span className="text-[17px] text-white/55 line-through tabular-nums">
-                    {money(spotlight.listPrice, locale)}
-                  </span>
-                ) : null}
-                {spotlightSave > 0 ? (
-                  <span className="rounded-full bg-[#ff453a] px-2.5 py-1 text-[12.5px] font-semibold text-white">
-                    −{money(spotlightSave, locale)}
-                  </span>
-                ) : null}
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href={`/shop/${spotlight.slug}`} className="btn btn-primary btn-lg">
-                  <span>{t.home.spotlightCta}</span>
-                  <i className="fa-solid fa-arrow-right text-[12px]" aria-hidden="true" />
-                </Link>
-                <Link href="/shop" className="btn btn-dark btn-lg">
-                  <span>{t.home.heroCta}</span>
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-        </section>
+      {/* ── Spotlight (auto-rotating full-bleed product) ────── */}
+      {spotlightItems.length ? (
+        <Spotlight
+          items={spotlightItems}
+          locale={locale}
+          ctaLabel={t.home.spotlightCta}
+          secondaryLabel={t.home.heroCta}
+        />
       ) : null}
 
       {/* ── Featured ─────────────────────────────────────────── */}
@@ -423,22 +379,25 @@ export default async function HomePage() {
       {/* ── Final CTA ────────────────────────────────────────── */}
       <section className="section section-pad">
         <Reveal>
-          <div className="rounded-card relative overflow-hidden bg-graphite px-8 py-14 text-center text-white sm:px-14 sm:py-18">
-            <h2 className="mx-auto max-w-[620px] text-[28px] leading-tight font-semibold tracking-[-0.02em] sm:text-[36px]">
-              {t.home.ctaTitle}
-            </h2>
-            <p className="mx-auto mt-4 max-w-[560px] text-[16.5px] leading-relaxed text-[#a1a1a6]">
-              {t.home.ctaLead}
-            </p>
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
-              <Link href="/contact" className="btn btn-primary btn-lg">
-                <i className="fa-solid fa-paper-plane text-[12px]" aria-hidden="true" />
-                <span>{t.home.ctaButton}</span>
-              </Link>
-              <Link href="/retrieve-quote" className="btn btn-dark btn-lg">
-                <i className="fa-solid fa-clock-rotate-left text-[12px]" aria-hidden="true" />
-                <span>{t.footer.retrieveQuote}</span>
-              </Link>
+          <div className="rounded-card relative overflow-hidden bg-callout px-8 py-14 text-center text-white sm:px-14 sm:py-18">
+            <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
+            <div className="relative">
+              <h2 className="mx-auto max-w-[620px] text-[28px] leading-tight font-semibold tracking-[-0.02em] sm:text-[36px]">
+                {t.home.ctaTitle}
+              </h2>
+              <p className="mx-auto mt-4 max-w-[560px] text-[16.5px] leading-relaxed text-white/90">
+                {t.home.ctaLead}
+              </p>
+              <div className="mt-9 flex flex-wrap justify-center gap-3">
+                <Link href="/contact" className="btn btn-primary btn-lg">
+                  <i className="fa-solid fa-paper-plane text-[12px]" aria-hidden="true" />
+                  <span>{t.home.ctaButton}</span>
+                </Link>
+                <Link href="/retrieve-quote" className="btn btn-dark btn-lg">
+                  <i className="fa-solid fa-clock-rotate-left text-[12px]" aria-hidden="true" />
+                  <span>{t.footer.retrieveQuote}</span>
+                </Link>
+              </div>
             </div>
           </div>
         </Reveal>

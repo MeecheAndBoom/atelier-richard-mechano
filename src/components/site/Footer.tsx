@@ -54,8 +54,36 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-line-soft bg-alt">
-      <div className="section py-14 md:py-20">
+    <footer className="relative overflow-hidden border-t border-line-soft bg-alt">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 hidden overflow-hidden lg:block"
+      >
+        {/* Left half: sits at center-left, extreme-left half overflows and is clipped */}
+        <img
+          src="/logo-icon.png"
+          alt=""
+          className="absolute top-1/2 left-[18%] h-[300px] w-[300px] -translate-y-1/2 -translate-x-1/2 object-contain opacity-[0.08]"
+        />
+        {/* Right half: sits at center-right, extreme-right half overflows and is clipped */}
+        <img
+          src="/logo-icon.png"
+          alt=""
+          className="absolute top-1/2 left-[82%] h-[300px] w-[300px] -translate-y-1/2 -translate-x-1/2 object-contain opacity-[0.08]"
+        />
+      </div>
+      {/* Mobile: logo centered, ~80vw */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 overflow-hidden lg:hidden"
+      >
+        <img
+          src="/logo-icon.png"
+          alt=""
+          className="absolute top-1/2 left-1/2 h-[80vw] max-h-[320px] w-[80vw] max-w-[320px] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.07]"
+        />
+      </div>
+      <div className="section relative py-14 md:py-20">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
           {/* Identity + contact */}
           <div>

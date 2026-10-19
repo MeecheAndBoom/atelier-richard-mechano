@@ -137,18 +137,21 @@ export default async function AboutPage() {
 
         {/* CTA */}
         <Reveal className="mt-14">
-          <div className="rounded-card flex flex-col items-start gap-4 bg-graphite px-8 py-12 text-white sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="text-[24px] font-semibold tracking-[-0.02em]">{t.about.ctaTitle}</h2>
-              <p className="mt-2 max-w-[480px] text-[15.5px] text-[#a1a1a6]">{t.about.ctaLead}</p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/contact" className="btn btn-primary">
-                <span>{t.home.ctaButton}</span>
-              </Link>
-              <Link href="/shop" className="btn btn-dark">
-                <span>{t.footer.allParts}</span>
-              </Link>
+          <div className="rounded-card relative overflow-hidden bg-callout px-8 py-12 text-white">
+            <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
+            <div className="relative flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h2 className="text-[24px] font-semibold tracking-[-0.02em]">{t.about.ctaTitle}</h2>
+                <p className="mt-2 max-w-[480px] text-[15.5px] text-white/90">{t.about.ctaLead}</p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/contact" className="btn btn-primary">
+                  <span>{t.home.ctaButton}</span>
+                </Link>
+                <Link href="/shop" className="btn btn-dark">
+                  <span>{t.footer.allParts}</span>
+                </Link>
+              </div>
             </div>
           </div>
         </Reveal>

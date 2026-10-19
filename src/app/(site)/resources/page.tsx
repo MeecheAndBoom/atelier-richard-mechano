@@ -93,17 +93,20 @@ export default async function ResourcesPage() {
 
         {/* CTA */}
         <Reveal className="mt-14">
-          <div className="rounded-card border border-line-soft bg-alt px-8 py-11 text-center">
-            <h2 className="text-[24px] font-semibold tracking-[-0.02em]">
-              {t.resources.ctaTitle}
-            </h2>
-            <p className="mx-auto mt-2 max-w-[480px] text-[15.5px] text-muted">
-              {t.resources.ctaLead}
-            </p>
-            <Link href="/contact" className="btn btn-primary mt-6">
-              <i className="fa-solid fa-paper-plane text-[12px]" aria-hidden="true" />
-              <span>{t.common.contactUs}</span>
-            </Link>
+          <div className="rounded-card relative overflow-hidden bg-callout px-8 py-11 text-center text-white">
+            <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
+            <div className="relative">
+              <h2 className="text-[24px] font-semibold tracking-[-0.02em]">
+                {t.resources.ctaTitle}
+              </h2>
+              <p className="mx-auto mt-2 max-w-[480px] text-[15.5px] text-white/90">
+                {t.resources.ctaLead}
+              </p>
+              <Link href="/contact" className="btn btn-primary mt-6">
+                <i className="fa-solid fa-paper-plane text-[12px]" aria-hidden="true" />
+                <span>{t.common.contactUs}</span>
+              </Link>
+            </div>
           </div>
         </Reveal>
       </section>
