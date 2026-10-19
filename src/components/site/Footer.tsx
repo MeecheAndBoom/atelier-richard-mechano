@@ -165,6 +165,7 @@ export function Footer() {
                 "Tools",
                 "Rims",
                 "WheelDrums",
+                "Tires",
                 "TailLights",
                 "Headlights",
               ] as const

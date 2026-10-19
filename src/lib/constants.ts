@@ -35,6 +35,7 @@ export const PART_CATEGORIES = [
   "Filters",
   "Rims",
   "WheelDrums",
+  "Tires",
   "TailLights",
   "Headlights",
 ] as const;
@@ -57,6 +58,7 @@ export const CATEGORY_LABELS: Record<PartCategory, { fr: string; en: string }> =
   Filters: { fr: "Filtres", en: "Filters" },
   Rims: { fr: "Jantes", en: "Rims" },
   WheelDrums: { fr: "Tambours de frein", en: "Wheel drums" },
+  Tires: { fr: "Pneus", en: "Tires" },
   TailLights: { fr: "Feux arrière", en: "Tail lights" },
   Headlights: { fr: "Phares", en: "Headlights" },
 };

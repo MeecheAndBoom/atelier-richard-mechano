@@ -407,6 +407,7 @@ function PART_CATEGORIES_FALLBACK(locale: "fr" | "en"): string[] {
     "Interior",
     "Rims",
     "WheelDrums",
+    "Tires",
     "TailLights",
     "Headlights",
   ] as const;
