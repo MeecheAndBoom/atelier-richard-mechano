@@ -795,6 +795,44 @@ export const en: Dictionary = {
     shop: "Visit the shop",
   },
 
+  cookies: {
+    title: "We use cookies.",
+    lead: "We use them to run the shop (cart, checkout), understand how the site is used and — only with your consent — measure audience and advertising. You can accept everything, refuse everything, or choose category by category. Your choice applies immediately and you can change it at any time via “Manage cookies” in the footer.",
+    categories: {
+      essential: {
+        title: "Strictly necessary",
+        description:
+          "Required for the site to work: cart, checkout, language, security. These cannot be disabled.",
+        alwaysOn: "Always on",
+      },
+      preferences: {
+        title: "Preferences",
+        description:
+          "Remember your choices (currency, shop view, filters) for a tailored experience.",
+      },
+      analytics: {
+        title: "Audience measurement",
+        description:
+          "Help us understand which pages are visited so we can improve the site. Data is aggregated and anonymised.",
+      },
+      marketing: {
+        title: "Advertising",
+        description:
+          "Used to measure campaign performance and show you relevant offers on other sites.",
+      },
+    },
+    acceptAll: "Accept all",
+    rejectAll: "Refuse all",
+    save: "Save my choices",
+    customize: "Customise",
+    privacyNote: "Read our privacy policy to learn more.",
+    privacyLink: "Privacy policy",
+    manage: "Manage cookies",
+    manageHint: "Change your preferences at any time.",
+    status: "Your cookie preferences are stored on this device.",
+    updated: "Preferences saved.",
+  },
+
   order: {
     statuses: {
       Placed: "Order placed",

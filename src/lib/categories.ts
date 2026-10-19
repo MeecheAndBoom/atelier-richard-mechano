@@ -36,6 +36,10 @@ const CATEGORY_IMAGES: Record<string, string> = {
   Tools: "/images/categories/tools.jpg",
   Gaskets: "/images/products/gasket-set.jpg",
   Filters: "/images/categories/filters.jpg",
+  Rims: "/images/categories/suspension.jpg",
+  WheelDrums: "/images/categories/brakes.jpg",
+  TailLights: "/images/categories/electrical.jpg",
+  Headlights: "/images/categories/electrical.jpg",
 };
 
 /** Fallback tiles — part categories + the makes present in the seed catalog. */

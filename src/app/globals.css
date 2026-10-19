@@ -443,21 +443,25 @@
 }
 
 /* ── Hero background (HeroBackground.tsx) ───────────────────── */
-@keyframes hero-kenburns {
+@keyframes hero-drift {
   0% {
-    transform: scale(1) translate3d(0, 0, 0);
+    opacity: 0;
+    transform: scale(1.02) translate3d(0, 0, 0);
   }
   100% {
-    transform: scale(1.08) translate3d(-1.5%, -1%, 0);
+    opacity: 1;
+    transform: scale(1.12) translate3d(-1.5%, -1%, 0);
   }
 }
-.hero-kenburns {
-  animation: hero-kenburns 9s ease-out forwards;
-  will-change: transform;
+.hero-drift {
+  animation: hero-drift 26s ease-out infinite alternate;
+  will-change: transform, opacity;
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-kenburns {
+  .hero-drift {
     animation: none;
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -493,6 +497,12 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+/* Headings reset to var(--color-ink) in the base layer, which beats the
+   inherited `text-white` on callout wrappers — force them white here. */
+.bg-callout :is(h1, h2, h3, h4, h5, h6) {
+  color: #ffffff;
 }
 
 /* ── Reduced motion ──────────────────────────────────────────── */

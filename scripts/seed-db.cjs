@@ -33,7 +33,9 @@ async function main() {
   const tileOps = SEED_TILES.map((t) => ({
     replaceOne: {
       filter: { name: t.name, type: t.type },
-      replacement: { name: t.name, type: t.type, image: t.image, href: "", order: t.order, createdAt: now, updatedAt: now },
+      // `id` must survive the whole-document replacement — deleteTileAction and
+      // React keys both depend on it (see Category model).
+      replacement: { id: t.id, name: t.name, type: t.type, image: t.image, href: "", order: t.order, createdAt: now, updatedAt: now },
       upsert: true,
     },
   }));

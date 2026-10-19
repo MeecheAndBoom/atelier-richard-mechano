@@ -33,6 +33,10 @@ export const PART_CATEGORIES = [
   "Tools",
   "Gaskets",
   "Filters",
+  "Rims",
+  "WheelDrums",
+  "TailLights",
+  "Headlights",
 ] as const;
 
 export type PartCategory = (typeof PART_CATEGORIES)[number];
@@ -51,6 +55,10 @@ export const CATEGORY_LABELS: Record<PartCategory, { fr: string; en: string }> =
   Tools: { fr: "Outillage", en: "Tools" },
   Gaskets: { fr: "Joints", en: "Gaskets" },
   Filters: { fr: "Filtres", en: "Filters" },
+  Rims: { fr: "Jantes", en: "Rims" },
+  WheelDrums: { fr: "Tambours de frein", en: "Wheel drums" },
+  TailLights: { fr: "Feux arrière", en: "Tail lights" },
+  Headlights: { fr: "Phares", en: "Headlights" },
 };
 
 export function categoryLabel(category: string, locale: Locale = "fr"): string {

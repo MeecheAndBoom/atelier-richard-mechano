@@ -65,9 +65,9 @@ export default async function HomePage() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.4)_0%,rgba(0,0,0,0.7)_100%)]"
         />
-        <div className="section relative grid gap-12 pt-8 pb-16 sm:pt-16 sm:pb-24 lg:grid-cols-[1.05fr_1fr] lg:items-center">
+        <div className="section relative pt-8 pb-16 sm:pt-16 sm:pb-24">
           <div className="text-white">
-            <h1 className="max-w-[680px] text-[40px] leading-[1.03] font-semibold tracking-[-0.035em] text-white sm:text-[60px] lg:text-[68px]">
+            <h1 className="max-w-[760px] text-[40px] leading-[1.03] font-semibold tracking-[-0.035em] text-white sm:text-[60px] lg:text-[68px]">
               {t.home.heroTitle}
             </h1>
             <p className="mt-6 max-w-[560px] text-[17px] leading-[1.7] text-white/90 sm:text-[19px]">
@@ -84,18 +84,6 @@ export default async function HomePage() {
               </Link>
             </div>
           </div>
-
-          <Reveal delay={120} className="relative lg:justify-self-end">
-            <div className="relative overflow-hidden rounded-card border border-white/20 bg-white/10 backdrop-blur-sm">
-              <div className="aspect-[4/3] w-full overflow-hidden relative sm:w-[420px] lg:w-[460px]">
-                <img
-                  src="/atelier_richard_mecano_open_graph.png"
-                  alt="Atelier Richard Méchano"
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </div>
-            </div>
-          </Reveal>
         </div>
         <div className="section relative pb-8">
           <ul className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 rounded-card border border-white/20 bg-white/10 p-4 text-[13.5px] text-white/90 backdrop-blur-sm sm:px-6">
@@ -408,6 +396,19 @@ export default async function HomePage() {
 
 /** Fallback chip grid when no taxonomy tiles exist yet. */
 function PART_CATEGORIES_FALLBACK(locale: "fr" | "en"): string[] {
-  const keys = ["Engine", "Brakes", "Electrical", "Suspension", "Cooling", "Filters", "Tools", "Interior"] as const;
+  const keys = [
+    "Engine",
+    "Brakes",
+    "Electrical",
+    "Suspension",
+    "Cooling",
+    "Filters",
+    "Tools",
+    "Interior",
+    "Rims",
+    "WheelDrums",
+    "TailLights",
+    "Headlights",
+  ] as const;
   return keys.map((k) => CATEGORY_LABELS[k][locale]);
 }

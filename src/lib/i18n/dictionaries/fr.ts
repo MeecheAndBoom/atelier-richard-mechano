@@ -805,6 +805,44 @@ export const fr = {
     shop: "Voir la boutique",
   },
 
+  cookies: {
+    title: "Nous utilisons des cookies.",
+    lead: "Nous les utilisons pour faire fonctionner la boutique (panier, commande), comprendre comment elle est utilisée et — uniquement avec votre accord — mesurer l’audience et la publicité. Vous pouvez tout accepter, tout refuser, ou choisir catégorie par catégorie. Votre choix s’applique immédiatement et vous pourrez le modifier à tout moment via « Gérer les cookies » en bas de page.",
+    categories: {
+      essential: {
+        title: "Strictement nécessaires",
+        description:
+          "Indispensables au fonctionnement du site : panier, commande, langue, sécurité. Ils ne peuvent pas être désactivés.",
+        alwaysOn: "Toujours actifs",
+      },
+      preferences: {
+        title: "Préférences",
+        description:
+          "Mémorisent vos choix (devise, vue boutique, filtres) pour une expérience adaptée.",
+      },
+      analytics: {
+        title: "Mesure d’audience",
+        description:
+          "Nous aident à comprendre quelles pages sont consultées pour améliorer le site. Les données sont agrégées et anonymisées.",
+      },
+      marketing: {
+        title: "Publicité",
+        description:
+          "Utilisés pour mesurer la performance de nos campagnes et vous proposer des offres pertinentes sur d’autres sites.",
+      },
+    },
+    acceptAll: "Tout accepter",
+    rejectAll: "Tout refuser",
+    save: "Enregistrer mes choix",
+    customize: "Personnaliser",
+    privacyNote: "Consultez notre politique de confidentialité pour en savoir plus.",
+    privacyLink: "Politique de confidentialité",
+    manage: "Gérer les cookies",
+    manageHint: "Modifiez vos préférences à tout moment.",
+    status: "Vos préférences de cookies sont enregistrées sur cet appareil.",
+    updated: "Préférences enregistrées.",
+  },
+
   order: {
     statuses: {
       Placed: "Commande passée",

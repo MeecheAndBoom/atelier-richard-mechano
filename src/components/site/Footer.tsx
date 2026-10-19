@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "@/components/i18n/LocaleProvider";
+import { COOKIE_MANAGE_EVENT } from "@/components/site/CookieConsent";
 import { LanguageToggle } from "@/components/i18n/LanguageToggle";
 import { categoryLabel } from "@/lib/constants";
 
@@ -62,17 +63,18 @@ export function Footer() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 hidden overflow-hidden lg:block"
       >
-        {/* Left half: sits at center-left, extreme-left half overflows and is clipped */}
+        {/* Left copy: 900px (3× the old 300px) centred at 10% — the extreme-left
+            half overflows the footer and is clipped by overflow-hidden. */}
         <img
           src="/logo-icon.png"
           alt=""
-          className="absolute top-1/2 left-[18%] h-[300px] w-[300px] -translate-y-1/2 -translate-x-1/2 object-contain opacity-[0.08]"
+          className="absolute top-1/2 left-[10%] h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.08]"
         />
-        {/* Right half: sits at center-right, extreme-right half overflows and is clipped */}
+        {/* Right copy: mirror at 90% — extreme-right half overflows and is clipped */}
         <img
           src="/logo-icon.png"
           alt=""
-          className="absolute top-1/2 left-[82%] h-[300px] w-[300px] -translate-y-1/2 -translate-x-1/2 object-contain opacity-[0.08]"
+          className="absolute top-1/2 left-[90%] h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.08]"
         />
       </div>
       {/* Mobile: logo centered, ~80vw */}
@@ -151,8 +153,22 @@ export function Footer() {
             {t.footer.byCategory}
           </h3>
           <div className="mt-3.5 flex flex-wrap gap-2">
-            {(["Engine", "Brakes", "Electrical", "Transmission", "Suspension", "Filters", "Cooling", "Tools"] as const).map(
-              (category) => (
+            {(
+              [
+                "Engine",
+                "Brakes",
+                "Electrical",
+                "Transmission",
+                "Suspension",
+                "Filters",
+                "Cooling",
+                "Tools",
+                "Rims",
+                "WheelDrums",
+                "TailLights",
+                "Headlights",
+              ] as const
+            ).map((category) => (
                 <Link
                   key={category}
                   href={`/shop?category=${encodeURIComponent(category)}`}
@@ -181,6 +197,18 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <button
+                type="button"
+                onClick={() =>
+                  window.dispatchEvent(new CustomEvent(COOKIE_MANAGE_EVENT))
+                }
+                className="text-[13px] text-muted transition-colors hover:text-ink"
+              >
+                <i className="fa-solid fa-cookie-bite mr-1.5 text-[11px]" aria-hidden="true" />
+                {t.cookies.manage}
+              </button>
+            </li>
           </ul>
         </div>
       </div>
