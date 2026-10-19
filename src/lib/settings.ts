@@ -10,6 +10,11 @@ export type PaymentMethodSetting = {
   hint: string;
   hintEn: string;
   enabled: boolean;
+  /** If true, send payment instructions/email after order. If false, show stored payment details to buyer and allow proof upload. */
+  sendEmailAfterOrder?: boolean;
+  /** Default payment details shown to buyer when not using email. */
+  defaultPaymentDetails?: string;
+  defaultPaymentDetailsEn?: string;
 };
 
 export type SiteHours = { days: string; daysEn: string; time: string };

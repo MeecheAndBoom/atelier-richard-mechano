@@ -322,6 +322,9 @@ export async function saveSettings(
     hint: String(formData.get(`method-${fallback.id}-hint`) ?? fallback.hint),
     hintEn: String(formData.get(`method-${fallback.id}-hintEn`) ?? fallback.hintEn),
     enabled: formData.get(`method-${fallback.id}-enabled`) === "on",
+    sendEmailAfterOrder: formData.get(`method-${fallback.id}-sendEmail`) === "on",
+    defaultPaymentDetails: String(formData.get(`method-${fallback.id}-paymentDetails`) ?? ""),
+    defaultPaymentDetailsEn: String(formData.get(`method-${fallback.id}-paymentDetailsEn`) ?? ""),
   }));
 
   const cloudinary = {

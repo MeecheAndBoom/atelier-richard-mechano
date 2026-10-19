@@ -132,6 +132,30 @@ export function SettingsForm({
                 name={`method-${method.id}-hintEn`}
                 defaultValue={method.hintEn}
               />
+              <div className="sm:col-span-2 flex items-center gap-2.5 pt-1">
+                <input
+                  type="checkbox"
+                  id={`method-${method.id}-sendEmail`}
+                  name={`method-${method.id}-sendEmail`}
+                  defaultChecked={method.sendEmailAfterOrder !== false}
+                  className="h-4 w-4 accent-accent"
+                />
+                <label htmlFor={`method-${method.id}-sendEmail`} className="text-[14.5px]">
+                  Send payment instructions by email after order
+                </label>
+              </div>
+              <Input
+                label="Default payment details (FR) — shown if not emailing"
+                name={`method-${method.id}-paymentDetails`}
+                defaultValue={method.defaultPaymentDetails ?? ""}
+                className="sm:col-span-2"
+              />
+              <Input
+                label="Default payment details (EN)"
+                name={`method-${method.id}-paymentDetailsEn`}
+                defaultValue={method.defaultPaymentDetailsEn ?? ""}
+                className="sm:col-span-2"
+              />
             </fieldset>
           ))}
         </div>

@@ -109,6 +109,7 @@ export async function placeOrder(
   const now = new Date().toISOString();
   const t = dictionaries[lang];
 
+  const useEmail = methodSetting?.sendEmailAfterOrder !== false; // default true if not set
   const order: OrderRecord = {
     reference,
     lang,
@@ -143,12 +144,20 @@ export async function placeOrder(
             ? methodSetting.labelEn || methodSetting.label
             : methodSetting.label
           : data.paymentOther || data.paymentMethod,
-      status: "pending",
-      proofMethod: "email",
-      requireProofUpload: false,
+      status: useEmail ? "pending" : "awaiting-proof",
+      proofMethod: useEmail ? "email" : "upload",
+      requireProofUpload: !useEmail,
+      paymentDetails:
+        !useEmail && methodSetting
+          ? lang === "en"
+            ? methodSetting.defaultPaymentDetailsEn || methodSetting.defaultPaymentDetails
+            : methodSetting.defaultPaymentDetails
+          : undefined,
     },
-    status: "Placed",
-    statusHistory: [{ status: "Placed", at: now, note: t.order.statuses.Placed }],
+    status: useEmail ? "Placed" : "Awaiting Payment Proof",
+    statusHistory: [
+      { status: useEmail ? "Placed" : "Awaiting Payment Proof", at: now, note: t.order.statuses[useEmail ? "Placed" : "Awaiting Payment Proof"] },
+    ],
     createdAt: now,
   };
 
