@@ -42,6 +42,19 @@ export const fr = {
     skipToContent: "Aller au contenu",
   },
 
+  search: {
+    open: "Rechercher",
+    close: "Fermer la recherche",
+    placeholder: "Référence, marque, modèle…",
+    parts: "Pièces",
+    posts: "Guides & blog",
+    noResults: "Aucun résultat pour « {q} ».",
+    seeAll: "Voir tous les résultats",
+    hint: "Entrée pour tout voir · Échap pour fermer",
+    loading: "Recherche…",
+    idle: "Tapez une référence, une marque ou un modèle.",
+  },
+
   footer: {
     shop: "Boutique",
     company: "Atelier",

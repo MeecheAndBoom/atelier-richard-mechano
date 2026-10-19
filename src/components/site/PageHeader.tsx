@@ -15,7 +15,7 @@ export function PageHeader({
 }) {
   return (
     <header className="border-b border-line-soft bg-alt">
-      <div className="section page-enter pt-14 pb-12 sm:pt-20 sm:pb-16">
+      <div className="section page-enter pt-7 pb-10 sm:pt-14 sm:pb-14">
         <h1 className="max-w-[900px] text-[36px] leading-[1.04] font-semibold tracking-[-0.03em] text-ink sm:text-[52px]">
           {title}
         </h1>

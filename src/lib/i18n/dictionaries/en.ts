@@ -40,6 +40,19 @@ export const en: Dictionary = {
     skipToContent: "Skip to content",
   },
 
+  search: {
+    open: "Search",
+    close: "Close search",
+    placeholder: "Reference, brand, model…",
+    parts: "Parts",
+    posts: "Guides & blog",
+    noResults: "No results for “{q}”.",
+    seeAll: "See all results",
+    hint: "Enter to see everything · Esc to close",
+    loading: "Searching…",
+    idle: "Type a reference, a brand or a model.",
+  },
+
   footer: {
     shop: "Shop",
     company: "Workshop",

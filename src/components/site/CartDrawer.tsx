@@ -160,7 +160,10 @@ export function CartDrawer() {
                   </div>
                   <button
                     type="button"
-                    onClick={() => remove(line.slug)}
+                    onClick={() => {
+                      remove(line.slug);
+                      toast.show(t.cart.remove, { type: "info" });
+                    }}
                     className="self-start p-1 text-muted-light transition-colors hover:text-danger"
                     aria-label={`${t.cart.remove}: ${line.title}`}
                   >

@@ -203,13 +203,14 @@ export function ShopFilters({ facets }: { facets: Facets }) {
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Mobile disclosure */}
-      <div className="flex items-center justify-between gap-3 lg:hidden">
+      {/* Mobile disclosure — pinned under the fixed top bar so the filter
+          control never scrolls out of reach on small screens. */}
+      <div className="sticky top-[52px] z-30 -mx-4 flex items-center justify-between gap-3 border-b border-line-soft bg-white/85 px-4 py-2.5 backdrop-blur-md lg:hidden">
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          className="btn btn-ghost btn-sm"
+          className={`btn btn-sm ${open || activeCount ? "btn-primary" : "btn-ghost"}`}
         >
           <i className={`fa-solid ${open ? "fa-sliders" : "fa-filter"} text-[12px]`} aria-hidden="true" />
           <span>
@@ -217,6 +218,12 @@ export function ShopFilters({ facets }: { facets: Facets }) {
             {activeCount ? ` (${activeCount})` : ""}
           </span>
         </button>
+        {activeCount > 0 ? (
+          <button type="button" onClick={clear} className="btn btn-ghost btn-sm">
+            <i className="fa-solid fa-xmark text-[12px]" aria-hidden="true" />
+            <span>{t.common.clearFilters}</span>
+          </button>
+        ) : null}
       </div>
 
       <aside

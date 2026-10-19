@@ -1,18 +1,27 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 /**
  * Client-side gate for /admin — the reference pattern (no middleware):
  * check the session, bounce to /admin/login when absent. Server actions
  * re-verify independently, so this is UX, not the security boundary.
+ *
+ * The login route is exempt: gating it would bounce an anonymous visitor
+ * to the page it is already on and nothing would ever render.
  */
 export function AdminGuard({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<"loading" | "ok" | "deny">("loading");
   const router = useRouter();
+  const pathname = usePathname();
+  const isLogin = pathname === "/admin/login";
 
   useEffect(() => {
+    if (isLogin) {
+      setState("ok");
+      return;
+    }
     let cancelled = false;
     (async () => {
       try {
@@ -35,7 +44,7 @@ export function AdminGuard({ children }: { children: React.ReactNode }) {
     return () => {
       cancelled = true;
     };
-  }, [router]);
+  }, [router, isLogin]);
 
   if (state === "loading") {
     return (

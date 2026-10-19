@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useLocale } from "@/components/i18n/LocaleProvider";
 import { LanguageToggle } from "@/components/i18n/LanguageToggle";
 import { useCart, cartCount } from "@/store/cart";
+import { SearchDialog } from "@/components/site/SearchDialog";
 
 const NAV_LINKS = [
   { href: "/shop", key: "shop" },
@@ -99,6 +100,8 @@ export function Nav() {
 
         <div className="flex items-center gap-3">
           <LanguageToggle className="hidden sm:flex" />
+
+          <SearchDialog />
 
           <Link
             href="/cart"

@@ -59,7 +59,7 @@ export default async function HomePage() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#f7faff_0%,#ffffff_60%)]"
         />
-        <div className="section relative grid gap-12 pt-16 pb-20 sm:pt-24 sm:pb-28 lg:grid-cols-[1.05fr_1fr] lg:items-center">
+        <div className="section relative grid gap-12 pt-8 pb-16 sm:pt-16 sm:pb-24 lg:grid-cols-[1.05fr_1fr] lg:items-center">
           <div>
             <h1 className="max-w-[680px] text-[40px] leading-[1.03] font-semibold tracking-[-0.035em] text-ink sm:text-[60px] lg:text-[68px]">
               {t.home.heroTitle}
