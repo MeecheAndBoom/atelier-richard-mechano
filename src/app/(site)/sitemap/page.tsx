@@ -24,6 +24,7 @@ export default async function SitemapPage() {
   const locale = await getLocale();
 
   const main: LinkItem[] = [
+    { label: t.nav.home, href: "/" },
     { label: t.nav.shop, href: "/shop" },
     { label: t.nav.blog, href: "/blog" },
     { label: t.nav.about, href: "/about" },
@@ -34,9 +35,9 @@ export default async function SitemapPage() {
   const shop: LinkItem[] = [
     { label: t.footer.allParts, href: "/shop" },
     { label: t.testimonials.title, href: "/testimonials" },
-    { label: t.resources.title, href: "/resources" },
     { label: t.whyBuy.title, href: "/why-buy-from-us" },
     { label: t.firstTime.title, href: "/first-time-buyers" },
+    { label: t.affiliate.title, href: "/affiliate-program" },
   ];
   const orders: LinkItem[] = [
     { label: t.nav.cart, href: "/cart" },
@@ -49,6 +50,31 @@ export default async function SitemapPage() {
     { label: t.help.title, href: "/help" },
     { label: t.contact.title, href: "/contact" },
     { label: t.nav.track, href: "/track" },
+    { label: t.resources.title, href: "/resources" },
+  ];
+  const guides: LinkItem[] = [
+    { label: locale === "en" ? "Practical guides" : "Guides pratiques", href: "/guides" },
+    {
+      label: locale === "en" ? "Reading a manufacturer reference" : "Lire une référence fabricant",
+      href: "/guides/reading-a-manufacturer-reference",
+    },
+    {
+      label: locale === "en" ? "Checking compatibility in 3 steps" : "Vérifier une compatibilité en 3 points",
+      href: "/guides/checking-compatibility-in-3-steps",
+    },
+    {
+      label: locale === "en" ? "Preparing a return shipment" : "Préparer un envoi en retour",
+      href: "/guides/preparing-a-return-shipment",
+    },
+    { label: locale === "en" ? "Workshop tools" : "Outils d’atelier", href: "/tools" },
+    {
+      label: locale === "en" ? "Torque calculator" : "Calculateur de couple",
+      href: "/tools/torque-calculator",
+    },
+    {
+      label: locale === "en" ? "Maintenance calendar" : "Calendrier d’entretien",
+      href: "/tools/maintenance-calendar",
+    },
   ];
   const legal: LinkItem[] = LEGAL_PAGES.map((page) => ({
     label: legalTitle(page, locale),
@@ -61,10 +87,14 @@ export default async function SitemapPage() {
   ];
 
   const groups: { title: string; links: LinkItem[] }[] = [
-    { title: t.sitemapPage.main, links: main },
+    { title: t.sitemapPage.main, links: dedupe(main) },
     { title: t.sitemapPage.shop, links: dedupe(shop) },
     { title: t.sitemapPage.account, links: dedupe(orders) },
     { title: t.sitemapPage.helpCenter, links: dedupe(help) },
+    {
+      title: locale === "en" ? "Guides & tools" : "Guides et outils",
+      links: dedupe(guides),
+    },
     { title: t.sitemapPage.legalPages, links: legal },
     { title: t.sitemapPage.company, links: dedupe(company) },
   ];

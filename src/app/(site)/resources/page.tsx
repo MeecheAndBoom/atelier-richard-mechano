@@ -19,6 +19,18 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ResourcesPage() {
   const t = await getDict();
 
+  // Map dictionary entries (fixed order) to their real routes so the cards
+  // are actually clickable.
+  const GUIDE_HREFS = [
+    "/guides/reading-a-manufacturer-reference",
+    "/guides/checking-compatibility-in-3-steps",
+    "/guides/preparing-a-return-shipment",
+  ];
+  const TOOL_HREFS = [
+    "/tools/torque-calculator",
+    "/tools/maintenance-calendar",
+  ];
+
   return (
     <div>
       <PageHeader title={t.resources.title} lead={t.resources.lead} />
@@ -35,15 +47,26 @@ export default async function ResourcesPage() {
             <div className="mt-6 flex flex-col gap-4">
               {t.resources.guides.map((guide, i) => (
                 <Reveal key={guide.title} delay={i * 60}>
-                  <article className="card-flat flex gap-4 p-6">
+                  <Link
+                    href={GUIDE_HREFS[i] ?? "/guides"}
+                    className="card-flat group flex gap-4 p-6 transition-colors hover:border-accent"
+                  >
                     <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-sky text-[15px] text-accent">
                       <i className="fa-solid fa-book-open" aria-hidden="true" />
                     </span>
-                    <div>
-                      <h3 className="text-[16.5px] font-semibold">{guide.title}</h3>
-                      <p className="mt-1.5 text-[15px] leading-relaxed text-muted">{guide.body}</p>
-                    </div>
-                  </article>
+                    <span className="flex-1">
+                      <span className="block text-[16.5px] font-semibold group-hover:text-accent">
+                        {guide.title}
+                      </span>
+                      <span className="mt-1.5 block text-[15px] leading-relaxed text-muted">
+                        {guide.body}
+                      </span>
+                    </span>
+                    <i
+                      className="fa-solid fa-arrow-right mt-1.5 text-[12px] text-muted-light transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-accent"
+                      aria-hidden="true"
+                    />
+                  </Link>
                 </Reveal>
               ))}
             </div>
@@ -59,15 +82,26 @@ export default async function ResourcesPage() {
             <div className="mt-6 flex flex-col gap-4">
               {t.resources.tools.map((tool, i) => (
                 <Reveal key={tool.title} delay={i * 60}>
-                  <article className="card-flat flex gap-4 p-6">
+                  <Link
+                    href={TOOL_HREFS[i] ?? "/tools"}
+                    className="card-flat group flex gap-4 p-6 transition-colors hover:border-accent"
+                  >
                     <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-alt text-[15px] text-ink-soft">
                       <i className="fa-solid fa-screwdriver-wrench" aria-hidden="true" />
                     </span>
-                    <div>
-                      <h3 className="text-[16.5px] font-semibold">{tool.title}</h3>
-                      <p className="mt-1.5 text-[15px] leading-relaxed text-muted">{tool.body}</p>
-                    </div>
-                  </article>
+                    <span className="flex-1">
+                      <span className="block text-[16.5px] font-semibold group-hover:text-accent">
+                        {tool.title}
+                      </span>
+                      <span className="mt-1.5 block text-[15px] leading-relaxed text-muted">
+                        {tool.body}
+                      </span>
+                    </span>
+                    <i
+                      className="fa-solid fa-arrow-right mt-1.5 text-[12px] text-muted-light transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-accent"
+                      aria-hidden="true"
+                    />
+                  </Link>
                 </Reveal>
               ))}
               <Reveal delay={140}>

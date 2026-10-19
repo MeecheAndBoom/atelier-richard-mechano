@@ -25,6 +25,7 @@ export function Footer() {
     {
       heading: t.footer.shop,
       links: [
+        { href: "/", label: t.nav.home },
         { href: "/shop", label: t.footer.allParts },
         { href: "/cart", label: t.footer.cart },
         { href: "/track", label: t.footer.trackOrder },
@@ -36,6 +37,7 @@ export function Footer() {
       links: [
         { href: "/about", label: t.footer.aboutUs },
         { href: "/blog", label: t.footer.blogGuides },
+        { href: "/guides", label: locale === "en" ? "Practical guides" : "Guides pratiques" },
         { href: "/testimonials", label: t.testimonials.title },
         { href: "/why-buy-from-us", label: t.whyBuy.title },
         { href: "/first-time-buyers", label: t.firstTime.title },
@@ -46,6 +48,7 @@ export function Footer() {
       links: [
         { href: "/help", label: t.footer.faq },
         { href: "/contact", label: t.footer.contactUs },
+        { href: "/tools", label: locale === "en" ? "Workshop tools" : "Outils d’atelier" },
         { href: "/resources", label: t.footer.resources },
         { href: "/affiliate-program", label: t.footer.affiliate },
         { href: "/sitemap", label: t.sitemapPage.title },
@@ -92,7 +95,7 @@ export function Footer() {
               alt={t.meta.siteName}
               width={836}
               height={285}
-              className="h-8 w-auto"
+              className="h-10 w-auto"
             />
             <p className="mt-4 max-w-[300px] text-[14px] leading-relaxed text-muted">
               {t.meta.tagline}

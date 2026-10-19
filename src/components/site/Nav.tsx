@@ -10,6 +10,7 @@ import { useCart, cartCount } from "@/store/cart";
 import { SearchDialog } from "@/components/site/SearchDialog";
 
 const NAV_LINKS = [
+  { href: "/", key: "home" },
   { href: "/shop", key: "shop" },
   { href: "/blog", key: "blog" },
   { href: "/about", key: "about" },
@@ -73,7 +74,7 @@ export function Nav() {
             width={836}
             height={285}
             priority
-            className="h-[26px] w-auto sm:h-[28px]"
+            className="h-[32px] w-auto sm:h-[36px]"
           />
         </Link>
 

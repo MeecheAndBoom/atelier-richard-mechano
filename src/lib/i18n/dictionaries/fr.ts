@@ -28,6 +28,7 @@ export const fr = {
   },
 
   nav: {
+    home: "Accueil",
     shop: "Boutique",
     blog: "Blog",
     about: "À propos",

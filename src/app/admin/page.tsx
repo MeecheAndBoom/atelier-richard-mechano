@@ -9,16 +9,58 @@ import { money, dateTime } from "@/lib/format";
 import { AdminHead, StatCard, Pill } from "@/components/admin/AdminUi";
 import { STATUS_TONE } from "./orders/tone";
 
-export default async function AdminOverviewPage() {
+type SearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+const first = (value: string | string[] | undefined): string =>
+  Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
+
+/** Filters orders down to a day / month / year window (default: all time). */
+function withinRange(iso: string | undefined, range: string): boolean {
+  if (range === "all" || !iso) return true;
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return true;
+  const now = new Date();
+  if (range === "day") {
+    return date.toDateString() === now.toDateString();
+  }
+  if (range === "month") {
+    return (
+      date.getMonth() === now.getMonth() &&
+      date.getFullYear() === now.getFullYear()
+    );
+  }
+  if (range === "year") {
+    return date.getFullYear() === now.getFullYear();
+  }
+  return true;
+}
+
+const RANGES = [
+  { value: "day", label: "Today" },
+  { value: "month", label: "This month" },
+  { value: "year", label: "This year" },
+  { value: "all", label: "All time" },
+] as const;
+
+export default async function AdminOverviewPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const session = await getSession();
   if (!session) redirect("/admin/login");
 
-  const [orders, enquiries, products, reviews] = await Promise.all([
+  const sp = await searchParams;
+  const range = first(sp.range) || "all";
+
+  const [allOrders, enquiries, products, reviews] = await Promise.all([
     listOrders(),
     listEnquiries(),
     getProducts(),
     getReviews(),
   ]);
+
+  const orders = allOrders.filter((o) => withinRange(o.createdAt, range));
 
   const revenue = orders
     .filter((o) => o.payment.status === "received")
@@ -35,6 +77,27 @@ export default async function AdminOverviewPage() {
         title="Overview"
         subtitle="Orders, payment proofs and live inventory at a glance."
       />
+
+      {/* Range filter — day / month / year / all time */}
+      <nav aria-label="Filter by period" className="flex flex-wrap items-center gap-2">
+        {RANGES.map((r) => {
+          const active = range === r.value;
+          return (
+            <Link
+              key={r.value}
+              href={r.value === "all" ? "/admin" : `/admin?range=${r.value}`}
+              aria-current={active ? "page" : undefined}
+              className={`rounded-pill border px-4 py-2 text-[13.5px] transition-all duration-150 active:scale-95 ${
+                active
+                  ? "border-accent bg-accent text-white"
+                  : "border-line bg-white text-ink-soft hover:border-accent hover:text-accent"
+              }`}
+            >
+              {r.label}
+            </Link>
+          );
+        })}
+      </nav>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Orders" value={String(orders.length)} icon="fa-bag-shopping" />

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getSession, destroySession } from "@/lib/auth";
 import { AdminGuard } from "@/components/admin/AdminGuard";
 
@@ -32,11 +33,15 @@ export default async function AdminLayout({
             <div className="section flex h-14 items-center justify-between gap-4">
               <div className="flex min-w-0 items-center gap-5">
                 <Link href="/admin" className="flex items-center gap-2.5 text-[15px] font-semibold tracking-[-0.01em]">
-                  <span className="grid h-7 w-7 place-items-center rounded-full bg-ink text-[11px] text-white">
-                    <i className="fa-solid fa-wrench" aria-hidden="true" />
-                  </span>
-                  <span className="hidden truncate sm:block">Atelier Richard Méchano — Admin</span>
-                  <span className="sm:hidden">ARM</span>
+                  <Image
+                    src="/full-logo.png"
+                    alt="Atelier Richard Méchano"
+                    width={836}
+                    height={285}
+                    priority
+                    className="h-7 w-auto sm:h-8"
+                  />
+                  <span className="hidden text-muted sm:block">— Admin</span>
                 </Link>
               </div>
               <div className="flex items-center gap-3">
