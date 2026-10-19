@@ -16,7 +16,7 @@ export default function SiteLayout({
       <CartDrawer />
       <PageFade />
       <RouteProgress />
-      <main id="main" className="min-h-[70vh] pt-16">
+      <main id="main" className="min-h-[70vh] pt-[52px]">
         {children}
       </main>
       <Footer />
