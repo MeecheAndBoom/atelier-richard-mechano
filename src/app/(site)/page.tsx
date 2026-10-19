@@ -130,10 +130,7 @@ export default async function HomePage() {
           />
           <div className="section flex min-h-[520px] items-end py-14 sm:min-h-[600px] sm:py-20">
             <Reveal className="max-w-[520px]">
-              <p className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3.5 py-1.5 text-[12.5px] font-medium tracking-[0.02em] text-white backdrop-blur-md">
-                <i className="fa-solid fa-star text-[11px] text-[#ffd60a]" aria-hidden="true" />
-                {t.home.spotlightTitle}
-              </p>
+
               <h2 className="mt-5 text-[30px] leading-[1.08] font-semibold tracking-[-0.025em] text-white sm:text-[42px]">
                 {localizedTitle(spotlight, locale)}
               </h2>

@@ -117,7 +117,7 @@ export const en: Dictionary = {
       "Atelier Richard Méchano selects, checks and references every part before it ships. Verified compatibility, real stock, orders tracked online.",
     heroCta: "Browse parts",
     heroSecondary: "Check compatibility",
-    spotlightTitle: "The part of the moment.",
+    spotlightTitle: "",
     spotlightLead:
       "Bench-tested at the workshop, covered by a 24-month warranty and ready to fit — our pick of the week, at the net price.",
     spotlightCta: "See the part",

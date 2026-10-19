@@ -114,12 +114,12 @@ export const fr = {
   },
 
   home: {
-    heroTitle: "Les bonnes pièces. La bonne référence. Sans détour.",
+    heroTitle: "La bonne pièce. La bonne référence. Sans détour.",
     heroLead:
-      "Atelier Richard Méchano sélectionne, contrôle et référence chaque pièce avant expédition. Compatibilité vérifiée, stock réel, commande suivie en ligne.",
+      "Atelier Richard Méchano sélectionne, vérifie et référence chaque pièce avant son expédition. Compatibilité vérifiée, stock réel, commandes suivies en ligne.",
     heroCta: "Parcourir les pièces",
     heroSecondary: "Vérifier une compatibilité",
-    spotlightTitle: "La pièce du moment.",
+    spotlightTitle: "",
     spotlightLead:
       "Contrôlée sur banc à l’atelier, garantie 24 mois et prête à monter — notre sélection de la semaine, au prix net.",
     spotlightCta: "Voir la pièce",
