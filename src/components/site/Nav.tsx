@@ -140,7 +140,7 @@ export function Nav() {
       <div
         id="mobile-menu"
         className={`nav-blur overflow-hidden border-b border-line transition-[max-height,opacity] duration-[320ms] ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${
-          open ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0 border-b-transparent"
+          open ? "max-h-[520px] opacity-100" : "max-h-0 opacity-0 border-b-transparent"
         }`}
       >
         <ul className="section flex flex-col gap-1 py-4">
