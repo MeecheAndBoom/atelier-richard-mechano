@@ -79,7 +79,8 @@ export default async function AdminBlogPage() {
             align: "right",
             render: (post) => (
               <ConfirmAction
-                onConfirm={() => deletePostAction(post.slug)}
+                action={deletePostAction}
+                arg={post.slug}
                 label="Delete"
                 confirmLabel="Confirm"
               />
@@ -104,7 +105,8 @@ export default async function AdminBlogPage() {
             </div>
             <div className="mt-3 flex justify-end border-t border-line-soft pt-3">
               <ConfirmAction
-                onConfirm={() => deletePostAction(post.slug)}
+                action={deletePostAction}
+                arg={post.slug}
                 label="Delete"
                 confirmLabel="Confirm"
               />

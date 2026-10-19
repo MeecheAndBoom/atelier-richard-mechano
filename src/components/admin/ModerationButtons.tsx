@@ -38,7 +38,8 @@ export function ReviewActions({
         <span>{published ? "Unpublish" : "Publish"}</span>
       </button>
       <ConfirmAction
-        onConfirm={() => deleteReviewAction(date)}
+        action={deleteReviewAction}
+        arg={date}
         label="Delete"
         confirmLabel="Confirm delete"
       />
@@ -75,7 +76,8 @@ export function EnquiryActions({
         <span>{handled ? "Reopen" : "Mark handled"}</span>
       </button>
       <ConfirmAction
-        onConfirm={() => deleteEnquiryAction(id)}
+        action={deleteEnquiryAction}
+        arg={id}
         label="Delete"
         confirmLabel="Confirm delete"
       />

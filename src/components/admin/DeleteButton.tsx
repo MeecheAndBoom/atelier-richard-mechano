@@ -7,13 +7,22 @@ import { useState, useTransition } from "react";
  * delete, one for everything else. No blocking dialogs.
  */
 export function ConfirmAction({
-  onConfirm,
+  action,
+  arg,
   label,
   confirmLabel,
   icon = "fa-trash-can",
   className = "btn btn-ghost btn-sm text-danger",
 }: {
-  onConfirm: () => Promise<{ ok: boolean; error?: string }> | { ok: boolean; error?: string };
+  /**
+   * A server-action reference passed **by name**, never an inline closure —
+   * Server Components can't serialize arrow functions across the RSC
+   * boundary (it throws "Event handlers cannot be passed to Client
+   * Component props"), so the argument travels separately.
+   */
+  action: (arg: string) => Promise<{ ok: boolean; error?: string }>;
+  /** Serializable argument for `action` — slug, id or order reference. */
+  arg: string;
   label: string;
   confirmLabel: string;
   icon?: string;
@@ -35,7 +44,7 @@ export function ConfirmAction({
             return;
           }
           startTransition(async () => {
-            const result = await onConfirm();
+            const result = await action(arg);
             setArmed(false);
             if (!result.ok) setError(result.error ?? "Action échouée.");
           });

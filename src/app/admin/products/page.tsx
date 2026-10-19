@@ -161,7 +161,8 @@ export default async function AdminProductsPage({
             align: "right",
             render: (product) => (
               <ConfirmAction
-                onConfirm={() => deleteProductAction(product.slug)}
+                action={deleteProductAction}
+                arg={product.slug}
                 label="Delete"
                 confirmLabel="Confirm"
               />
@@ -202,7 +203,8 @@ export default async function AdminProductsPage({
             </div>
             <div className="mt-3 flex justify-end border-t border-line-soft pt-3">
               <ConfirmAction
-                onConfirm={() => deleteProductAction(product.slug)}
+                action={deleteProductAction}
+                arg={product.slug}
                 label="Delete"
                 confirmLabel="Confirm"
               />

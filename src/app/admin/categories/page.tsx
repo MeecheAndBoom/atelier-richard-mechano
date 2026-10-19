@@ -69,7 +69,8 @@ export default async function AdminCategoriesPage() {
                   <span>Edit</span>
                 </Link>
                 <ConfirmAction
-                  onConfirm={() => deleteTileAction(tile.id)}
+                  action={deleteTileAction}
+                arg={tile.id}
                   label="Delete"
                   confirmLabel="Confirm"
                 />

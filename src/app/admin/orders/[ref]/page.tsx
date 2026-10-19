@@ -207,7 +207,8 @@ export default async function AdminOrderDetailPage({
             </p>
             <div className="mt-4">
               <ConfirmAction
-                onConfirm={() => deleteOrderAction(order.reference)}
+                action={deleteOrderAction}
+                arg={order.reference}
                 label="Delete order"
                 confirmLabel="Confirm delete"
               />
