@@ -37,7 +37,7 @@ export default async function BlogPage() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={post.image || "/parts/placeholder.svg"}
+              src={post.image || "/images/placeholder.jpg"}
               alt=""
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />

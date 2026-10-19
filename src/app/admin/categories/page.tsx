@@ -45,7 +45,7 @@ export default async function AdminCategoriesPage() {
                 <span className="h-14 w-14 shrink-0 overflow-hidden rounded-box border border-line-soft bg-alt">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={tile.image || "/parts/placeholder.svg"}
+                    src={tile.image || "/images/placeholder.jpg"}
                     alt=""
                     className="h-full w-full object-cover"
                   />

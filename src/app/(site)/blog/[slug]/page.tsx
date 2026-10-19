@@ -78,7 +78,7 @@ export default async function BlogPostPage({
         <div className="aspect-[16/9] w-full overflow-hidden rounded-card border border-line-soft bg-alt">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={post.image || "/parts/placeholder.svg"}
+            src={post.image || "/images/placeholder.jpg"}
             alt={title}
             className="h-full w-full object-cover"
           />
@@ -123,7 +123,7 @@ export default async function BlogPostPage({
                       <div className="aspect-[16/9] w-full overflow-hidden bg-alt">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src={item.image || "/parts/placeholder.svg"}
+                          src={item.image || "/images/placeholder.jpg"}
                           alt=""
                           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />

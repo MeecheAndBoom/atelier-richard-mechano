@@ -1,25 +1,55 @@
 import Link from "next/link";
 import { getDict, getLocale } from "@/lib/i18n/server";
-import { getFeaturedProducts } from "@/lib/products";
+import { getProducts } from "@/lib/products";
 import { getTiles } from "@/lib/categories";
 import { getFeaturedPosts } from "@/lib/blog";
 import { getReviews } from "@/lib/reviews";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { ProductCardCompact } from "@/components/ui/ProductCardCompact";
+import { ScrollRail } from "@/components/ui/ScrollRail";
+import { ReviewsMarquee } from "@/components/site/ReviewsMarquee";
+import { BrandsMarquee } from "@/components/site/BrandsMarquee";
 import { Reveal } from "@/components/ui/Reveal";
-import { Stars } from "@/components/ui/FormBits";
 import { CATEGORY_LABELS } from "@/lib/constants";
-import { shortDate } from "@/lib/format";
+import { money, shortDate } from "@/lib/format";
+import { localizedTitle, localizedDescription } from "@/lib/seo";
 
 export default async function HomePage() {
   const t = await getDict();
   const locale = await getLocale();
-  const [featured, tiles, posts, reviews] = await Promise.all([
-    getFeaturedProducts(6),
+  const [products, tiles, posts, reviews] = await Promise.all([
+    getProducts(),
     getTiles("category"),
     getFeaturedPosts(3),
     getReviews(),
   ]);
-  const topReviews = reviews.slice(0, 3);
+
+  const featured = (() => {
+    const f = products.filter((p) => p.featured);
+    return (f.length ? f : products).slice(0, 6);
+  })();
+
+  // Full-bleed spotlight — prefer a discounted, in-stock part with a photo.
+  const spotlight =
+    products.find((p) => p.listPrice && p.price < p.listPrice && p.stock > 0 && p.images[0]) ??
+    products.find((p) => p.stock > 0 && p.images[0]) ??
+    null;
+
+  const spotlightSave =
+    spotlight?.listPrice && spotlight.listPrice > spotlight.price
+      ? spotlight.listPrice - spotlight.price
+      : 0;
+
+  // Horizontal rail — newest arrivals first, spotlight excluded.
+  const arrivals = (() => {
+    const pool = products.filter((p) => p.slug !== spotlight?.slug);
+    const sorted = [...pool].sort(
+      (a, b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? ""),
+    );
+    return (sorted.length ? sorted : pool).slice(0, 8);
+  })();
+
+  const marqueeReviews = reviews.slice(0, 8);
 
   return (
     <div className="page-enter">
@@ -54,7 +84,7 @@ export default async function HomePage() {
               <div className="aspect-[5/4] w-full">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/parts/hero.svg"
+                  src="/images/editorial/hero.jpg"
                   alt=""
                   className="h-full w-full object-cover"
                 />
@@ -80,6 +110,67 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ── Spotlight (full-bleed product) ──────────────────── */}
+      {spotlight ? (
+        <section className="relative isolate overflow-hidden bg-graphite">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={spotlight.images[0]}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 h-full w-full object-cover opacity-90"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 bg-[linear-gradient(105deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.78)_40%,rgba(0,0,0,0.4)_70%,rgba(0,0,0,0.06)_100%)]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,0,0,0.15)_0%,rgba(0,0,0,0.6)_45%,rgba(0,0,0,0.85)_75%,rgba(0,0,0,0.94)_100%)]"
+          />
+          <div className="section flex min-h-[520px] items-end py-14 sm:min-h-[600px] sm:py-20">
+            <Reveal className="max-w-[520px]">
+              <p className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3.5 py-1.5 text-[12.5px] font-medium tracking-[0.02em] text-white backdrop-blur-md">
+                <i className="fa-solid fa-star text-[11px] text-[#ffd60a]" aria-hidden="true" />
+                {t.home.spotlightTitle}
+              </p>
+              <h2 className="mt-5 text-[30px] leading-[1.08] font-semibold tracking-[-0.025em] text-white sm:text-[42px]">
+                {localizedTitle(spotlight, locale)}
+              </h2>
+              <p className="mt-4 line-clamp-3 text-[15.5px] leading-[1.65] text-white/85">
+                {localizedDescription(spotlight, locale)}
+              </p>
+
+              <div className="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-2">
+                <span className="text-[30px] font-semibold tracking-[-0.02em] tabular-nums text-white">
+                  {money(spotlight.price, locale)}
+                </span>
+                {spotlight.listPrice && spotlight.listPrice > spotlight.price ? (
+                  <span className="text-[17px] text-white/55 line-through tabular-nums">
+                    {money(spotlight.listPrice, locale)}
+                  </span>
+                ) : null}
+                {spotlightSave > 0 ? (
+                  <span className="rounded-full bg-[#ff453a] px-2.5 py-1 text-[12.5px] font-semibold text-white">
+                    −{money(spotlightSave, locale)}
+                  </span>
+                ) : null}
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href={`/shop/${spotlight.slug}`} className="btn btn-primary btn-lg">
+                  <span>{t.home.spotlightCta}</span>
+                  <i className="fa-solid fa-arrow-right text-[12px]" aria-hidden="true" />
+                </Link>
+                <Link href="/shop" className="btn btn-dark btn-lg">
+                  <span>{t.home.heroCta}</span>
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
+
       {/* ── Featured ─────────────────────────────────────────── */}
       <section className="section section-pad">
         <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-5">
@@ -103,6 +194,41 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* ── New arrivals (horizontal rail) ───────────────────── */}
+      {arrivals.length ? (
+        <section className="border-y border-line-soft bg-alt">
+          <div className="section section-pad">
+            <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-5">
+              <div>
+                <h2 className="text-[30px] font-semibold tracking-[-0.02em] sm:text-[38px]">
+                  {t.home.railTitle}
+                </h2>
+                <p className="mt-2.5 text-[16.5px] text-muted">{t.home.railLead}</p>
+              </div>
+              <Link href="/shop" className="btn btn-ghost btn-sm">
+                <span>{t.footer.allParts}</span>
+                <i className="fa-solid fa-arrow-right text-[11px]" aria-hidden="true" />
+              </Link>
+            </Reveal>
+            <ScrollRail
+              label={t.home.railTitle}
+              prevLabel={t.home.railPrev}
+              nextLabel={t.home.railNext}
+            >
+              {arrivals.map((product, i) => (
+                <Reveal
+                  key={product.slug}
+                  delay={i * 45}
+                  className="w-[260px] shrink-0 sm:w-[300px]"
+                >
+                  <ProductCardCompact product={product} />
+                </Reveal>
+              ))}
+            </ScrollRail>
+          </div>
+        </section>
+      ) : null}
 
       {/* ── Categories ───────────────────────────────────────── */}
       <section className="border-y border-line-soft bg-alt">
@@ -128,7 +254,7 @@ export default async function HomePage() {
                     <div className="aspect-[5/3] w-full overflow-hidden bg-alt">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={tile.image || "/parts/placeholder.svg"}
+                        src={tile.image || "/images/placeholder.jpg"}
                         alt=""
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                       />
@@ -193,7 +319,7 @@ export default async function HomePage() {
 
       {/* ── Stats band ───────────────────────────────────────── */}
       <section className="border-y border-line-soft bg-graphite text-white">
-        <div className="section grid gap-8 py-14 sm:grid-cols-3">
+        <div className="section grid gap-8 py-14 sm:grid-cols-2 lg:grid-cols-4">
           {t.home.stats.map((stat, i) => (
             <Reveal key={stat.label} delay={i * 70} className="text-center sm:text-left">
               <p className="text-[40px] leading-none font-semibold tracking-[-0.03em] tabular-nums">
@@ -205,8 +331,21 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Testimonials ─────────────────────────────────────── */}
-      {topReviews.length ? (
+      {/* ── Brands marquee (trust band) ──────────────────────── */}
+      <section className="border-b border-line-soft bg-alt">
+        <div className="section section-pad py-12">
+          <Reveal className="mb-8 text-center">
+            <h2 className="text-[24px] font-semibold tracking-[-0.02em] sm:text-[30px]">
+              {t.home.brandsTitle}
+            </h2>
+            <p className="mt-2.5 text-[16px] text-muted">{t.home.brandsLead}</p>
+          </Reveal>
+          <BrandsMarquee />
+        </div>
+      </section>
+
+      {/* ── Testimonials (marquee) ──────────────────────────── */}
+      {marqueeReviews.length ? (
         <section className="section section-pad">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-5">
             <div>
@@ -216,34 +355,11 @@ export default async function HomePage() {
               <p className="mt-2.5 text-[16.5px] text-muted">{t.home.testimonialsLead}</p>
             </div>
             <Link href="/testimonials" className="btn btn-ghost btn-sm">
-              <span>{t.testimonials.submit}</span>
+              <span>{t.home.testimonialsCta}</span>
               <i className="fa-solid fa-arrow-right text-[11px]" aria-hidden="true" />
             </Link>
           </Reveal>
-          <div className="grid gap-5 md:grid-cols-3">
-            {topReviews.map((review, i) => (
-              <Reveal key={`${review.name}-${review.date}`} delay={i * 70}>
-                <figure className="card-flat flex h-full flex-col gap-4 p-7">
-                  <Stars rating={review.rating} />
-                  <blockquote className="text-[15.5px] leading-[1.7] text-ink-soft">
-                    {review.title ? (
-                      <span className="mb-1.5 block font-semibold text-ink">{review.title}</span>
-                    ) : null}
-                    {review.body}
-                  </blockquote>
-                  <figcaption className="mt-auto flex items-center justify-between gap-3 border-t border-line-soft pt-4 text-[13.5px]">
-                    <span className="font-medium text-ink">
-                      {review.name}
-                      {review.city ? <span className="font-normal text-muted"> — {review.city}</span> : null}
-                    </span>
-                    <time className="text-muted-light tabular-nums" dateTime={review.date}>
-                      {shortDate(review.date, locale)}
-                    </time>
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
+          <ReviewsMarquee reviews={marqueeReviews} locale={locale} />
         </section>
       ) : null}
 
@@ -277,7 +393,7 @@ export default async function HomePage() {
                       <div className="aspect-[16/9] w-full overflow-hidden bg-alt">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src={post.image || "/parts/placeholder.svg"}
+                          src={post.image || "/images/placeholder.jpg"}
                           alt=""
                           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />

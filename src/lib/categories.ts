@@ -22,25 +22,41 @@ async function fromDb<T>(query: () => Promise<T>, fallback: () => Promise<T>): P
 const toRecord = (doc: unknown): TaxonomyTile =>
   JSON.parse(JSON.stringify(doc)) as TaxonomyTile;
 
+/** Real photography per part category (checked during the image QA pass). */
+const CATEGORY_IMAGES: Record<string, string> = {
+  Engine: "/images/categories/engine.jpg",
+  Transmission: "/images/categories/transmission.jpg",
+  Electrical: "/images/categories/electrical.jpg",
+  Brakes: "/images/categories/brakes.jpg",
+  Body: "/images/makes/ford.jpg",
+  Suspension: "/images/categories/suspension.jpg",
+  Fuel: "/images/products/fuel-pump.jpg",
+  Cooling: "/images/categories/cooling.jpg",
+  Interior: "/images/categories/interior.jpg",
+  Tools: "/images/categories/tools.jpg",
+  Gaskets: "/images/products/gasket-set.jpg",
+  Filters: "/images/categories/filters.jpg",
+};
+
 /** Fallback tiles — part categories + the makes present in the seed catalog. */
-const SEED_TILES: TaxonomyTile[] = [
+export const SEED_TILES: TaxonomyTile[] = [
   ...PART_CATEGORIES.map((category, i) => ({
     id: `category-${category.toLowerCase()}`,
     name: category,
     type: "category" as const,
-    image: `/parts/category-${category.toLowerCase()}.svg`,
+    image: CATEGORY_IMAGES[category] ?? "/images/placeholder.jpg",
     order: i,
   })),
-  { id: "make-peugeot", name: "Peugeot", type: "make" as const, image: "/parts/make-peugeot.svg", order: 20 },
-  { id: "make-citroen", name: "Citroën", type: "make" as const, image: "/parts/make-citroen.svg", order: 21 },
-  { id: "make-renault", name: "Renault", type: "make" as const, image: "/parts/make-renault.svg", order: 22 },
-  { id: "make-volkswagen", name: "Volkswagen", type: "make" as const, image: "/parts/make-volkswagen.svg", order: 23 },
-  { id: "make-bmw", name: "BMW", type: "make" as const, image: "/parts/make-bmw.svg", order: 24 },
-  { id: "make-ford", name: "Ford", type: "make" as const, image: "/parts/make-ford.svg", order: 25 },
-  { id: "brand-brembo", name: "Brembo", type: "brand" as const, image: "/parts/brand-brembo.svg", order: 30 },
-  { id: "brand-bosch", name: "Bosch", type: "brand" as const, image: "/parts/brand-bosch.svg", order: 31 },
-  { id: "brand-sachs", name: "Sachs", type: "brand" as const, image: "/parts/brand-sachs.svg", order: 32 },
-  { id: "brand-luk", name: "LuK", type: "brand" as const, image: "/parts/brand-luk.svg", order: 33 },
+  { id: "make-peugeot", name: "Peugeot", type: "make" as const, image: "/images/makes/peugeot.jpg", order: 20 },
+  { id: "make-citroen", name: "Citroën", type: "make" as const, image: "/images/makes/citroen.jpg", order: 21 },
+  { id: "make-renault", name: "Renault", type: "make" as const, image: "/images/makes/renault.jpg", order: 22 },
+  { id: "make-volkswagen", name: "Volkswagen", type: "make" as const, image: "/images/makes/volkswagen.jpg", order: 23 },
+  { id: "make-bmw", name: "BMW", type: "make" as const, image: "/images/makes/bmw.jpg", order: 24 },
+  { id: "make-ford", name: "Ford", type: "make" as const, image: "/images/makes/ford.jpg", order: 25 },
+  { id: "brand-brembo", name: "Brembo", type: "brand" as const, image: "/images/brands/brembo.jpg", order: 30 },
+  { id: "brand-bosch", name: "Bosch", type: "brand" as const, image: "/images/brands/bosch.jpg", order: 31 },
+  { id: "brand-sachs", name: "Sachs", type: "brand" as const, image: "/images/brands/sachs.jpg", order: 32 },
+  { id: "brand-luk", name: "LuK", type: "brand" as const, image: "/images/brands/luk.jpg", order: 33 },
 ];
 
 export async function getTiles(type?: TaxonomyTile["type"]): Promise<TaxonomyTile[]> {

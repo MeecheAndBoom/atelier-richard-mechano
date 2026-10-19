@@ -382,6 +382,22 @@
     scroll-snap-align: start;
     flex-shrink: 0;
   }
+
+  /* Seamless auto-scrolling marquees (reviews strip, brand trust band) */
+  .marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  }
+  .marquee-group {
+    width: max-content;
+    animation: marquee-scroll var(--marquee-duration, 48s) linear infinite;
+    will-change: transform;
+  }
+  .marquee:hover .marquee-group,
+  .marquee:focus-within .marquee-group {
+    animation-play-state: paused;
+  }
 }
 
 @layer utilities {
@@ -404,6 +420,25 @@
   }
   100% {
     transform: scaleX(1);
+  }
+}
+
+/* ── Marquee (ReviewsMarquee / BrandsMarquee) ────────────────── */
+@keyframes marquee-scroll {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-group {
+    animation: none;
+  }
+  .marquee {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .marquee::-webkit-scrollbar {
+    display: none;
   }
 }
 

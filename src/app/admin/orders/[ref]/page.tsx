@@ -63,7 +63,7 @@ export default async function AdminOrderDetailPage({
                   <span className="h-12 w-12 shrink-0 overflow-hidden rounded-box border border-line-soft bg-alt">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={item.image || "/parts/placeholder.svg"}
+                      src={item.image || "/images/placeholder.jpg"}
                       alt=""
                       className="h-full w-full object-cover"
                     />

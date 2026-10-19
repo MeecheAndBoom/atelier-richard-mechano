@@ -31,7 +31,7 @@ export function AddToCart({
       {
         slug: product.slug,
         title: product.title,
-        image: product.images[0] ?? "/parts/placeholder.svg",
+        image: product.images[0] ?? "/images/placeholder.jpg",
         price: product.price,
         stock: product.stock,
       },

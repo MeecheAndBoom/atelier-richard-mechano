@@ -50,3 +50,9 @@ dev.log
 /data/
 
 # local git identity noise
+
+# image research staging (~76MB of candidates + license metadata)
+.image-staging/
+
+# scratch output from scripts/seed-db.cjs compile
+.seed-build/

@@ -46,7 +46,7 @@ export function ProductCard({ product }: { product: Product }) {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={product.images[0] ?? "/parts/placeholder.svg"}
+          src={product.images[0] ?? "/images/placeholder.jpg"}
           alt=""
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-[480ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"

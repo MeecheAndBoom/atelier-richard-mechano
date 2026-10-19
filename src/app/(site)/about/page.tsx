@@ -36,7 +36,7 @@ export default async function AboutPage() {
           <div className="overflow-hidden rounded-card border border-line-soft bg-alt">
             <div className="aspect-[4/3] w-full">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/parts/atelier.svg" alt="" className="h-full w-full object-cover" />
+              <img src="/images/editorial/atelier.jpg" alt="" className="h-full w-full object-cover" />
             </div>
           </div>
         </Reveal>

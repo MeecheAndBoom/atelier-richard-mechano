@@ -23,7 +23,7 @@ export function ProductRow({ product }: { product: Product }) {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={product.images[0] ?? "/parts/placeholder.svg"}
+          src={product.images[0] ?? "/images/placeholder.jpg"}
           alt=""
           loading="lazy"
           className="h-full w-full object-cover"

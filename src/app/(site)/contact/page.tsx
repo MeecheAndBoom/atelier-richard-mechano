@@ -94,7 +94,7 @@ export default async function ContactPage() {
             <div className="mt-4 overflow-hidden rounded-box border border-line-soft bg-alt">
               <div className="aspect-[16/9] w-full">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/parts/map.svg" alt="" className="h-full w-full object-cover" />
+                <img src="/images/map-lyon.jpg" alt="" className="h-full w-full object-cover" />
               </div>
             </div>
           </div>

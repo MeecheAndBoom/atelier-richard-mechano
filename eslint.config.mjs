@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // One-off tooling + scratch build output (not app code):
+    "scripts/**",
+    ".seed-build/**",
+    ".image-staging/**",
   ]),
 ]);
 

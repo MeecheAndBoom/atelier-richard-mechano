@@ -86,7 +86,7 @@ export default async function AdminProductsPage({
               <span className="block h-11 w-11 overflow-hidden rounded-box border border-line-soft bg-alt">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={product.images[0] || "/parts/placeholder.svg"}
+                  src={product.images[0] || "/images/placeholder.jpg"}
                   alt=""
                   className="h-full w-full object-cover"
                 />
@@ -174,7 +174,7 @@ export default async function AdminProductsPage({
               <span className="h-14 w-14 shrink-0 overflow-hidden rounded-box border border-line-soft bg-alt">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={product.images[0] || "/parts/placeholder.svg"}
+                  src={product.images[0] || "/images/placeholder.jpg"}
                   alt=""
                   className="h-full w-full object-cover"
                 />

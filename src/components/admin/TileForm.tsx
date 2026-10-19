@@ -92,7 +92,7 @@ export function TileForm({ tile }: { tile?: TaxonomyTile }) {
               id="tile-image"
               name="image"
               defaultValue={tile?.image ?? ""}
-              placeholder="/parts/brakes.svg"
+              placeholder="/images/categories/brakes.jpg"
               className="field"
             />
           </Field>

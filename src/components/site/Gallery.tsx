@@ -16,7 +16,7 @@ export function Gallery({
   badge?: React.ReactNode;
 }) {
   const [index, setIndex] = useState(0);
-  const list = images.length ? images : ["/parts/placeholder.svg"];
+  const list = images.length ? images : ["/images/placeholder.jpg"];
   const current = list[Math.min(index, list.length - 1)];
 
   return (
