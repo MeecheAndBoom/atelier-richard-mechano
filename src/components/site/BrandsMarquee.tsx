@@ -1,34 +1,41 @@
 import type { CSSProperties } from "react";
 
 /**
- * Text marquee of part brands the workshop fits — a quiet trust band under
- * the stats. Pure CSS loop, pauses on hover, static under reduced-motion.
+ * Brand logo marquee — quiet trust band under the stats. Pure CSS loop,
+ * pauses on hover, static under reduced-motion. Falls back to text if a logo
+ * image is missing.
  */
-const BRAND_NAMES = [
-  "Brembo",
-  "Bosch",
-  "Sachs",
-  "LuK",
-  "Valeo",
-  "SKF",
-  "NGK",
-  "Mann-Filter",
-  "Febi Bilstein",
-  "TRW",
-  "Denso",
-  "Hella",
-  "ATE",
-  "Continental",
+const BRANDS = [
+  { name: "Brembo", image: "/images/brands/brembo.jpg" },
+  { name: "Bosch", image: "/images/brands/bosch.jpg" },
+  { name: "Sachs", image: "/images/brands/sachs.jpg" },
+  { name: "LuK", image: "/images/brands/luk.jpg" },
+  { name: "Valeo", image: "/images/brands/valeo.svg" },
+  { name: "SKF", image: "/images/brands/skf.svg" },
+  { name: "NGK", image: "/images/brands/ngk.svg" },
+  { name: "Mann-Filter", image: "/images/brands/mann-filter.svg" },
+  { name: "Febi Bilstein", image: "/images/brands/febi-bilstein.svg" },
+  { name: "TRW", image: "/images/brands/trw.svg" },
+  { name: "Denso", image: "/images/brands/denso.svg" },
+  { name: "Hella", image: "/images/brands/hella.svg" },
+  { name: "ATE", image: "/images/brands/ate.svg" },
+  { name: "Continental", image: "/images/brands/continental.svg" },
 ];
 
 export function BrandsMarquee() {
   const track = (clone: boolean) => (
     <ul className="flex shrink-0 items-center" aria-hidden={clone ? "true" : undefined}>
-      {BRAND_NAMES.map((name) => (
-        <li key={`${name}-${clone ? "b" : "a"}`} className="flex items-center">
-          <span className="px-6 text-[19px] font-semibold tracking-[-0.01em] text-muted-light sm:px-8 sm:text-[22px]">
-            {name}
-          </span>
+      {BRANDS.map((brand) => (
+        <li key={`${brand.name}-${clone ? "b" : "a"}`} className="flex items-center">
+          <div className="flex h-12 items-center px-6 sm:px-8">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={brand.image}
+              alt={brand.name}
+              className="h-7 max-w-[120px] object-contain opacity-90 sm:h-9 sm:max-w-[150px]"
+              loading="lazy"
+            />
+          </div>
           <span aria-hidden="true" className="h-1 w-1 rounded-full bg-[#d2d2d7]" />
         </li>
       ))}
