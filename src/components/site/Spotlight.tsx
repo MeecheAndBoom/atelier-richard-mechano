@@ -38,6 +38,7 @@ export function Spotlight({
   secondaryLabel: string;
 }) {
   const [index, setIndex] = useState(0);
+  const [tick, setTick] = useState(0);
 
   useEffect(() => {
     if (items.length <= 1) return;
@@ -45,7 +46,12 @@ export function Spotlight({
       setIndex((i) => (i + 1) % items.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [items.length]);
+  }, [items.length, tick]);
+
+  function go(delta: number) {
+    setIndex((i) => (i + delta + items.length) % items.length);
+    setTick((t) => t + 1); // restart the auto-rotate timer on manual navigation
+  }
 
   if (!items.length) return null;
   const item = items[index];
@@ -116,19 +122,40 @@ export function Spotlight({
         ))}
       </div>
       {items.length > 1 ? (
-        <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2 sm:left-8 sm:translate-x-0">
-          {items.map((p, i) => (
-            <button
-              key={p.slug}
-              type="button"
-              onClick={() => setIndex(i)}
-              aria-label={`Show ${titleOf(p, locale)}`}
-              aria-current={i === index}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === index ? "w-6 bg-white" : "w-2 bg-white/40"
-              }`}
-            />
-          ))}
+        <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3">
+          <button
+            type="button"
+            onClick={() => go(-1)}
+            aria-label="Previous product"
+            className="flex h-7 w-7 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white/80 transition-colors duration-200 hover:bg-white/20 hover:text-white"
+          >
+            <i className="fa-solid fa-chevron-left text-[10px]" aria-hidden="true" />
+          </button>
+          <div className="flex gap-2">
+            {items.map((p, i) => (
+              <button
+                key={p.slug}
+                type="button"
+                onClick={() => {
+                  setIndex(i);
+                  setTick((t) => t + 1);
+                }}
+                aria-label={`Show ${titleOf(p, locale)}`}
+                aria-current={i === index}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === index ? "w-6 bg-white" : "w-2 bg-white/40"
+                }`}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => go(1)}
+            aria-label="Next product"
+            className="flex h-7 w-7 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white/80 transition-colors duration-200 hover:bg-white/20 hover:text-white"
+          >
+            <i className="fa-solid fa-chevron-right text-[10px]" aria-hidden="true" />
+          </button>
         </div>
       ) : null}
     </section>
