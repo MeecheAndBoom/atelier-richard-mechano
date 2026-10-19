@@ -19,7 +19,7 @@ export default function SiteLayout({
       <CookieConsent />
       <PageFade />
       <RouteProgress />
-      <main id="main" className="min-h-[70vh] pt-[52px]">
+      <main id="main" className="min-h-[70vh] pt-[16px] md:pt-[52px]">
         {children}
       </main>
       <Footer />

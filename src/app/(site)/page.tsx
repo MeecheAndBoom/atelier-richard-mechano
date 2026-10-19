@@ -107,15 +107,61 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Spotlight (auto-rotating full-bleed product) ────── */}
-      {spotlightItems.length ? (
-        <Spotlight
-          items={spotlightItems}
-          locale={locale}
-          ctaLabel={t.home.spotlightCta}
-          secondaryLabel={t.home.heroCta}
-        />
-      ) : null}
+      {/* ── Categories ───────────────────────────────────────── */}
+      <section className="border-y border-line-soft bg-alt">
+        <div className="section section-pad">
+          <Reveal className="mb-10">
+            <h2 className="text-[30px] font-semibold tracking-[-0.02em] sm:text-[38px]">
+              {t.home.categoriesTitle}
+            </h2>
+            <p className="mt-2.5 text-[16.5px] text-muted">{t.home.categoriesLead}</p>
+          </Reveal>
+
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {tiles.map((tile, i) => {
+              const label =
+                CATEGORY_LABELS[tile.name as keyof typeof CATEGORY_LABELS]?.[locale] ??
+                tile.name;
+              return (
+                <Reveal key={tile.id} delay={i * 45}>
+                  <Link
+                    href={`/shop?category=${encodeURIComponent(tile.name)}`}
+                    className="card group flex h-full flex-col overflow-hidden"
+                  >
+                    <div className="aspect-[5/3] w-full overflow-hidden bg-alt">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={tile.image || "/images/placeholder.jpg"}
+                        alt=""
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      />
+                    </div>
+                    <div className="flex items-center justify-between gap-3 px-4 py-4">
+                      <span className="text-[15px] font-medium text-ink">{label}</span>
+                      <i
+                        className="fa-solid fa-arrow-right text-[12px] text-muted-light transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-accent"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </Link>
+                </Reveal>
+              );
+            })}
+            {tiles.length === 0
+              ? PART_CATEGORIES_FALLBACK(locale).map((label, i) => (
+                  <Reveal key={label} delay={i * 45}>
+                    <Link
+                      href="/shop"
+                      className="card flex h-full items-center justify-center px-4 py-8 text-center text-[15px] font-medium"
+                    >
+                      {label}
+                    </Link>
+                  </Reveal>
+                ))
+              : null}
+          </div>
+        </div>
+      </section>
 
       {/* ── Featured ─────────────────────────────────────────── */}
       <section className="section section-pad">
@@ -176,61 +222,15 @@ export default async function HomePage() {
         </section>
       ) : null}
 
-      {/* ── Categories ───────────────────────────────────────── */}
-      <section className="border-y border-line-soft bg-alt">
-        <div className="section section-pad">
-          <Reveal className="mb-10">
-            <h2 className="text-[30px] font-semibold tracking-[-0.02em] sm:text-[38px]">
-              {t.home.categoriesTitle}
-            </h2>
-            <p className="mt-2.5 text-[16.5px] text-muted">{t.home.categoriesLead}</p>
-          </Reveal>
-
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {tiles.map((tile, i) => {
-              const label =
-                CATEGORY_LABELS[tile.name as keyof typeof CATEGORY_LABELS]?.[locale] ??
-                tile.name;
-              return (
-                <Reveal key={tile.id} delay={i * 45}>
-                  <Link
-                    href={`/shop?category=${encodeURIComponent(tile.name)}`}
-                    className="card group flex h-full flex-col overflow-hidden"
-                  >
-                    <div className="aspect-[5/3] w-full overflow-hidden bg-alt">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={tile.image || "/images/placeholder.jpg"}
-                        alt=""
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                      />
-                    </div>
-                    <div className="flex items-center justify-between gap-3 px-4 py-4">
-                      <span className="text-[15px] font-medium text-ink">{label}</span>
-                      <i
-                        className="fa-solid fa-arrow-right text-[12px] text-muted-light transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-accent"
-                        aria-hidden="true"
-                      />
-                    </div>
-                  </Link>
-                </Reveal>
-              );
-            })}
-            {tiles.length === 0
-              ? PART_CATEGORIES_FALLBACK(locale).map((label, i) => (
-                  <Reveal key={label} delay={i * 45}>
-                    <Link
-                      href="/shop"
-                      className="card flex h-full items-center justify-center px-4 py-8 text-center text-[15px] font-medium"
-                    >
-                      {label}
-                    </Link>
-                  </Reveal>
-                ))
-              : null}
-          </div>
-        </div>
-      </section>
+      {/* ── Spotlight (auto-rotating full-bleed product) ────── */}
+      {spotlightItems.length ? (
+        <Spotlight
+          items={spotlightItems}
+          locale={locale}
+          ctaLabel={t.home.spotlightCta}
+          secondaryLabel={t.home.heroCta}
+        />
+      ) : null}
 
       {/* ── Why us ───────────────────────────────────────────── */}
       <section className="section section-pad">

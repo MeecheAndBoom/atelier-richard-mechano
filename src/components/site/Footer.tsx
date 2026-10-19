@@ -63,18 +63,18 @@ export function Footer() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 hidden overflow-hidden lg:block"
       >
-        {/* Left copy: 900px (3× the old 300px) centred at 10% — the extreme-left
-            half overflows the footer and is clipped by overflow-hidden. */}
+        {/* Left copy: 900px (3× the old 300px) centred at 2% — most of the
+            left half overflows the footer and is clipped by overflow-hidden. */}
         <img
           src="/logo-icon.png"
           alt=""
-          className="absolute top-1/2 left-[10%] h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.08]"
+          className="absolute top-1/2 left-[2%] h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.08]"
         />
-        {/* Right copy: mirror at 90% — extreme-right half overflows and is clipped */}
+        {/* Right copy: mirror at 102% — most of the right half overflows and is clipped */}
         <img
           src="/logo-icon.png"
           alt=""
-          className="absolute top-1/2 left-[90%] h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.08]"
+          className="absolute top-1/2 left-[102%] h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.08]"
         />
       </div>
       {/* Mobile: logo centered, 80vw (uncapped — fills small screens) */}
