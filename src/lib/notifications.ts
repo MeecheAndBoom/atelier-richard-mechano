@@ -63,10 +63,16 @@ export async function notifyOrderReceived(order: OrderRecord): Promise<NotifyRes
 
 export async function notifyPaymentInstructions(order: OrderRecord): Promise<NotifyResult> {
   const locale = (order.lang ?? "fr") as Locale;
-  return deliver(
+  const customer = await deliver(
     order.customer.email,
     PaymentInstructionsEmail({ order, locale }),
   );
+  // Admin gets a copy so there is a record of what the buyer received.
+  const admin = await deliver(
+    (await resolveSmtp())?.notify ?? process.env.ADMIN_EMAIL ?? order.customer.email,
+    PaymentInstructionsEmail({ order, locale }),
+  );
+  return { ok: customer.ok || admin.ok, detail: customer.detail ?? admin.detail };
 }
 
 export async function notifyPaymentConfirmed(order: OrderRecord): Promise<NotifyResult> {

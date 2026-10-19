@@ -6,12 +6,22 @@ import {
   Heading,
   Hr,
   Html,
+  Img,
   Preview,
   Section,
   Text,
 } from "@react-email/components";
 import * as React from "react";
 import { SITE } from "@/lib/constants";
+
+/** Absolute URL for assets — email clients cannot resolve relative paths. */
+function assetUrl(path: string) {
+  const base =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    process.env.SITE_URL ??
+    "https://www.atelier-richard-mechano.com";
+  return `${base.replace(/\/$/, "")}${path}`;
+}
 
 export const styles = {
   body: {
@@ -42,6 +52,12 @@ export const styles = {
     margin: "0 0 14px",
   },
   muted: { color: "#6e6e73", fontSize: "13px", lineHeight: "1.5" },
+  logo: {
+    display: "block",
+    height: "30px",
+    width: "auto" as const,
+    margin: "0 0 18px",
+  },
   code: {
     backgroundColor: "#f5f5f7",
     borderRadius: "10px",
@@ -119,6 +135,13 @@ export function EmailShell({
       <Preview>{preview}</Preview>
       <Body style={styles.body}>
         <Container style={styles.card}>
+          <Img
+            src={assetUrl("/full-logo.png")}
+            alt={SITE.name}
+            width={180}
+            height={61}
+            style={styles.logo}
+          />
           <Heading style={styles.h1}>{heading}</Heading>
           {reference ? (
             <div style={styles.code}>{reference}</div>

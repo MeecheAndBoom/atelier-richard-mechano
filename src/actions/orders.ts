@@ -147,12 +147,14 @@ export async function placeOrder(
       status: useEmail ? "pending" : "awaiting-proof",
       proofMethod: useEmail ? "email" : "upload",
       requireProofUpload: !useEmail,
-      paymentDetails:
-        !useEmail && methodSetting
-          ? lang === "en"
-            ? methodSetting.defaultPaymentDetailsEn || methodSetting.defaultPaymentDetails
-            : methodSetting.defaultPaymentDetails
-          : undefined,
+      // Always attach the method's stored payment details (localized) so the
+      // instructions email — automatic or sent later from the dashboard —
+      // never goes out empty.
+      paymentDetails: methodSetting
+        ? lang === "en"
+          ? methodSetting.defaultPaymentDetailsEn || methodSetting.defaultPaymentDetails
+          : methodSetting.defaultPaymentDetails
+        : undefined,
     },
     status: useEmail ? "Placed" : "Awaiting Payment Proof",
     statusHistory: [
@@ -402,10 +404,28 @@ export async function sendPaymentInstructions(reference: string): Promise<AdminO
   const order = await findOrder(reference);
   if (!order) return { ok: false, error: "Commande introuvable." };
 
+  // Backfill payment details from settings if the order carries none (e.g.
+  // placed before the admin filled them in) so the email is never empty.
+  let orderToSend = order;
+  if (!order.payment.paymentDetails && !order.payment.instructions) {
+    const settings = await getSettings();
+    const method = settings.paymentMethods.find((m) => m.id === order.payment.method);
+    const details =
+      method && order.lang === "en"
+        ? method.defaultPaymentDetailsEn || method.defaultPaymentDetails
+        : method?.defaultPaymentDetails;
+    if (details) {
+      const backfilled = await updateOrder(order.reference, {
+        "payment.paymentDetails": details,
+      });
+      if (backfilled) orderToSend = backfilled;
+    }
+  }
+
   const now = new Date().toISOString();
   const wantsProof = order.payment.proofMethod === "upload";
   const updated = await updateOrder(
-    order.reference,
+    orderToSend.reference,
     {
       status: wantsProof ? "Awaiting Payment Proof" : "Payment Pending",
       "payment.status": wantsProof ? "awaiting-proof" : "pending",

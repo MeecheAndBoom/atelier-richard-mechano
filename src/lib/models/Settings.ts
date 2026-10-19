@@ -33,6 +33,9 @@ const SettingsSchema = new Schema(
         hint: String,
         hintEn: String,
         enabled: { type: Boolean, default: true },
+        sendEmailAfterOrder: { type: Boolean, default: true },
+        defaultPaymentDetails: String,
+        defaultPaymentDetailsEn: String,
       },
     ],
     delivery: {

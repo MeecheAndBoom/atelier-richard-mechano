@@ -406,7 +406,6 @@ function PART_CATEGORIES_FALLBACK(locale: "fr" | "en"): string[] {
     "Tools",
     "Interior",
     "Rims",
-    "WheelDrums",
     "Tires",
     "TailLights",
     "Headlights",

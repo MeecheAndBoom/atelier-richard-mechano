@@ -144,18 +144,32 @@ export function SettingsForm({
                   Send payment instructions by email after order
                 </label>
               </div>
-              <Input
-                label="Default payment details (FR) — shown if not emailing"
-                name={`method-${method.id}-paymentDetails`}
-                defaultValue={method.defaultPaymentDetails ?? ""}
-                className="sm:col-span-2"
-              />
-              <Input
-                label="Default payment details (EN)"
-                name={`method-${method.id}-paymentDetailsEn`}
-                defaultValue={method.defaultPaymentDetailsEn ?? ""}
-                className="sm:col-span-2"
-              />
+              <div className="sm:col-span-2">
+                <label htmlFor={`s-method-${method.id}-paymentDetails`} className="field-label">
+                  Default payment details (FR) — IBAN, BIC, PayPal address… sent in the instructions email
+                </label>
+                <textarea
+                  id={`s-method-${method.id}-paymentDetails`}
+                  name={`method-${method.id}-paymentDetails`}
+                  rows={4}
+                  defaultValue={method.defaultPaymentDetails ?? ""}
+                  placeholder={"e.g.\nIBAN FR76 3000 4000 0312 3456 7890 189\nBIC BNPAFRPPXXX\nTitulaire : Atelier Richard Méchano"}
+                  className="field resize-y font-mono text-[13.5px]"
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label htmlFor={`s-method-${method.id}-paymentDetailsEn`} className="field-label">
+                  Default payment details (EN)
+                </label>
+                <textarea
+                  id={`s-method-${method.id}-paymentDetailsEn`}
+                  name={`method-${method.id}-paymentDetailsEn`}
+                  rows={4}
+                  defaultValue={method.defaultPaymentDetailsEn ?? ""}
+                  placeholder={"e.g.\nIBAN FR76 3000 4000 0312 3456 7890 189\nBIC BNPAFRPPXXX\nAccount holder: Atelier Richard Mechano"}
+                  className="field resize-y font-mono text-[13.5px]"
+                />
+              </div>
             </fieldset>
           ))}
         </div>

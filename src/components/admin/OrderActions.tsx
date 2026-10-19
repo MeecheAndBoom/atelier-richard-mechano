@@ -90,6 +90,24 @@ export function OrderActions({ order }: { order: OrderRecord }) {
           />
         </div>
 
+        <div className="mt-4">
+          <label htmlFor="o-pay-details" className="field-label">
+            Payment details (bank transfer IBAN, PayPal address…) — included in
+            the instructions email
+          </label>
+          <textarea
+            id="o-pay-details"
+            name="paymentDetails"
+            rows={4}
+            defaultValue={order.payment.paymentDetails ?? ""}
+            placeholder={"e.g.\nIBAN FR76 3000 4000 0312 3456 7890 189\nBIC BNPAFRPPXXX\nTitulaire : Atelier Richard Méchano"}
+            className="field resize-y font-mono text-[13.5px]"
+          />
+          <p className="mt-1.5 text-[13px] text-muted">
+            Prefilled from Settings → Payment methods. Leave as-is to keep the stored value.
+          </p>
+        </div>
+
         <div className="mt-5 flex flex-wrap items-center gap-3">
           <button type="submit" disabled={pending} className="btn btn-primary btn-sm">
             {pending ? (

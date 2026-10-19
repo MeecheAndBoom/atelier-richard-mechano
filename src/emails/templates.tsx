@@ -228,7 +228,8 @@ export function PaymentInstructionsEmail({
             <Text style={{ ...styles.text, fontWeight: 600, marginBottom: 4 }}>
               {t.payInstructions}
             </Text>
-            <Text style={styles.text}>
+            {/* pre-line keeps the admin's line breaks (IBAN / BIC / holder) */}
+            <Text style={{ ...styles.text, whiteSpace: "pre-line" }}>
               {order.payment.paymentDetails ?? order.payment.instructions}
             </Text>
           </>

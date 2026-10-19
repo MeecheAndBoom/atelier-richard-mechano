@@ -175,7 +175,6 @@ export function Footer() {
                 "Cooling",
                 "Tools",
                 "Rims",
-                "WheelDrums",
                 "Tires",
                 "TailLights",
                 "Headlights",
