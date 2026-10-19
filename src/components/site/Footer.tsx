@@ -77,7 +77,7 @@ export function Footer() {
           className="absolute top-1/2 left-[90%] h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.08]"
         />
       </div>
-      {/* Mobile: logo centered, ~80vw */}
+      {/* Mobile: logo centered, 80vw (uncapped — fills small screens) */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 overflow-hidden lg:hidden"
@@ -85,7 +85,7 @@ export function Footer() {
         <img
           src="/logo-icon.png"
           alt=""
-          className="absolute top-1/2 left-1/2 h-[80vw] max-h-[320px] w-[80vw] max-w-[320px] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.07]"
+          className="absolute top-1/2 left-1/2 h-[80vw] w-[80vw] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.07]"
         />
       </div>
       <div className="section relative py-14 md:py-20">

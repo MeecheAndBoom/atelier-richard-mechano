@@ -78,7 +78,7 @@ export function Nav() {
           />
         </Link>
 
-        <ul className="hidden items-center gap-7 md:flex">
+        <ul className="hidden items-center gap-5 md:flex">
           {NAV_LINKS.map((link) => {
             const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
             return (
@@ -86,7 +86,7 @@ export function Nav() {
                 <Link
                   href={link.href}
                   aria-current={active ? "page" : undefined}
-                  className={`relative text-[13.5px] transition-colors duration-150 after:absolute after:-bottom-1.5 after:left-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-200 hover:text-ink ${
+                  className={`relative text-[12.5px] whitespace-nowrap transition-colors duration-150 after:absolute after:-bottom-1.5 after:left-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-200 hover:text-ink ${
                     active
                       ? "text-ink after:w-full"
                       : "text-muted after:w-0 hover:after:w-full"
