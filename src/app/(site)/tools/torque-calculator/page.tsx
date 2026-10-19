@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/site/PageHeader";
+import { absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Torque calculator",
   description: "Common tightening torques for engine and brake fasteners.",
+  alternates: { canonical: absoluteUrl("/tools/torque-calculator") },
 };
 
 const DATA = [

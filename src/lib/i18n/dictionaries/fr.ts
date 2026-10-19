@@ -12,18 +12,30 @@ export const fr = {
     siteName: "Atelier Richard Méchano",
     tagline: "Pièces détachées d’exception, prêtes à monter.",
     description:
-      "Pièces détachées automobiles et machines inspectées, référencées et prêtes à expédier. Recherche par marque, modèle et compatibilité, commande et suivi en ligne.",
+      "Pièces détachées auto d’occasion et reconditionnées : moteur, freinage, électricité, carrosserie, jantes et pneus. Compatibilité vérifiée, pièces garanties, expédition rapide depuis Lyon.",
     shortDescription:
       "Pièces détachées automobiles et machines : compatibilité vérifiée, expédition rapide.",
+    shopDescription:
+      "Achetez vos pièces détachées auto d’occasion en ligne : moteur, freinage, électricité, carrosserie, jantes, pneus et phares. Recherche par marque, modèle et référence constructeur — compatibilité vérifiée, prix jusqu’à 70 % moins chers que le neuf, garantie incluse.",
+    blogDescription:
+      "Guides et actualités auto : choisir une pièce d’occasion ou de réemploi, vérifier la compatibilité, monter et entretenir ses pièces détachées. Conseils d’atelier par un mécanicien lyonnais.",
     keywords: [
-      "pièces détachées",
-      "pièces auto",
+      "pièces détachées auto d’occasion",
+      "pièces auto occasion",
       "pièces détachées en ligne",
-      "rechange automobile",
-      "pièces détachées France",
-      "atelier mécanique",
-      "pièces moteur",
+      "pièces de réemploi",
+      "pièces auto reconditionnées",
+      "casse auto Lyon",
+      "pièces détachées Lyon",
+      "acheter pièce auto occasion",
+      "pièces auto moins chères",
+      "moteur occasion",
       "pièces freinage",
+      "pièces carrosserie",
+      "jantes et pneus occasion",
+      "phares et feux auto",
+      "rechange automobile",
+      "pièces détachées Peugeot Renault Citroën",
     ],
   },
 

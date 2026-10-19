@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/site/PageHeader";
+import { absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Reading a manufacturer reference",
   description: "How to decode suffixes, versions and batch codes on a part number.",
+  alternates: { canonical: absoluteUrl("/guides/reading-a-manufacturer-reference") },
 };
 
 export default function GuideReadingReferencePage() {

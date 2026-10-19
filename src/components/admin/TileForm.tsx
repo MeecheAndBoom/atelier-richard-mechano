@@ -1,9 +1,10 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import Link from "next/link";
 import { saveTile, type AdminActionResult } from "@/actions/admin";
 import { Field } from "@/components/ui/FormBits";
+import { ImageUploader } from "@/components/admin/ImageUploader";
 import type { TaxonomyTile } from "@/lib/types";
 
 const TILE_TYPES = [
@@ -19,6 +20,9 @@ export function TileForm({ tile }: { tile?: TaxonomyTile }) {
     saveTile,
     null,
   );
+  // Single source of truth — the URL field and the Cloudinary uploader both
+  // write here, so either input method works and stays in sync.
+  const [image, setImage] = useState(tile?.image ?? "");
 
   if (state?.ok) {
     return (
@@ -35,6 +39,7 @@ export function TileForm({ tile }: { tile?: TaxonomyTile }) {
   return (
     <form action={formAction} className="rounded-card bg-white p-6 sm:p-8">
       {tile ? <input type="hidden" name="id" value={tile.id} /> : null}
+      <input type="hidden" name="image" value={image} />
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
@@ -84,25 +89,33 @@ export function TileForm({ tile }: { tile?: TaxonomyTile }) {
 
         <div className="sm:col-span-2">
           <Field
-            label="Image URL"
+            label="Image"
             htmlFor="tile-image"
-            hint="Public path or Cloudinary URL. Falls back to the generic part placeholder."
+            hint="Upload from your device (Cloudinary) or paste a public path / URL."
           >
             <input
               id="tile-image"
-              name="image"
-              defaultValue={tile?.image ?? ""}
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
               placeholder="/images/categories/brakes.jpg"
               className="field"
             />
           </Field>
+          <div className="mt-3">
+            <ImageUploader
+              value={image ? [image] : []}
+              onChange={(urls) => setImage(urls[0] ?? "")}
+              max={1}
+              folder="atelier/tiles"
+            />
+          </div>
         </div>
       </div>
 
-      {tile?.image ? (
+      {image ? (
         <div className="mt-5 overflow-hidden rounded-box border border-line-soft bg-alt">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={tile.image} alt="" className="aspect-[16/6] w-full object-cover" />
+          <img src={image} alt="" className="aspect-[16/6] w-full object-cover" />
         </div>
       ) : null}
 

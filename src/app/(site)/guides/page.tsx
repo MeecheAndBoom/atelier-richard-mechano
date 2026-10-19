@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/site/PageHeader";
+import { absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Practical guides",
   description: "Buying guides, fitment, returns and workshop basics to get it right the first time.",
+  alternates: { canonical: absoluteUrl("/guides") },
 };
 
 export default function GuidesHubPage() {

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/site/PageHeader";
+import { absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Checking compatibility in 3 steps",
   description: "Make, model, year — the method that stops you ordering the wrong part.",
+  alternates: { canonical: absoluteUrl("/guides/checking-compatibility-in-3-steps") },
 };
 
 export default function GuideCompatibility3StepsPage() {

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { dictFor, getLocale } from "@/lib/i18n/server";
 import { LocaleProvider } from "@/components/i18n/LocaleProvider";
-import { absoluteUrl, organizationJsonLd, SITE_KEYWORDS } from "@/lib/seo";
+import { absoluteUrl, localBusinessJsonLd, organizationJsonLd, SITE_KEYWORDS, websiteJsonLd } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
@@ -81,6 +81,18 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationJsonLd(locale)),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd(locale)),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessJsonLd(locale)),
           }}
         />
       </body>

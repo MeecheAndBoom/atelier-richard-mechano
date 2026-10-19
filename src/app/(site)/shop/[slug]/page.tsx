@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getDict, getLocale } from "@/lib/i18n/server";
 import { getProduct, getRelatedProducts } from "@/lib/products";
 import {
+  breadcrumbJsonLd,
   productJsonLd,
   productTitle,
   productDescription,
@@ -283,6 +284,16 @@ export default async function ProductPage({
       ) : null}
 
       <JsonLd data={productJsonLd(product, locale)} />
+      <JsonLd
+        data={breadcrumbJsonLd(
+          [
+            { name: t.shop.breadcrumbHome, path: "/" },
+            { name: t.product.breadcrumbShop, path: "/shop" },
+            { name: title, path: `/shop/${product.slug}` },
+          ],
+          locale,
+        )}
+      />
     </div>
   );
 }

@@ -90,12 +90,6 @@ export default async function AdminLoginPage() {
             <LoginForm />
           </div>
 
-          <p className="mt-8 border-t border-line-soft pt-6 text-[12.5px] leading-relaxed text-muted-light">
-            Credentials come from <span className="font-medium text-muted">ADMIN_EMAIL</span> /{" "}
-            <span className="font-medium text-muted">ADMIN_PASSWORD</span> in{" "}
-            <span className="font-mono">.env.local</span> when MongoDB is not connected.
-          </p>
-
           <Link
             href="/"
             className="mt-6 inline-flex items-center gap-2 text-[13.5px] text-muted transition-colors hover:text-ink"

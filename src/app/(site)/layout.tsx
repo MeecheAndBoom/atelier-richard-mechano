@@ -1,6 +1,7 @@
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { CartDrawer } from "@/components/site/CartDrawer";
+import { ChatWidget } from "@/components/site/ChatWidget";
 import { CookieConsent } from "@/components/site/CookieConsent";
 import { PageFade } from "@/components/site/PageFade";
 import { RouteProgress } from "@/components/site/RouteProgress";
@@ -17,6 +18,7 @@ export default function SiteLayout({
       <Nav />
       <CartDrawer />
       <CookieConsent />
+      <ChatWidget />
       <PageFade />
       <RouteProgress />
       <main id="main" className="min-h-[70vh] pt-[16px] md:pt-[52px]">

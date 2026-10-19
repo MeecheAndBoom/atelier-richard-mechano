@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getDict();
   return pageMetadata({
     title: t.shop.title,
-    description: t.meta.shortDescription,
+    description: t.meta.shopDescription,
     path: "/shop",
     locale,
   });

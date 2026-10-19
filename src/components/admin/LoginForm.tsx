@@ -27,7 +27,7 @@ export function LoginForm() {
             required
             autoComplete="username"
             className="field pl-11"
-            placeholder="admin@atelier-richard-mechano.com"
+            placeholder="info@atelierrichardmechano.com"
           />
         </div>
       </div>

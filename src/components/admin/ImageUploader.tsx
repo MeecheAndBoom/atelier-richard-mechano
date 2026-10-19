@@ -2,19 +2,13 @@
 
 import { useState } from "react";
 
-type SignResponse = {
-  url: string;
-  cloudName: string;
-  apiKey: string;
-  timestamp: number;
-  folder: string;
-  signature: string;
-};
+type UploadResponse = { url: string; publicId: string };
 
 /**
- * Direct-to-Cloudinary uploader (reference pattern): fetch a short-lived
- * signature from /api/cloudinary/sign, then POST the file straight to the
- * cloud. Surfaces a clear message when Cloudinary isn't configured.
+ * Admin image uploader — posts the file to our session-gated upload route,
+ * which stores it on Cloudinary (basic-auth server-side; this cloud rejects
+ * signed browser uploads). Surfaces a clear message when Cloudinary isn't
+ * configured.
  */
 export function ImageUploader({
   folder = "atelier/products",
@@ -39,37 +33,33 @@ export function ImageUploader({
       for (const file of Array.from(files)) {
         if (urls.length >= max) break;
 
-        const signRes = await fetch("/api/cloudinary/sign", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ folder }),
-        });
-        if (!signRes.ok) {
-          const body = (await signRes.json().catch(() => ({}))) as {
-            error?: string;
-          };
-          throw new Error(body.error ?? "Upload unavailable");
-        }
-        const sign = (await signRes.json()) as SignResponse;
-
         const form = new FormData();
         form.append("file", file);
-        form.append("folder", sign.folder);
-        form.append("api_key", sign.apiKey);
-        form.append("timestamp", String(sign.timestamp));
-        form.append("signature", sign.signature);
+        form.append("folder", folder);
 
-        const upload = await fetch(sign.url, { method: "POST", body: form });
-        if (!upload.ok) throw new Error(`Cloudinary ${upload.status}`);
-        const data = (await upload.json()) as { secure_url: string };
-        urls.push(data.secure_url);
+        const upload = await fetch("/api/cloudinary/upload", {
+          method: "POST",
+          body: form,
+        });
+        const data = (await upload.json().catch(() => ({}))) as
+          | UploadResponse
+          | { error?: string };
+        if (!upload.ok || !("url" in data)) {
+          throw new Error(
+            "error" in data && data.error ? data.error : `Cloudinary ${upload.status}`,
+          );
+        }
+        urls.push(data.url);
       }
       onChange(urls);
     } catch (err) {
+      const message = err instanceof Error ? err.message : "";
       setError(
-        err instanceof Error && err.message.includes("unavailable")
+        message.includes("non configuré")
           ? "Cloudinary n’est pas configuré — renseignez les identifiants dans Settings."
-          : "Échec de l’envoi. Réessayez.",
+          : message.includes("Fichier trop volumineux")
+            ? message
+            : "Échec de l’envoi. Réessayez.",
       );
     } finally {
       setBusy(false);

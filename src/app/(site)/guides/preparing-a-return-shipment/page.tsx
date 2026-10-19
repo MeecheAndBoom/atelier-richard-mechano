@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/site/PageHeader";
+import { absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Preparing a return shipment",
   description: "Packaging, documents to include and deadlines for a hassle-free return.",
+  alternates: { canonical: absoluteUrl("/guides/preparing-a-return-shipment") },
 };
 
 export default function GuideReturnsPage() {

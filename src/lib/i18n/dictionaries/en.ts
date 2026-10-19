@@ -10,18 +10,30 @@ export const en: Dictionary = {
     siteName: "Atelier Richard Méchano",
     tagline: "Exceptional spare parts, ready to fit.",
     description:
-      "Inspected, referenced automotive and machine spare parts ready to ship. Search by make, model and compatibility, order and track online.",
+      "Quality used & remanufactured auto parts — engine, brakes, electrical, bodywork, rims and tyres. Verified compatibility, guaranteed parts, fast shipping from Lyon, France.",
     shortDescription:
       "Automotive and machine spare parts: verified compatibility, fast shipping.",
+    shopDescription:
+      "Shop quality used auto parts online — engines, brakes, electrical, bodywork, rims, tyres and headlamps. Search by make, model and part number, verified compatibility, up to 70% cheaper than new with warranty.",
+    blogDescription:
+      "Workshop guides and motoring news: how to choose used and remanufactured parts, check compatibility, fit and maintain them. Practical advice from a Lyon mechanic.",
     keywords: [
-      "spare parts",
-      "auto parts",
-      "spare parts online",
-      "replacement parts",
+      "used auto parts",
+      "second hand car parts",
+      "remanufactured parts",
+      "OEM spare parts",
+      "car parts online",
+      "auto parts France",
+      "quality spare parts Lyon",
+      "cheap car parts",
+      "used engine for sale",
+      "brake parts online",
+      "car body parts",
+      "alloy wheels and tyres",
+      "headlamps and tail lights",
+      "replacement car parts",
       "spare parts Europe",
-      "mechanical workshop",
-      "engine parts",
-      "brake parts",
+      "Peugeot Renault Citroen parts",
     ],
   },
 

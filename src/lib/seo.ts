@@ -4,11 +4,37 @@ import type { Product, BlogPost } from "./types";
 import type { Locale } from "./i18n/config";
 import { dictionaries } from "./i18n/dictionaries";
 
+/**
+ * Researched search terms (Google Suggest / competitor landscape for the
+ * French used-parts market: "pièces détachées auto d'occasion",
+ * "pièce de réemploi", "casse auto Lyon", part-number lookups…).
+ */
 export const SITE_KEYWORDS = [
-  "pièces détachées",
-  "spare parts",
-  "atelier richard méchano",
-  "pièces auto en ligne",
+  // FR — head terms
+  "pièces détachées auto d'occasion",
+  "pièces auto occasion",
+  "pièces détachées en ligne",
+  "pièces de réemploi",
+  "pièces auto reconditionnées",
+  "casse auto Lyon",
+  "pièces détachées Lyon",
+  "acheter pièce auto occasion",
+  "pièces auto moins chères",
+  "moteur occasion",
+  "pièces freinage",
+  "pièces carrosserie",
+  "jantes et pneus occasion",
+  "phares et feux auto",
+  "rechange automobile",
+  "pièces détachées Peugeot Renault Citroën",
+  // EN — export terms
+  "used auto parts",
+  "second hand car parts",
+  "remanufactured parts",
+  "OEM spare parts",
+  "car parts online",
+  "auto parts France",
+  "quality spare parts Lyon",
 ];
 
 export function absoluteUrl(path: string): string {
@@ -125,6 +151,95 @@ export function organizationJsonLd(locale: Locale) {
       streetAddress: SITE.address,
       addressLocality: SITE.location,
       addressCountry: "FR",
+    },
+  };
+}
+
+/** Sitewide WebSite schema with a search pointing at the shop filter. */
+export function websiteJsonLd(locale: Locale) {
+  const t = dictionaries[locale];
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: t.meta.siteName,
+    url: absoluteUrl("/"),
+    inLanguage: locale,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: absoluteUrl("/shop?q={search_term_string}"),
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+}
+
+/**
+ * Local-business schema — the workshop is a real Lyon address, which is what
+ * "casse auto Lyon" / "pièces détachées Lyon" searches rank on.
+ */
+export function localBusinessJsonLd(locale: Locale) {
+  const t = dictionaries[locale];
+  return {
+    "@context": "https://schema.org",
+    "@type": "AutoPartsStore",
+    name: t.meta.siteName,
+    description: t.meta.description,
+    url: absoluteUrl("/"),
+    image: absoluteUrl("/atelier_richard_mecano_open_graph.png"),
+    email: SITE.email,
+    telephone: SITE.phoneHref,
+    priceRange: "€€",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: SITE.address,
+      addressLocality: "Lyon",
+      addressRegion: "Auvergne-Rhône-Alpes",
+      postalCode: "69007",
+      addressCountry: "FR",
+    },
+    geo: { "@type": "GeoCoordinates", latitude: 45.7416, longitude: 4.8287 },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "08:30",
+        closes: "18:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Saturday"],
+        opens: "09:00",
+        closes: "12:30",
+      },
+    ],
+    sameAs: ["https://www.instagram.com/atelierrichard"],
+  };
+}
+
+/** BlogPosting schema for articles — feeds Google's article rich results. */
+export function blogPostJsonLd(
+  post: BlogPost,
+  locale: Locale,
+  path: string,
+) {
+  const { title, excerpt } = localizedPost(post, locale);
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description: excerpt,
+    image: post.image ? absoluteUrl(post.image) : absoluteUrl("/atelier_richard_mecano_open_graph.png"),
+    datePublished: post.date,
+    dateModified: post.createdAt ?? post.date,
+    inLanguage: locale,
+    mainEntityOfPage: absoluteUrl(path),
+    author: { "@type": "Person", name: post.author },
+    publisher: {
+      "@type": "Organization",
+      name: dictionaries[locale].meta.siteName,
+      logo: { "@type": "ImageObject", url: absoluteUrl("/logo-icon.png") },
     },
   };
 }

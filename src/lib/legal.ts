@@ -29,7 +29,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         {
           heading: "1. Responsable du traitement",
           body: [
-            "Atelier Richard Méchano est responsable du traitement des données personnelles collectées sur ce site. Pour toute question : sales@atelier-richard-mechano.com.",
+            "Atelier Richard Méchano est responsable du traitement des données personnelles collectées sur ce site. Pour toute question : info@atelierrichardmechano.com.",
           ],
         },
         {
@@ -55,7 +55,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         {
           heading: "5. Vos droits",
           body: [
-            "Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation et d’opposition. Écrivez à sales@atelier-richard-mechano.com : nous répondons sous 30 jours.",
+            "Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation et d’opposition. Écrivez à info@atelierrichardmechano.com : nous répondons sous 30 jours.",
             "Vous pouvez également saisir la CNIL (cnil.fr) si vous estimez que vos droits ne sont pas respectés.",
           ],
         },
@@ -70,7 +70,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         {
           heading: "1. Data controller",
           body: [
-            "Atelier Richard Méchano is the controller of personal data collected on this site. For any question: sales@atelier-richard-mechano.com.",
+            "Atelier Richard Méchano is the controller of personal data collected on this site. For any question: info@atelierrichardmechano.com.",
           ],
         },
         {
@@ -96,7 +96,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         {
           heading: "5. Your rights",
           body: [
-            "You have the right to access, rectify, erase, restrict and object. Email sales@atelier-richard-mechano.com — we reply within 30 days.",
+            "You have the right to access, rectify, erase, restrict and object. Email info@atelierrichardmechano.com — we reply within 30 days.",
             "You may also lodge a complaint with your supervisory authority (in France: cnil.fr).",
           ],
         },
@@ -218,7 +218,7 @@ export const LEGAL_PAGES: LegalPage[] = [
           heading: "Éditeur",
           body: [
             "Atelier Richard Méchano — vente de pièces détachées automobiles et machines, restauration et maintenance.",
-            "Adresse : 24 Rue de l’Industrie, 69007 Lyon, France. Téléphone : +33 4 72 18 40 90. E-mail : sales@atelier-richard-mechano.com.",
+            "Adresse : 24 Rue de l’Industrie, 69007 Lyon, France. Téléphone : +33 4 72 18 40 90. E-mail : info@atelierrichardmechano.com.",
             "Directeur de la publication : Richard M. (représentant légal de l’atelier).",
           ],
         },
@@ -246,7 +246,7 @@ export const LEGAL_PAGES: LegalPage[] = [
           heading: "Publisher",
           body: [
             "Atelier Richard Méchano — sale of automotive and machine spare parts, restoration and maintenance.",
-            "Address: 24 Rue de l’Industrie, 69007 Lyon, France. Phone: +33 4 72 18 40 90. Email: sales@atelier-richard-mechano.com.",
+            "Address: 24 Rue de l’Industrie, 69007 Lyon, France. Phone: +33 4 72 18 40 90. Email: info@atelierrichardmechano.com.",
             "Publication director: Richard M. (legal representative of the workshop).",
           ],
         },
@@ -527,7 +527,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         {
           heading: "Accessibilité",
           body: [
-            "Ce site vise le niveau AA du RGAA/WCAG 2.2 : navigation clavier complète, contrastes vérifiés, textes alternatifs et respect de « prefers-reduced-motion ». Un problème rencontré ? Signalez-le à sales@atelier-richard-mechano.com.",
+            "Ce site vise le niveau AA du RGAA/WCAG 2.2 : navigation clavier complète, contrastes vérifiés, textes alternatifs et respect de « prefers-reduced-motion ». Un problème rencontré ? Signalez-le à info@atelierrichardmechano.com.",
           ],
         },
       ],
@@ -554,7 +554,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         {
           heading: "Accessibility",
           body: [
-            "This site targets RGAA/WCAG 2.2 level AA: full keyboard navigation, verified contrast, alternative text and respect for “prefers-reduced-motion”. Hit a problem? Report it to sales@atelier-richard-mechano.com.",
+            "This site targets RGAA/WCAG 2.2 level AA: full keyboard navigation, verified contrast, alternative text and respect for “prefers-reduced-motion”. Hit a problem? Report it to info@atelierrichardmechano.com.",
           ],
         },
       ],

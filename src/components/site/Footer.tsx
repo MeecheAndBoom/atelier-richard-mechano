@@ -117,10 +117,10 @@ export function Footer() {
               <li className="flex items-center gap-2.5">
                 <i className="fa-solid fa-envelope w-3.5 text-muted-light" aria-hidden="true" />
                 <a
-                  href="mailto:sales@atelier-richard-mechano.com"
+                  href="mailto:info@atelierrichardmechano.com"
                   className="break-all hover:text-ink transition-colors"
                 >
-                  sales@atelier-richard-mechano.com
+                  info@atelierrichardmechano.com
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
@@ -232,13 +232,6 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <LanguageToggle />
-            <Link
-              href="/admin"
-              className="text-[13px] text-muted transition-colors hover:text-ink"
-            >
-              <i className="fa-solid fa-lock mr-1.5 text-[11px]" aria-hidden="true" />
-              {t.admin.dashboard}
-            </Link>
           </div>
         </div>
       </div>

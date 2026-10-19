@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getDict();
   return pageMetadata({
     title: t.blog.title,
-    description: t.blog.lead,
+    description: t.meta.blogDescription,
     path: "/blog",
     locale,
   });

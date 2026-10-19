@@ -8,8 +8,8 @@ export const SITE = {
   address: "24 Rue de l’Industrie, 69007 Lyon, France",
   phone: "+33 4 72 18 40 90",
   phoneHref: "+33472184090",
-  email: "sales@atelier-richard-mechano.com",
-  adminEmail: "sales@atelier-richard-mechano.com",
+  email: "info@atelierrichardmechano.com",
+  adminEmail: "info@atelierrichardmechano.com",
   hours: [
     { days: "Lundi – Vendredi", daysEn: "Monday – Friday", time: "8:30 – 18:00" },
     { days: "Samedi", daysEn: "Saturday", time: "9:00 – 12:30" },

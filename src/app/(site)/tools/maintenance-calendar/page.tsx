@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/site/PageHeader";
+import { absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Maintenance calendar",
   description: "Wear intervals worth knowing, system by system.",
+  alternates: { canonical: absoluteUrl("/tools/maintenance-calendar") },
 };
 
 const ITEMS = [

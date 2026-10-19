@@ -3,7 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDict, getLocale } from "@/lib/i18n/server";
 import { getPost, getPosts } from "@/lib/blog";
-import { localizedPost, pageMetadata, absoluteUrl } from "@/lib/seo";
+import {
+  absoluteUrl,
+  blogPostJsonLd,
+  breadcrumbJsonLd,
+  localizedPost,
+  pageMetadata,
+} from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { shortDate } from "@/lib/format";
 import { SITE } from "@/lib/constants";
 import { Breadcrumbs } from "@/components/site/PageHeader";
@@ -44,7 +51,6 @@ export default async function BlogPostPage({
   const { title, excerpt, body } = localizedPost(post, locale);
   const all = await getPosts();
   const related = all.filter((p) => p.slug !== post.slug).slice(0, 2);
-
   return (
     <article className="page-enter">
       <Breadcrumbs
@@ -53,6 +59,18 @@ export default async function BlogPostPage({
           { label: t.blog.title, href: "/blog" },
           { label: title },
         ]}
+      />
+
+      <JsonLd data={blogPostJsonLd(post, locale, `/blog/${post.slug}`)} />
+      <JsonLd
+        data={breadcrumbJsonLd(
+          [
+            { name: t.shop.breadcrumbHome, path: "/" },
+            { name: t.blog.title, path: "/blog" },
+            { name: title, path: `/blog/${post.slug}` },
+          ],
+          locale,
+        )}
       />
 
       {/* Header */}

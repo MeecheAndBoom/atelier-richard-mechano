@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/site/PageHeader";
+import { absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Workshop tools",
   description: "Torque calculator and maintenance calendar for common jobs.",
+  alternates: { canonical: absoluteUrl("/tools") },
 };
 
 export default function ToolsHubPage() {
