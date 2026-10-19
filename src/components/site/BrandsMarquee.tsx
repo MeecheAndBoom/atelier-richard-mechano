@@ -6,20 +6,20 @@ import type { CSSProperties } from "react";
  * image is missing.
  */
 const BRANDS = [
-  { name: "Brembo", image: "/images/brands/brembo.jpg" },
-  { name: "Bosch", image: "/images/brands/bosch.jpg" },
-  { name: "Sachs", image: "/images/brands/sachs.jpg" },
-  { name: "LuK", image: "/images/brands/luk.jpg" },
+  { name: "Brembo", image: "/images/brands/brembo.webp" },
+  { name: "Bosch", image: "/images/brands/Bosch_logo.png" },
+  { name: "Sachs", image: "/images/brands/Sachs-Logo.png" },
+  { name: "LuK", image: "/images/brands/luk.svg" },
   { name: "Valeo", image: "/images/brands/valeo.svg" },
-  { name: "SKF", image: "/images/brands/skf.svg" },
-  { name: "NGK", image: "/images/brands/ngk.svg" },
-  { name: "Mann-Filter", image: "/images/brands/mann-filter.svg" },
-  { name: "Febi Bilstein", image: "/images/brands/febi-bilstein.svg" },
-  { name: "TRW", image: "/images/brands/trw.svg" },
-  { name: "Denso", image: "/images/brands/denso.svg" },
-  { name: "Hella", image: "/images/brands/hella.svg" },
-  { name: "ATE", image: "/images/brands/ate.svg" },
-  { name: "Continental", image: "/images/brands/continental.svg" },
+  { name: "SKF", image: "/images/brands/skf.jpeg" },
+  { name: "NGK", image: "/images/brands/ngk.jpeg" },
+  { name: "Mann-Filter", image: "/images/brands/mann-filter.png" },
+  { name: "Febi Bilstein", image: "/images/brands/febi-bilstein.jpeg" },
+  { name: "TRW", image: "/images/brands/trw.png" },
+  { name: "Denso", image: "/images/brands/denso.png" },
+  { name: "Hella", image: "/images/brands/Hella.jpeg" },
+  { name: "ATE", image: "/images/brands/ATE.png" },
+  { name: "Continental", image: "/images/brands/Continental.png" },
 ];
 
 export function BrandsMarquee() {

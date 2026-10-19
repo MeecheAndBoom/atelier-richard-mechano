@@ -58,10 +58,10 @@ export const SEED_TILES: TaxonomyTile[] = [
   { id: "make-volkswagen", name: "Volkswagen", type: "make" as const, image: "/images/makes/volkswagen.jpg", order: 23 },
   { id: "make-bmw", name: "BMW", type: "make" as const, image: "/images/makes/bmw.jpg", order: 24 },
   { id: "make-ford", name: "Ford", type: "make" as const, image: "/images/makes/ford.jpg", order: 25 },
-  { id: "brand-brembo", name: "Brembo", type: "brand" as const, image: "/images/brands/brembo.jpg", order: 30 },
-  { id: "brand-bosch", name: "Bosch", type: "brand" as const, image: "/images/brands/bosch.jpg", order: 31 },
-  { id: "brand-sachs", name: "Sachs", type: "brand" as const, image: "/images/brands/sachs.jpg", order: 32 },
-  { id: "brand-luk", name: "LuK", type: "brand" as const, image: "/images/brands/luk.jpg", order: 33 },
+  { id: "brand-brembo", name: "Brembo", type: "brand" as const, image: "/images/brands/brembo.webp", order: 30 },
+  { id: "brand-bosch", name: "Bosch", type: "brand" as const, image: "/images/brands/Bosch_logo.png", order: 31 },
+  { id: "brand-sachs", name: "Sachs", type: "brand" as const, image: "/images/brands/Sachs-Logo.png", order: 32 },
+  { id: "brand-luk", name: "LuK", type: "brand" as const, image: "/images/brands/luk.svg", order: 33 },
 ];
 
 export async function getTiles(type?: TaxonomyTile["type"]): Promise<TaxonomyTile[]> {

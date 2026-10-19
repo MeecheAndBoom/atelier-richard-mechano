@@ -123,6 +123,17 @@ export function Footer() {
                   sales@atelier-richard-mechano.com
                 </a>
               </li>
+              <li className="flex items-center gap-2.5">
+                <i className="fa-brands fa-instagram w-3.5 text-muted-light" aria-hidden="true" />
+                <a
+                  href="https://www.instagram.com/atelierrichard"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-ink transition-colors"
+                >
+                  @atelierrichard
+                </a>
+              </li>
             </ul>
           </div>
 
