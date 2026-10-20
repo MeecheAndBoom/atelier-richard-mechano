@@ -6,8 +6,8 @@ export const SITE = {
   taglineEn: "Exceptional spare parts, ready to fit.",
   location: "Lyon, France",
   address: "24 Rue de l’Industrie, 69007 Lyon, France",
-  phone: "+33 4 72 18 40 90",
-  phoneHref: "+33472184090",
+  phone: "+33 7 80 96 92 76",
+  phoneHref: "+33780969276",
   email: "info@atelierrichardmechano.com",
   adminEmail: "info@atelierrichardmechano.com",
   hours: [

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useLocale } from "@/components/i18n/LocaleProvider";
 import { COOKIE_MANAGE_EVENT } from "@/components/site/CookieConsent";
 import { LanguageToggle } from "@/components/i18n/LanguageToggle";
-import { categoryLabel } from "@/lib/constants";
+import { categoryLabel, SITE } from "@/lib/constants";
 
 const LEGAL_SLUGS = [
   "privacy",
@@ -110,8 +110,8 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <i className="fa-solid fa-phone w-3.5 text-muted-light" aria-hidden="true" />
-                <a href="tel:+33472184090" className="hover:text-ink transition-colors">
-                  +33 4 72 18 40 90
+                <a href={`tel:${SITE.phoneHref}`} className="hover:text-ink transition-colors">
+                  {SITE.phone}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">

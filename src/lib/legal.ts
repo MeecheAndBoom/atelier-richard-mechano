@@ -218,7 +218,7 @@ export const LEGAL_PAGES: LegalPage[] = [
           heading: "Éditeur",
           body: [
             "Atelier Richard Méchano — vente de pièces détachées automobiles et machines, restauration et maintenance.",
-            "Adresse : 24 Rue de l’Industrie, 69007 Lyon, France. Téléphone : +33 4 72 18 40 90. E-mail : info@atelierrichardmechano.com.",
+            "Adresse : 24 Rue de l’Industrie, 69007 Lyon, France. Téléphone : +33 7 80 96 92 76. E-mail : info@atelierrichardmechano.com.",
             "Directeur de la publication : Richard M. (représentant légal de l’atelier).",
           ],
         },
@@ -246,7 +246,7 @@ export const LEGAL_PAGES: LegalPage[] = [
           heading: "Publisher",
           body: [
             "Atelier Richard Méchano — sale of automotive and machine spare parts, restoration and maintenance.",
-            "Address: 24 Rue de l’Industrie, 69007 Lyon, France. Phone: +33 4 72 18 40 90. Email: info@atelierrichardmechano.com.",
+            "Address: 24 Rue de l’Industrie, 69007 Lyon, France. Phone: +33 7 80 96 92 76. Email: info@atelierrichardmechano.com.",
             "Publication director: Richard M. (legal representative of the workshop).",
           ],
         },
