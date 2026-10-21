@@ -144,6 +144,17 @@ export function SettingsForm({
                   Send payment instructions by email after order
                 </label>
               </div>
+              <div className="sm:col-span-2 flex items-center gap-2.5 pt-1">
+                <input
+                  type="checkbox"
+                  id={`method-${method.id}-delete`}
+                  name={`method-${method.id}-delete`}
+                  className="h-4 w-4 accent-red-600"
+                />
+                <label htmlFor={`method-${method.id}-delete`} className="text-[14.5px] text-danger">
+                  Delete this payment method
+                </label>
+              </div>
               <div className="sm:col-span-2">
                 <label htmlFor={`s-method-${method.id}-paymentDetails`} className="field-label">
                   Default payment details (FR) — IBAN, BIC, PayPal address… sent in the instructions email

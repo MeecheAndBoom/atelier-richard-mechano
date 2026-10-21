@@ -315,6 +315,8 @@ export async function saveSettings(
     }));
 
   // Payment methods: posted as method-<id>-label / -labelEn / -hint / -enabled.
+  // Methods flagged for deletion (method-<id>-delete=on) are dropped entirely,
+  // so an admin can remove a method even if it was previously saved in the DB.
   const paymentMethods = PAYMENT_METHODS.map((fallback) => ({
     id: fallback.id,
     label: String(formData.get(`method-${fallback.id}-label`) ?? fallback.label),
@@ -325,7 +327,7 @@ export async function saveSettings(
     sendEmailAfterOrder: formData.get(`method-${fallback.id}-sendEmail`) === "on",
     defaultPaymentDetails: String(formData.get(`method-${fallback.id}-paymentDetails`) ?? ""),
     defaultPaymentDetailsEn: String(formData.get(`method-${fallback.id}-paymentDetailsEn`) ?? ""),
-  }));
+  })).filter((m) => formData.get(`method-${m.id}-delete`) !== "on");
 
   const cloudinary = {
     cloudName: String(formData.get("cloudinaryCloudName") ?? "").trim(),
