@@ -48,6 +48,29 @@ export async function findOrder(reference: string): Promise<OrderRecord | null> 
 }
 
 /**
+ * Strips the bank details from an order whose payment has already been
+ * received.
+ *
+ * The UI hides the IBAN/BIC as soon as the payment lands, but an order that
+ * reaches a client component is serialised into the page payload — without
+ * this the details would still be readable in the page source. The admin
+ * screens keep the full record (they need it to follow up on a transfer).
+ */
+export function redactPaymentDetails(order: OrderRecord): OrderRecord {
+  const paid =
+    order.payment.status === "received" || order.payment.proof?.decision === "approved";
+  if (!paid) return order;
+  return {
+    ...order,
+    payment: {
+      ...order.payment,
+      paymentDetails: undefined,
+      instructions: undefined,
+    },
+  };
+}
+
+/**
  * Track-page lookup: the reference must match AND the email must belong to
  * the order — payment proofs and order details are gated by this pair.
  */

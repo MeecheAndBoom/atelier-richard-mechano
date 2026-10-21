@@ -9,6 +9,7 @@ import {
   findOrder,
   findOrderForCustomer,
   generateReference,
+  redactPaymentDetails,
   updateOrder,
 } from "@/lib/orders";
 import {
@@ -476,5 +477,7 @@ export async function lookupOrder(
   if (!ref || !mail) return { ok: false, errorKey: "errorMissing" };
   const order = await findOrderForCustomer(ref, mail);
   if (!order) return { ok: false, errorKey: "errorNoMatch" };
-  return { ok: true, order };
+  // The response travels to the browser — drop the bank details once the
+  // payment has landed so they cannot be read out of the page payload.
+  return { ok: true, order: redactPaymentDetails(order) };
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getDict, getLocale } from "@/lib/i18n/server";
-import { findOrder } from "@/lib/orders";
+import { findOrder, redactPaymentDetails } from "@/lib/orders";
 import { pageMetadata } from "@/lib/seo";
 import { money } from "@/lib/format";
 import { CopyButton } from "@/components/site/CopyButton";
@@ -29,6 +29,8 @@ export default async function CheckoutSuccessPage({
   const locale = await getLocale();
   const reference = ref.toUpperCase();
   const order = await findOrder(reference);
+  // Bank details never leave the server once the payment has landed.
+  const safeOrder = order ? redactPaymentDetails(order) : null;
 
   return (
     <div className="section max-w-[820px] py-14 sm:py-20">
@@ -55,21 +57,21 @@ export default async function CheckoutSuccessPage({
             </p>
             <CopyButton value={reference} label={t.common.save} />
           </div>
-          {order ? (
+          {safeOrder ? (
             <p className="mt-3 text-[14.5px] text-muted tabular-nums">
               {t.cart.total}:{" "}
-              <span className="font-semibold text-ink">{money(order.total, locale)}</span>
+              <span className="font-semibold text-ink">{money(safeOrder.total, locale)}</span>
               {" · "}
-              {t.checkout.payment}: <span className="font-medium text-ink">{order.payment.label}</span>
+              {t.checkout.payment}: <span className="font-medium text-ink">{safeOrder.payment.label}</span>
             </p>
           ) : null}
-          {order && order.payment.proofMethod === "upload" && (order.payment.paymentDetails || order.payment.instructions) && order.payment.status !== "received" && order.payment.proof?.decision !== "approved" ? (
+          {safeOrder && safeOrder.payment.proofMethod === "upload" && (safeOrder.payment.paymentDetails || safeOrder.payment.instructions) && safeOrder.payment.status !== "received" && safeOrder.payment.proof?.decision !== "approved" ? (
             <div className="mt-4 rounded-box border border-line-soft bg-white p-4 text-left">
               <p className="text-[14px] font-medium text-ink">
                 {locale === "en" ? "Payment details" : "Détails de paiement"}
               </p>
               <p className="mt-2 whitespace-pre-wrap text-[13.5px] leading-relaxed text-ink-soft">
-                {order.payment.paymentDetails ?? order.payment.instructions}
+                {safeOrder.payment.paymentDetails ?? safeOrder.payment.instructions}
               </p>
               <p className="mt-2 text-[12.5px] text-muted">
                 {locale === "en"
@@ -79,9 +81,9 @@ export default async function CheckoutSuccessPage({
             </div>
           ) : null}
 
-          {order && order.payment.proofMethod === "upload" ? (
+          {safeOrder && safeOrder.payment.proofMethod === "upload" ? (
             <div className="mt-6">
-              <PaymentProofUpload order={order} />
+              <PaymentProofUpload order={safeOrder} />
             </div>
           ) : null}
           <p className="mt-3 text-[13.5px] text-muted-light">{t.success.saveRef}</p>
