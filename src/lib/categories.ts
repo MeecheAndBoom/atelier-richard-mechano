@@ -22,24 +22,39 @@ async function fromDb<T>(query: () => Promise<T>, fallback: () => Promise<T>): P
 const toRecord = (doc: unknown): TaxonomyTile =>
   JSON.parse(JSON.stringify(doc)) as TaxonomyTile;
 
-/** Real photography per part category (checked during the image QA pass). */
+/**
+ * Real photography per part category, hosted on Cloudinary so the tiles
+ * render identically in production and in the no-database fallback.
+ */
 const CATEGORY_IMAGES: Record<string, string> = {
-  Engine: "/images/categories/engine.jpg",
-  Transmission: "/images/categories/transmission.jpg",
-  Electrical: "/images/categories/electrical.jpg",
-  Brakes: "/images/categories/brakes.jpg",
-  Body: "/images/makes/ford.jpg",
-  Suspension: "/images/categories/suspension.jpg",
-  Fuel: "/images/products/fuel-pump.jpg",
-  Cooling: "/images/categories/cooling.jpg",
-  Interior: "/images/categories/interior.jpg",
-  Tools: "/images/categories/tools.jpg",
-  Gaskets: "/images/products/gasket-set.jpg",
-  Filters: "/images/categories/filters.jpg",
-  Rims: "/images/categories/suspension.jpg",
-  Tires: "/images/categories/suspension.jpg",
-  TailLights: "/images/categories/electrical.jpg",
-  Headlights: "/images/categories/electrical.jpg",
+  Engine:
+    "https://res.cloudinary.com/yjbyntow/image/upload/v1792575282/atelier/categories/fcvrh8q6fswym2j7fdbr.jpg",
+  Transmission:
+    "https://res.cloudinary.com/yjbyntow/image/upload/v1792575283/atelier/categories/yayiuooxvupqlekx1dyk.jpg",
+  Electrical:
+    "https://res.cloudinary.com/yjbyntow/image/upload/v1792575284/atelier/categories/d7pfcx5vqmmedbhmfgus.jpg",
+  Brakes:
+    "https://res.cloudinary.com/yjbyntow/image/upload/v1792575285/atelier/categories/djo6micbxhz0nqjxrxwb.jpg",
+  Body: "https://res.cloudinary.com/yjbyntow/image/upload/v1792571322/atelier/products/pabkyaoxciax5ghtz6qc.jpg",
+  Suspension:
+    "https://res.cloudinary.com/yjbyntow/image/upload/v1792575286/atelier/categories/yorbdmfskx6sbvrf4ruk.jpg",
+  Fuel: "https://res.cloudinary.com/yjbyntow/image/upload/v1792575294/atelier/categories/wtgud6fujrn1thkxwyqm.jpg",
+  Cooling:
+    "https://res.cloudinary.com/yjbyntow/image/upload/v1792575288/atelier/categories/hncyh9bkctspprepyiwa.jpg",
+  Interior:
+    "https://res.cloudinary.com/yjbyntow/image/upload/v1792575289/atelier/categories/dk3rbmlbsd3yzidaqenv.jpg",
+  Tools: "https://res.cloudinary.com/yjbyntow/image/upload/v1792575291/atelier/categories/kkfdyzscyrfvnpt24gwa.jpg",
+  Gaskets:
+    "https://res.cloudinary.com/yjbyntow/image/upload/v1792575295/atelier/categories/hdmflrryuesb1aa0froo.jpg",
+  Filters:
+    "https://res.cloudinary.com/yjbyntow/image/upload/v1792575293/atelier/categories/vrwblclw1c9j4feavbti.jpg",
+  Rims: "https://res.cloudinary.com/yjbyntow/image/upload/v1792571314/atelier/products/ldqobaxvvrcjtaxwxksz.jpg",
+  Tires:
+    "https://res.cloudinary.com/yjbyntow/image/upload/v1792571264/atelier/products/avidxksavnla5xjaey8x.jpg",
+  TailLights:
+    "https://res.cloudinary.com/yjbyntow/image/upload/v1792575284/atelier/categories/d7pfcx5vqmmedbhmfgus.jpg",
+  Headlights:
+    "https://res.cloudinary.com/yjbyntow/image/upload/v1792575284/atelier/categories/d7pfcx5vqmmedbhmfgus.jpg",
 };
 
 /** Fallback tiles — part categories + the makes present in the seed catalog. */

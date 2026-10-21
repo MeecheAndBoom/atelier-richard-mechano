@@ -1,6 +1,31 @@
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_DB = process.env.MONGODB_DB ?? "atelier-richard-mechano";
+
+/**
+ * Resolves the database name to query.
+ *
+ * A MongoDB connection string without a path silently falls back to the
+ * `test` database — that is how production ended up serving a stale catalog
+ * while the real data sat in `atelier-richard-mechano`. The path in the URI
+ * wins when present, otherwise MONGODB_DB is used.
+ *
+ * Parsed by hand rather than with `new URL()`: credentials may contain
+ * characters that are legal in a MongoDB URI but illegal in a URL.
+ */
+export function resolveDbName(uri: string): string {
+  try {
+    const withoutScheme = uri.replace(/^mongodb(\+srv)?:\/\//i, "");
+    const withoutQuery = withoutScheme.split("?")[0];
+    const slash = withoutQuery.indexOf("/");
+    if (slash === -1) return MONGODB_DB;
+    const name = decodeURIComponent(withoutQuery.slice(slash + 1).split("/")[0]).trim();
+    return name || MONGODB_DB;
+  } catch {
+    return MONGODB_DB;
+  }
+}
 
 type Cached = {
   conn: typeof mongoose | null;
@@ -37,6 +62,7 @@ export async function connectDB(): Promise<typeof mongoose> {
   }
   if (!cached.promise) {
     cached.promise = mongoose.connect(MONGODB_URI, {
+      dbName: resolveDbName(MONGODB_URI),
       bufferCommands: false,
       maxPoolSize: 5,
       serverSelectionTimeoutMS: 2500,
