@@ -18,9 +18,18 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default async function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
   const t = await getDict();
   const locale = await getLocale();
+  const sp = await searchParams;
+  const part = Array.isArray(sp.part) ? sp.part[0] : sp.part;
+  const defaultSubject = part
+    ? t.contact.subjectPart.replace("{part}", part)
+    : undefined;
 
   return (
     <div>
@@ -39,7 +48,7 @@ export default async function ContactPage() {
         <div>
           <h2 className="text-[22px] font-semibold tracking-[-0.015em]">{t.contact.title}</h2>
           <div className="mt-6">
-            <ContactForm />
+            <ContactForm defaultSubject={defaultSubject} />
           </div>
         </div>
 

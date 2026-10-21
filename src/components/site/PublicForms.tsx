@@ -14,7 +14,7 @@ import { useState } from "react";
 
 /* ── Contact ──────────────────────────────────────────────────── */
 
-export function ContactForm() {
+export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
   const { t } = useLocale();
   const [state, action, pending] = useActionState<FormState, FormData>(
     submitContact,
@@ -40,7 +40,12 @@ export function ContactForm() {
           <input id="c-phone" name="phone" type="tel" autoComplete="tel" className="field" />
         </Field>
         <Field label={t.contact.subject} htmlFor="c-subject" optionalLabel={t.common.optional}>
-          <input id="c-subject" name="subject" className="field" />
+          <input
+            id="c-subject"
+            name="subject"
+            className="field"
+            defaultValue={defaultSubject}
+          />
         </Field>
       </div>
       <Field label={t.contact.message} htmlFor="c-message" required>

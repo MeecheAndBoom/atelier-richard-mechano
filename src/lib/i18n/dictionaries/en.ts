@@ -196,6 +196,10 @@ export const en: Dictionary = {
     resultsOne: "1 part",
     noResults: "No parts match these filters.",
     noResultsHint: "Try widening the price range or clearing a filter.",
+    emptyCategory: "No {category} parts in stock right now.",
+    emptyCategoryHint:
+      "We source parts on demand — tell us the reference you need and we reply within 24 hours.",
+    emptyCategoryCta: "Ask for this part",
     filters: "Filters",
     filterMake: "Vehicle make",
     filterModel: "Model",
@@ -472,6 +476,7 @@ export const en: Dictionary = {
     phone: "Phone",
     subject: "Subject",
     subjectPlaceholder: "Choose a subject",
+    subjectPart: "Part wanted — {part}",
     subjects: {
       part: "Part search",
       order: "Order tracking",

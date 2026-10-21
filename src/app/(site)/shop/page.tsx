@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getDict, getLocale } from "@/lib/i18n/server";
 import { getProducts } from "@/lib/products";
 import { getFacets } from "@/lib/categories";
+import { categoryLabel } from "@/lib/constants";
 import { pageMetadata } from "@/lib/seo";
 import { PageHeader } from "@/components/site/PageHeader";
 import { ShopFilters } from "@/components/site/ShopFilters";
@@ -95,6 +96,7 @@ export default async function ShopPage({
 }) {
   const sp = await searchParams;
   const t = await getDict();
+  const locale = await getLocale();
   const all = await getProducts();
   const facets = await getFacets(
     all.map((p) => ({ make: p.make, brand: p.brand, category: p.category, model: p.model })),
@@ -104,6 +106,12 @@ export default async function ShopPage({
     results.length === 1
       ? t.shop.resultsOne
       : t.shop.results.replace("{count}", String(results.length));
+
+  // An empty category is not the same as an over-narrow filter: the visitor
+  // followed a category tile, so offer to source the part instead of telling
+  // them to clear their filters.
+  const emptyCategory = results.length ? "" : first(sp.category);
+  const emptyCategoryLabel = emptyCategory ? categoryLabel(emptyCategory, locale) : "";
 
   return (
     <div>
@@ -137,6 +145,29 @@ export default async function ShopPage({
 
           {results.length ? (
             <ShopResults products={results} />
+          ) : emptyCategoryLabel ? (
+            <div className="rounded-card flex flex-col items-center gap-4 border border-line-soft px-6 py-16 text-center">
+              <span className="grid h-14 w-14 place-items-center rounded-full bg-alt text-[20px] text-muted-light">
+                <i className="fa-solid fa-box-open" aria-hidden="true" />
+              </span>
+              <p className="text-[16.5px] text-ink-soft">
+                {t.shop.emptyCategory.replace("{category}", emptyCategoryLabel)}
+              </p>
+              <p className="max-w-[460px] text-[14.5px] text-muted">{t.shop.emptyCategoryHint}</p>
+              <div className="mt-1 flex flex-wrap justify-center gap-3">
+                <Link
+                  href={`/contact?part=${encodeURIComponent(emptyCategoryLabel)}`}
+                  className="btn btn-primary btn-sm"
+                >
+                  <i className="fa-solid fa-envelope text-[12px]" aria-hidden="true" />
+                  <span>{t.shop.emptyCategoryCta}</span>
+                </Link>
+                <Link href="/shop" className="btn btn-ghost btn-sm">
+                  <i className="fa-solid fa-rotate-left text-[12px]" aria-hidden="true" />
+                  <span>{t.common.clearFilters}</span>
+                </Link>
+              </div>
+            </div>
           ) : (
             <div className="rounded-card flex flex-col items-center gap-4 border border-line-soft px-6 py-16 text-center">
               <span className="grid h-14 w-14 place-items-center rounded-full bg-alt text-[20px] text-muted-light">

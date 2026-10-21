@@ -198,6 +198,10 @@ export const fr = {
     resultsOne: "1 pièce",
     noResults: "Aucune pièce ne correspond à ces filtres.",
     noResultsHint: "Essayez d’élargir la fourchette de prix ou d’effacer un filtre.",
+    emptyCategory: "Aucune pièce en {category} pour le moment.",
+    emptyCategoryHint:
+      "Nous sourçons les pièces sur demande — indiquez-nous la référence et nous revenons vers vous sous 24 h.",
+    emptyCategoryCta: "Demander cette pièce",
     filters: "Filtres",
     filterMake: "Marque du véhicule",
     filterModel: "Modèle",
@@ -479,6 +483,7 @@ export const fr = {
     phone: "Téléphone",
     subject: "Sujet",
     subjectPlaceholder: "Choisissez un sujet",
+    subjectPart: "Pièce recherchée — {part}",
     subjects: {
       part: "Recherche de pièce",
       order: "Suivi de commande",
