@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useToast } from "@/components/ui/Toast";
 
 /**
  * Destructive-action button with an inline confirm step — two taps for a
@@ -13,6 +14,7 @@ export function ConfirmAction({
   confirmLabel,
   icon = "fa-trash-can",
   className = "btn btn-ghost btn-sm text-danger",
+  successMessage,
 }: {
   /**
    * A server-action reference passed **by name**, never an inline closure —
@@ -27,10 +29,13 @@ export function ConfirmAction({
   confirmLabel: string;
   icon?: string;
   className?: string;
+  /** Shown as a toast after the action succeeds. */
+  successMessage?: string;
 }) {
   const [armed, setArmed] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
+  const toast = useToast();
 
   return (
     <span className="inline-flex flex-col gap-1">
@@ -46,7 +51,11 @@ export function ConfirmAction({
           startTransition(async () => {
             const result = await action(arg);
             setArmed(false);
-            if (!result.ok) setError(result.error ?? "Action échouée.");
+            if (result.ok) {
+              toast.show(successMessage ?? "Saved.");
+            } else {
+              setError(result.error ?? "Action échouée.");
+            }
           });
         }}
         className={`${className} ${armed ? "!bg-[#fdeeee] !text-danger" : ""} transition-all duration-150`}

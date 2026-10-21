@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ToastProvider } from "@/components/ui/Toast";
 import { getSession, destroySession } from "@/lib/auth";
 import { AdminGuard } from "@/components/admin/AdminGuard";
 
@@ -28,7 +29,8 @@ export default async function AdminLayout({
   return (
     <AdminGuard>
       {session ? (
-        <div className="min-h-screen bg-alt">
+        <ToastProvider>
+          <div className="min-h-screen bg-alt">
           <header className="nav-blur sticky top-0 z-40 border-b border-line-soft bg-white/85">
             <div className="section flex h-14 items-center justify-between gap-4">
               <div className="flex min-w-0 items-center gap-5">
@@ -88,6 +90,7 @@ export default async function AdminLayout({
             <main className="flex min-w-0 flex-col gap-8">{children}</main>
           </div>
         </div>
+        </ToastProvider>
       ) : (
         <>{children}</>
       )}

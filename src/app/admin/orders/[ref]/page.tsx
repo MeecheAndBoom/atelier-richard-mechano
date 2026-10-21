@@ -211,6 +211,7 @@ export default async function AdminOrderDetailPage({
                 arg={order.reference}
                 label="Delete order"
                 confirmLabel="Confirm delete"
+                successMessage="Order deleted."
               />
             </div>
             <p className="mt-4 border-t border-line-soft pt-3 text-[13px] text-muted">

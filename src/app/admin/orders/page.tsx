@@ -173,6 +173,7 @@ export default async function AdminOrdersPage({
                 arg={order.reference}
                 label="Delete"
                 confirmLabel="Delete order?"
+                successMessage="Order deleted."
                 className="btn btn-ghost btn-sm text-danger"
               />
             ),
@@ -215,6 +216,7 @@ export default async function AdminOrdersPage({
               arg={order.reference}
               label="Delete order"
               confirmLabel="Delete?"
+              successMessage="Order deleted."
               className="btn btn-ghost btn-sm text-danger self-start"
             />
           </Link>
