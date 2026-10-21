@@ -553,7 +553,7 @@ export const en: Dictionary = {
       payment: [
         {
           q: "Which payment methods do you accept?",
-          a: "Card, bank transfer and any other method shown at checkout. Instructions arrive by email.",
+          a: "Bank transfer or Western Union. Instructions arrive by email.",
         },
         {
           q: "Do I need to upload payment proof?",
@@ -860,21 +860,13 @@ export const en: Dictionary = {
       Cancelled: "Cancelled",
     },
     paymentMethods: {
-      card: {
-        label: "Credit / debit card",
-        hint: "We’ll email you a secure payment link (Visa, Mastercard, Amex).",
-      },
       transfer: {
         label: "Bank transfer",
         hint: "Bank details sent by email, usually received within 24 hours.",
       },
-      paypal: {
-        label: "PayPal",
-        hint: "Payment instructions sent by email.",
-      },
-      other: {
-        label: "Other",
-        hint: "Describe your preferred payment method and we’ll arrange it with you.",
+      westernunion: {
+        label: "Western Union",
+        hint: "Western Union details sent by email after you place your order.",
       },
     },
     methodsTitle: "Accepted payment methods",

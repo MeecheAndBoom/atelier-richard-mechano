@@ -190,7 +190,7 @@ export async function submitPaymentProof(
   if (!order) return { error: "Commande introuvable ou e-mail incorrect." };
 
   const accepting =
-    order.payment.proofMethod === "upload" ||
+    order.payment.proofMethod === "upload" &&
     ["awaiting-proof", "proof-submitted"].includes(order.payment.status ?? "pending");
 
   if (!accepting) {
@@ -423,19 +423,20 @@ export async function sendPaymentInstructions(reference: string): Promise<AdminO
   }
 
   const now = new Date().toISOString();
-  const wantsProof = order.payment.proofMethod === "upload";
+  // Sending payment instructions means the buyer now has the details and must
+  // send back a proof — switch the order to the upload track so the customer
+  // can submit their screenshot on the Track Order page.
   const updated = await updateOrder(
     orderToSend.reference,
     {
-      status: wantsProof ? "Awaiting Payment Proof" : "Payment Pending",
-      "payment.status": wantsProof ? "awaiting-proof" : "pending",
+      status: "Awaiting Payment Proof",
+      "payment.status": "awaiting-proof",
+      "payment.proofMethod": "upload",
     },
     {
-      status: wantsProof ? "Awaiting Payment Proof" : "Payment Pending",
+      status: "Awaiting Payment Proof",
       at: now,
-      note: dictionaries[order.lang ?? "fr"].order.statuses[
-        wantsProof ? "Awaiting Payment Proof" : "Payment Pending"
-      ],
+      note: dictionaries[order.lang ?? "fr"].order.statuses["Awaiting Payment Proof"],
     },
   );
   if (!updated) return { ok: false, error: "Commande introuvable." };

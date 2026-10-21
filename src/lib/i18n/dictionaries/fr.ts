@@ -560,7 +560,7 @@ export const fr = {
       payment: [
         {
           q: "Quels moyens de paiement acceptez-vous ?",
-          a: "Carte bancaire, virement et autres modes indiqués au moment de la commande. Les détails vous sont envoyés par e-mail.",
+          a: "Virement bancaire ou Western Union. Les détails vous sont envoyés par e-mail.",
         },
         {
           q: "Dois-je envoyer une preuve de paiement ?",
@@ -870,21 +870,13 @@ export const fr = {
       Cancelled: "Annulée",
     },
     paymentMethods: {
-      card: {
-        label: "Carte bancaire",
-        hint: "Nous vous envoyons un lien de paiement sécurisé (Visa, Mastercard, Amex).",
-      },
       transfer: {
         label: "Virement bancaire",
         hint: "Coordonnées bancaires envoyées par e-mail, généralement reçues sous 24 h.",
       },
-      paypal: {
-        label: "PayPal",
-        hint: "Instructions de versement envoyées par e-mail.",
-      },
-      other: {
-        label: "Autre",
-        hint: "Décrivez votre mode de paiement, nous l’organisons avec vous.",
+      westernunion: {
+        label: "Western Union",
+        hint: "Coordonnées Western Union envoyées par e-mail après la commande.",
       },
     },
     methodsTitle: "Modes de paiement acceptés",

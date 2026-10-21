@@ -114,7 +114,7 @@ export type PaymentStatus = (typeof PAYMENT_STATUSES)[number];
 export const PROOF_METHODS = ["email", "upload"] as const;
 export type ProofMethod = (typeof PROOF_METHODS)[number];
 
-export type PaymentMethodId = "card" | "transfer" | "paypal" | "other";
+export type PaymentMethodId = "transfer" | "westernunion";
 
 export const PAYMENT_METHODS: {
   id: PaymentMethodId;
@@ -124,13 +124,6 @@ export const PAYMENT_METHODS: {
   hintEn: string;
 }[] = [
   {
-    id: "card",
-    label: "Carte bancaire",
-    labelEn: "Credit / Debit Card",
-    hint: "Nous vous envoyons un lien de paiement sécurisé (Visa, Mastercard, Amex).",
-    hintEn: "We'll email you a secure payment link for Visa, Mastercard or Amex.",
-  },
-  {
     id: "transfer",
     label: "Virement bancaire",
     labelEn: "Bank Transfer",
@@ -138,18 +131,11 @@ export const PAYMENT_METHODS: {
     hintEn: "Bank details sent by email, usually received within 24 hours.",
   },
   {
-    id: "paypal",
-    label: "PayPal",
-    labelEn: "PayPal",
-    hint: "Instructions de versement envoyées par e-mail.",
-    hintEn: "Payment instructions sent by email.",
-  },
-  {
-    id: "other",
-    label: "Autre",
-    labelEn: "Other",
-    hint: "Décrivez votre mode de paiement, nous l’organisons avec vous.",
-    hintEn: "Describe your preferred payment method and we'll arrange it with you.",
+    id: "westernunion",
+    label: "Western Union",
+    labelEn: "Western Union",
+    hint: "Coordonnées Western Union envoyées par e-mail après la commande.",
+    hintEn: "Western Union details sent by email after you place your order.",
   },
 ];
 

@@ -221,13 +221,30 @@ export function CheckoutForm({
                   <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                 ) : null}
               </span>
-              <span>
+              <span className="flex-1">
                 <span className="block text-[15px] font-medium text-ink">
                   {locale === "en" && m.labelEn ? m.labelEn : m.label}
                 </span>
                 <span className="mt-0.5 block text-[13px] text-muted">
                   {locale === "en" && m.hintEn ? m.hintEn : m.hint}
                 </span>
+                {method === m.id && m.sendEmailAfterOrder === false ? (
+                  <div className="mt-3 rounded-box border border-line-soft bg-white/70 p-3 text-[13.5px] leading-relaxed text-ink-soft">
+                    <p className="mb-1.5 text-[13px] font-medium text-ink">
+                      {locale === "en" ? "Payment details" : "Coordonnées de paiement"}
+                    </p>
+                    <p className="whitespace-pre-wrap">
+                      {locale === "en"
+                        ? m.defaultPaymentDetailsEn || m.defaultPaymentDetails
+                        : m.defaultPaymentDetails || m.defaultPaymentDetailsEn}
+                    </p>
+                    <p className="mt-2 text-[12.5px] text-muted">
+                      {locale === "en"
+                        ? "Pay using the details above, then upload your payment screenshot right on the confirmation page or on your Track Order page."
+                        : "Payez avec les coordonnées ci-dessus, puis importez votre preuve de paiement dès la page de confirmation ou sur votre page « Suivre ma commande »."}
+                    </p>
+                  </div>
+                ) : null}
               </span>
             </label>
           ))}

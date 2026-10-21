@@ -178,7 +178,7 @@ export const LEGAL_PAGES: LegalPage[] = [
           heading: "3. Prices and payment",
           body: [
             "Prices are shown in euros, VAT included for metropolitan France. Delivery fees are displayed before final confirmation.",
-            "Payment follows the methods offered at checkout (card, transfer, PayPal or another agreed method). Instructions are sent by email.",
+            "Payment follows the methods offered at checkout (bank transfer or Western Union). Instructions are sent by email.",
           ],
         },
         {

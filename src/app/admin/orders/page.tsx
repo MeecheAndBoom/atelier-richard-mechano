@@ -6,6 +6,8 @@ import { listOrders } from "@/lib/orders";
 import { ORDER_STATUSES } from "@/lib/constants";
 import { money, dateTime } from "@/lib/format";
 import { AdminHead, ResponsiveList, Pill } from "@/components/admin/AdminUi";
+import { ConfirmAction } from "@/components/admin/DeleteButton";
+import { deleteOrderAction } from "@/actions/orders";
 import { STATUS_TONE } from "./tone";
 
 export const metadata: Metadata = {
@@ -161,6 +163,20 @@ export default async function AdminOrdersPage({
               <span className="font-semibold tabular-nums">{money(order.total)}</span>
             ),
           },
+          {
+            key: "actions",
+            header: "Actions",
+            align: "right",
+            render: (order) => (
+              <ConfirmAction
+                action={deleteOrderAction}
+                arg={order.reference}
+                label="Delete"
+                confirmLabel="Delete order?"
+                className="btn btn-ghost btn-sm text-danger"
+              />
+            ),
+          },
         ]}
         tile={(order) => (
           <Link
@@ -194,6 +210,13 @@ export default async function AdminOrdersPage({
                 {order.payment.status}
               </Pill>
             </span>
+            <ConfirmAction
+              action={deleteOrderAction}
+              arg={order.reference}
+              label="Delete order"
+              confirmLabel="Delete?"
+              className="btn btn-ghost btn-sm text-danger self-start"
+            />
           </Link>
         )}
       />

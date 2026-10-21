@@ -5,6 +5,7 @@ import { findOrder } from "@/lib/orders";
 import { pageMetadata } from "@/lib/seo";
 import { money } from "@/lib/format";
 import { CopyButton } from "@/components/site/CopyButton";
+import { PaymentProofUpload } from "@/components/site/PaymentProofUpload";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
@@ -61,6 +62,27 @@ export default async function CheckoutSuccessPage({
               {" · "}
               {t.checkout.payment}: <span className="font-medium text-ink">{order.payment.label}</span>
             </p>
+          ) : null}
+          {order && order.payment.proofMethod === "upload" && (order.payment.paymentDetails || order.payment.instructions) ? (
+            <div className="mt-4 rounded-box border border-line-soft bg-white p-4 text-left">
+              <p className="text-[14px] font-medium text-ink">
+                {locale === "en" ? "Payment details" : "Détails de paiement"}
+              </p>
+              <p className="mt-2 whitespace-pre-wrap text-[13.5px] leading-relaxed text-ink-soft">
+                {order.payment.paymentDetails ?? order.payment.instructions}
+              </p>
+              <p className="mt-2 text-[12.5px] text-muted">
+                {locale === "en"
+                  ? "Pay using the details above, then upload your payment screenshot here or on your Track Order page."
+                  : "Payez avec les coordonnées ci-dessus, puis importez votre preuve de paiement ici ou sur votre page « Suivre ma commande »."}
+              </p>
+            </div>
+          ) : null}
+
+          {order && order.payment.proofMethod === "upload" ? (
+            <div className="mt-6">
+              <PaymentProofUpload order={order} />
+            </div>
           ) : null}
           <p className="mt-3 text-[13.5px] text-muted-light">{t.success.saveRef}</p>
         </div>
