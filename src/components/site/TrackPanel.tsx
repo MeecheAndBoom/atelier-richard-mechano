@@ -25,6 +25,8 @@ export function TrackPanel({ order }: { order: OrderRecord }) {
   const statusLabel =
     t.order.statuses[order.status as keyof typeof t.order.statuses] ??
     order.status;
+  const proofDone = order.payment.proof?.decision === "approved";
+  const paymentReceived = order.payment.status === "received" || proofDone;
 
   return (
     <div className="flex flex-col gap-6">
@@ -108,8 +110,8 @@ export function TrackPanel({ order }: { order: OrderRecord }) {
         </ol>
       </section>
 
-      {/* Payment details */}
-      {order.payment.paymentDetails || order.payment.instructions ? (
+      {/* Payment details — hidden once payment is received */}
+      {!paymentReceived && (order.payment.paymentDetails || order.payment.instructions) ? (
         <section className="rounded-card border border-line-soft p-6">
           <h2 className="text-[17px] font-semibold">{t.track.paymentInstructions}</h2>
           <p className="mt-3 whitespace-pre-wrap text-[14.5px] leading-relaxed text-ink-soft">

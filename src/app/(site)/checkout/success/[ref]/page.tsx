@@ -63,7 +63,7 @@ export default async function CheckoutSuccessPage({
               {t.checkout.payment}: <span className="font-medium text-ink">{order.payment.label}</span>
             </p>
           ) : null}
-          {order && order.payment.proofMethod === "upload" && (order.payment.paymentDetails || order.payment.instructions) ? (
+          {order && order.payment.proofMethod === "upload" && (order.payment.paymentDetails || order.payment.instructions) && order.payment.status !== "received" && order.payment.proof?.decision !== "approved" ? (
             <div className="mt-4 rounded-box border border-line-soft bg-white p-4 text-left">
               <p className="text-[14px] font-medium text-ink">
                 {locale === "en" ? "Payment details" : "Détails de paiement"}
