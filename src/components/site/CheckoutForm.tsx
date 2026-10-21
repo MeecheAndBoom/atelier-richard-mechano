@@ -249,21 +249,6 @@ export function CheckoutForm({
             </label>
           ))}
         </div>
-
-        <div className="mt-5 border-t border-line-soft pt-5">
-          <label htmlFor="paymentOther" className="field-label">
-            {t.checkout.payMethodOther}
-            <span className="ml-1.5 text-[13px] font-normal text-muted">
-              ({t.common.optional})
-            </span>
-          </label>
-          <input
-            id="paymentOther"
-            name="paymentOther"
-            className="field"
-            placeholder={t.checkout.payMethodOtherPlaceholder}
-          />
-        </div>
       </section>
 
       {/* Totals + submit */}

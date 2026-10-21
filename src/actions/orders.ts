@@ -42,7 +42,6 @@ const CheckoutSchema = z.object({
   zip: z.string().max(20).optional().or(z.literal("")),
   country: z.string().max(100).optional().or(z.literal("")),
   paymentMethod: z.string().min(1, "Choisissez un mode de paiement."),
-  paymentOther: z.string().max(200).optional().or(z.literal("")),
 });
 
 export type CheckoutResult =
@@ -103,6 +102,13 @@ export async function placeOrder(
   const methodSetting = settings.paymentMethods.find(
     (m) => m.id === data.paymentMethod && m.enabled,
   );
+  if (!methodSetting) {
+    return {
+      ok: false,
+      error: "Choisissez un mode de paiement disponible.",
+      field: "paymentMethod",
+    };
+  }
   const localeRaw = (await cookies()).get("arm-locale")?.value;
   const lang: Locale = isLocale(localeRaw) ? localeRaw : "fr";
 
@@ -110,7 +116,7 @@ export async function placeOrder(
   const now = new Date().toISOString();
   const t = dictionaries[lang];
 
-  const useEmail = methodSetting?.sendEmailAfterOrder !== false; // default true if not set
+  const useEmail = methodSetting.sendEmailAfterOrder !== false; // default true if not set
   const order: OrderRecord = {
     reference,
     lang,
@@ -137,25 +143,21 @@ export async function placeOrder(
         : undefined,
     },
     payment: {
-      method: data.paymentMethod,
-      methodOther: data.paymentOther || undefined,
+      method: methodSetting.id,
       label:
-        methodSetting
-          ? lang === "en"
-            ? methodSetting.labelEn || methodSetting.label
-            : methodSetting.label
-          : data.paymentOther || data.paymentMethod,
+        lang === "en"
+          ? methodSetting.labelEn || methodSetting.label
+          : methodSetting.label,
       status: useEmail ? "pending" : "awaiting-proof",
       proofMethod: useEmail ? "email" : "upload",
       requireProofUpload: !useEmail,
       // Always attach the method's stored payment details (localized) so the
       // instructions email — automatic or sent later from the dashboard —
       // never goes out empty.
-      paymentDetails: methodSetting
-        ? lang === "en"
+      paymentDetails:
+        lang === "en"
           ? methodSetting.defaultPaymentDetailsEn || methodSetting.defaultPaymentDetails
-          : methodSetting.defaultPaymentDetails
-        : undefined,
+          : methodSetting.defaultPaymentDetails,
     },
     status: useEmail ? "Placed" : "Awaiting Payment Proof",
     statusHistory: [

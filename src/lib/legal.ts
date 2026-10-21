@@ -36,7 +36,7 @@ export const LEGAL_PAGES: LegalPage[] = [
           heading: "2. Données collectées",
           body: [
             "Nous collectons uniquement les données nécessaires au traitement de vos commandes : nom, e-mail, téléphone, adresse de livraison, contenu de vos messages et historique de commande.",
-            "Les données de paiement ne sont jamais stockées sur nos serveurs. Le paiement est traité par notre prestataire sécurisé.",
+            "Aucune donnée de carte bancaire n’est collectée : le règlement s’effectue par virement bancaire ou par Western Union. Seuls la preuve de règlement que vous nous transmettez et vos coordonnées de facturation sont conservés le temps du traitement de la commande.",
           ],
         },
         {
@@ -77,7 +77,7 @@ export const LEGAL_PAGES: LegalPage[] = [
           heading: "2. Data we collect",
           body: [
             "We only collect data required to fulfil your orders: name, email, phone, delivery address, message content and order history.",
-            "Payment data is never stored on our servers. Payment is handled by our secure provider.",
+            "No card details are ever collected: settlement is made by bank transfer or Western Union. Only the payment proof you send us and your billing details are kept for the duration of order processing.",
           ],
         },
         {
@@ -132,7 +132,7 @@ export const LEGAL_PAGES: LegalPage[] = [
           heading: "3. Prix et paiement",
           body: [
             "Les prix sont indiqués en euros, toutes taxes comprises pour la France métropolitaine. Les frais de livraison sont indiqués avant validation définitive.",
-            "Le paiement s’effectue selon les modalités proposées à la commande (carte, virement, PayPal ou autre convenu). Les instructions sont envoyées par e-mail.",
+            "Le paiement s’effectue selon les modalités proposées à la commande (virement bancaire ou Western Union). Les instructions de règlement sont envoyées par e-mail ou affichées sur la page de commande.",
           ],
         },
         {

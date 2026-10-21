@@ -313,9 +313,7 @@ export const en: Dictionary = {
     zip: "Postcode",
     country: "Country",
     payment: "Payment",
-    paymentLead: "Choose your payment method. Instructions will arrive by email.",
-    payMethodOther: "Specify your payment method",
-    payMethodOtherPlaceholder: "Bank transfer, cash on collection, financing…",
+    paymentLead: "Choose your payment method. Payment instructions are provided with your order.",
     orderSummary: "Order summary",
     placeOrder: "Place order",
     placing: "Sending…",
@@ -566,7 +564,7 @@ export const en: Dictionary = {
         },
         {
           q: "Are my banking details stored?",
-          a: "No. Card numbers are never stored on our servers — payment runs through our secure provider.",
+          a: "No. No card details are collected: settlement is made by bank transfer or Western Union. Only the payment proof you send us is kept.",
         },
       ],
       parts: [

@@ -92,7 +92,7 @@ export function OrderActions({ order }: { order: OrderRecord }) {
 
         <div className="mt-4">
           <label htmlFor="o-pay-details" className="field-label">
-            Payment details (bank transfer IBAN, PayPal address…) — included in
+            Payment details (bank transfer IBAN, Western Union reference…) — included in
             the instructions email
           </label>
           <textarea

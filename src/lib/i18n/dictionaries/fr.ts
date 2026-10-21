@@ -317,9 +317,7 @@ export const fr = {
     country: "Pays",
     payment: "Paiement",
     paymentLead:
-      "Choisissez votre mode de paiement. Les détails vous seront envoyés par e-mail.",
-    payMethodOther: "Précisez votre mode de paiement",
-    payMethodOtherPlaceholder: "Virement, espèces au retrait, financement…",
+      "Choisissez votre mode de paiement. Les instructions de règlement vous sont communiquées.",
     orderSummary: "Récapitulatif",
     placeOrder: "Confirmer la commande",
     placing: "Envoi…",
@@ -573,7 +571,7 @@ export const fr = {
         },
         {
           q: "Mes données bancaires sont-elles conservées ?",
-          a: "Non. Aucun numéro de carte n’est stocké sur nos serveurs — le paiement passe par notre prestataire sécurisé.",
+          a: "Non. Aucune donnée de carte bancaire n’est collected : le règlement se fait par virement bancaire ou Western Union. Seule la preuve de règlement que vous nous transmettez est conservée.",
         },
       ],
       parts: [

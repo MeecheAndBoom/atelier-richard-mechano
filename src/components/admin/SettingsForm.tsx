@@ -157,7 +157,7 @@ export function SettingsForm({
               </div>
               <div className="sm:col-span-2">
                 <label htmlFor={`s-method-${method.id}-paymentDetails`} className="field-label">
-                  Default payment details (FR) — IBAN, BIC, PayPal address… sent in the instructions email
+                  Default payment details (FR) — IBAN, BIC, Western Union reference… sent in the instructions email
                 </label>
                 <textarea
                   id={`s-method-${method.id}-paymentDetails`}
