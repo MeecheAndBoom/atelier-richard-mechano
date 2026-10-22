@@ -69,27 +69,28 @@ export function ProductCard({ product }: { product: Product }) {
       </Link>
 
       <div className="flex flex-1 flex-col p-5">
-        <div className="flex items-center gap-2 text-micro uppercase tracking-[0.06em] text-muted">
-          <span>{categoryLabel(product.category, locale)}</span>
+        <div className="flex min-w-0 items-center gap-2 text-micro uppercase tracking-[0.06em] text-muted">
+          <span className="min-w-0 break-words">{categoryLabel(product.category, locale)}</span>
           <span aria-hidden="true">·</span>
-          <span className="font-semibold text-ink">{product.brand}</span>
+          <span className="min-w-0 break-words font-semibold text-ink">{product.brand}</span>
         </div>
 
         <h3 className="mt-2 text-[17px] leading-snug font-semibold tracking-[-0.01em]">
           <Link
             href={`/shop/${product.slug}`}
-            className="transition-colors duration-150 hover:text-accent focus-visible:text-accent"
+            className="break-words transition-colors duration-150 hover:text-accent focus-visible:text-accent"
           >
             {title}
           </Link>
         </h3>
 
         <p className="mt-1 text-[13px] text-muted">
-          {t.product.partNumber} · <span className="font-medium text-ink-soft">{product.partNumber}</span>
+          {t.product.partNumber} ·{" "}
+          <span className="font-medium break-all text-ink-soft">{product.partNumber}</span>
         </p>
 
-        <div className="mt-auto flex items-end justify-between gap-3 pt-4">
-          <div className="flex flex-col">
+        <div className="mt-auto flex flex-wrap items-end justify-between gap-3 pt-4">
+          <div className="flex min-w-0 flex-col">
             {hasDiscount ? (
               <span className="text-[13px] text-muted line-through">
                 {money(product.listPrice!, locale)}

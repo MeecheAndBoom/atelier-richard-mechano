@@ -20,8 +20,8 @@ export function Gallery({
   const current = list[Math.min(index, list.length - 1)];
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="relative overflow-hidden rounded-card border border-line-soft bg-alt">
+    <div className="flex min-w-0 flex-col gap-3">
+      <div className="relative min-w-0 overflow-hidden rounded-card border border-line-soft bg-alt">
         <div className="aspect-[4/3] w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

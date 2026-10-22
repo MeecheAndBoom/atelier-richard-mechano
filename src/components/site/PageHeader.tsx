@@ -35,7 +35,7 @@ export function Breadcrumbs({ items }: { items: { label: string; href?: string }
   return (
     <nav aria-label="Breadcrumb" className="section flex flex-wrap items-center gap-2 pt-6 text-[13px] text-muted">
       {items.map((item, i) => (
-        <span key={`${item.label}-${i}`} className="flex items-center gap-2">
+        <span key={`${item.label}-${i}`} className="flex min-w-0 items-center gap-2 break-words">
           {i > 0 ? <span aria-hidden="true" className="text-muted-light">/</span> : null}
           {item.href ? (
             <Link href={item.href} className="transition-colors hover:text-accent">

@@ -337,6 +337,8 @@
     @apply inline-flex items-center gap-1.5 rounded-pill
       text-micro font-semibold uppercase tracking-wider;
     padding: 0.3rem 0.7rem;
+    /* Pills never push their container wider on narrow screens. */
+    max-width: 100%;
   }
 
   /* ── Nav translucency (apple.com top bar) ──────────────────── */

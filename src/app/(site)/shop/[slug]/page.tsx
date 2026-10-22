@@ -60,7 +60,7 @@ export default async function ProductPage({
       : null;
 
   return (
-    <div className="page-enter">
+    <div className="page-enter overflow-x-clip">
       <Breadcrumbs
         items={[
           { label: t.shop.breadcrumbHome, href: "/" },
@@ -69,7 +69,7 @@ export default async function ProductPage({
         ]}
       />
 
-      <div className="section grid gap-10 py-8 lg:grid-cols-2 lg:gap-14 lg:py-12">
+      <div className="section grid grid-cols-1 gap-10 py-8 lg:grid-cols-2 lg:gap-14 lg:py-12">
         <Gallery
           images={product.images}
           alt={t.product.galleryAlt.replace("{title}", title)}
@@ -83,7 +83,7 @@ export default async function ProductPage({
           }
         />
 
-        <div className="flex flex-col">
+        <div className="flex min-w-0 flex-col">
           <div className="flex flex-wrap items-center gap-2.5">
             <span className="badge bg-alt text-ink-soft">{categoryLabel}</span>
             <span className="badge bg-sky text-accent">{t.shop.conditions[product.condition]}</span>
@@ -94,21 +94,21 @@ export default async function ProductPage({
             ) : null}
           </div>
 
-          <h1 className="mt-4 text-[30px] leading-[1.1] font-semibold tracking-[-0.025em] sm:text-[38px]">
+          <h1 className="mt-4 text-[30px] leading-[1.1] font-semibold tracking-[-0.025em] break-words sm:text-[38px]">
             {title}
           </h1>
 
           <p className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-[14px] text-muted">
-            <span>
+            <span className="min-w-0">
               {t.product.partNumber}:{" "}
-              <span className="font-mono font-medium text-ink-soft">{product.partNumber}</span>
+              <span className="font-mono font-medium break-all text-ink-soft">{product.partNumber}</span>
             </span>
-            <span>
-              {t.product.brand}: <span className="font-medium text-ink-soft">{product.brand}</span>
+            <span className="min-w-0">
+              {t.product.brand}: <span className="font-medium break-words text-ink-soft">{product.brand}</span>
             </span>
           </p>
 
-          <div className="mt-6 flex items-end gap-3">
+          <div className="mt-6 flex flex-wrap items-end gap-3">
             <span className="text-[36px] leading-none font-semibold tracking-[-0.03em] tabular-nums">
               {money(product.price, locale)}
             </span>
@@ -126,7 +126,7 @@ export default async function ProductPage({
 
           <p className="mt-5 flex items-start gap-2.5 rounded-card bg-alt px-4 py-3.5 text-[14px] leading-relaxed text-muted">
             <i className="fa-solid fa-shield-halved mt-0.5 text-accent text-[14px]" aria-hidden="true" />
-            {t.product.trustLine}
+            <span className="min-w-0 break-words">{t.product.trustLine}</span>
           </p>
 
           {/* Compatibility */}
@@ -152,7 +152,7 @@ export default async function ProductPage({
                 {product.fitment.map((line) => (
                   <li key={line} className="flex gap-2.5">
                     <i className="fa-solid fa-check mt-1 text-[11px] text-success" aria-hidden="true" />
-                    <span>{line}</span>
+                    <span className="min-w-0 break-words">{line}</span>
                   </li>
                 ))}
               </ul>
@@ -163,12 +163,12 @@ export default async function ProductPage({
 
       {/* ── Detail body ─────────────────────────────────────── */}
       <section className="border-t border-line-soft bg-alt">
-        <div className="section grid gap-10 py-14 lg:grid-cols-[1.4fr_1fr]">
-          <div>
+        <div className="section grid grid-cols-1 gap-10 py-14 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
+          <div className="min-w-0">
             <h2 className="text-[24px] font-semibold tracking-[-0.02em]">
               {t.product.description}
             </h2>
-            <p className="mt-4 text-[16.5px] leading-[1.75] whitespace-pre-line text-ink-soft">
+            <p className="mt-4 text-[16.5px] leading-[1.75] whitespace-pre-line break-words text-ink-soft">
               {localizedDescription(product, locale)}
             </p>
 
@@ -182,7 +182,7 @@ export default async function ProductPage({
                         aria-hidden="true"
                         className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
                       />
-                      <span>{feature}</span>
+                      <span className="min-w-0 break-words">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -194,7 +194,7 @@ export default async function ProductPage({
                 <h3 className="mt-9 text-[18px] font-semibold">{t.product.oemNumbers}</h3>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {product.oemNumbers.map((oem) => (
-                    <span key={oem} className="badge bg-white font-mono text-ink-soft">
+                    <span key={oem} className="badge bg-white font-mono break-all text-ink-soft">
                       {oem}
                     </span>
                   ))}
@@ -203,7 +203,7 @@ export default async function ProductPage({
             ) : null}
           </div>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex min-w-0 flex-col gap-6">
             {Object.keys(product.specs).length ? (
               <div className="card-flat p-6">
                 <h2 className="text-[17px] font-semibold">{t.product.specs}</h2>
@@ -211,10 +211,10 @@ export default async function ProductPage({
                   {Object.entries(product.specs).map(([key, value]) => (
                     <div
                       key={key}
-                      className="flex justify-between gap-4 border-b border-line-soft py-2.5 last:border-0"
+                      className="flex items-start justify-between gap-4 border-b border-line-soft py-2.5 last:border-0"
                     >
-                      <dt className="text-muted">{key}</dt>
-                      <dd className="text-right font-medium text-ink-soft">{value}</dd>
+                      <dt className="shrink-0 text-muted">{key}</dt>
+                      <dd className="min-w-0 text-right font-medium break-words text-ink-soft">{value}</dd>
                     </div>
                   ))}
                 </dl>
@@ -224,28 +224,30 @@ export default async function ProductPage({
             <div className="card-flat p-6">
               <h2 className="text-[17px] font-semibold">{t.product.stockLabel}</h2>
               <dl className="mt-4 flex flex-col gap-2.5 text-[14.5px]">
-                <div className="flex justify-between gap-4">
+                <div className="flex items-start justify-between gap-4">
                   <dt className="text-muted">{t.product.category}</dt>
-                  <dd className="font-medium">{categoryLabel}</dd>
+                  <dd className="min-w-0 text-right font-medium break-words">{categoryLabel}</dd>
                 </div>
                 {product.weightKg ? (
-                  <div className="flex justify-between gap-4">
+                  <div className="flex items-start justify-between gap-4">
                     <dt className="text-muted">{t.product.weight}</dt>
                     <dd className="font-medium tabular-nums">{product.weightKg} kg</dd>
                   </div>
                 ) : null}
-                <div className="flex justify-between gap-4">
+                <div className="flex items-start justify-between gap-4">
                   <dt className="text-muted">{t.product.condition}</dt>
-                  <dd className="font-medium">{t.shop.conditions[product.condition]}</dd>
+                  <dd className="min-w-0 text-right font-medium break-words">
+                    {t.shop.conditions[product.condition]}
+                  </dd>
                 </div>
                 {product.sku ? (
-                  <div className="flex justify-between gap-4">
+                  <div className="flex items-start justify-between gap-4">
                     <dt className="text-muted">{t.product.sku}</dt>
-                    <dd className="font-mono font-medium">{product.sku}</dd>
+                    <dd className="min-w-0 text-right font-mono font-medium break-all">{product.sku}</dd>
                   </div>
                 ) : null}
                 {product.createdAt ? (
-                  <div className="flex justify-between gap-4">
+                  <div className="flex items-start justify-between gap-4">
                     <dt className="text-muted">{t.product.updated}</dt>
                     <dd className="font-medium tabular-nums">
                       {shortDate(product.createdAt, locale)}
@@ -262,7 +264,7 @@ export default async function ProductPage({
       {related.length ? (
         <section className="section section-pad">
           <Reveal className="mb-8 flex flex-wrap items-end justify-between gap-4">
-            <div>
+            <div className="min-w-0">
               <h2 className="text-[26px] font-semibold tracking-[-0.02em] sm:text-[32px]">
                 {t.product.related}
               </h2>
@@ -273,9 +275,9 @@ export default async function ProductPage({
               <span>{t.product.backToShop}</span>
             </Link>
           </Reveal>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((item, i) => (
-              <Reveal key={item.slug} delay={i * 60}>
+              <Reveal key={item.slug} className="min-w-0" delay={i * 60}>
                 <ProductCard product={item} />
               </Reveal>
             ))}
